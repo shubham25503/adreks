@@ -33,7 +33,7 @@ function Header(){
   },[open]);
   const links=[['/','Home'],['/studio','Studio'],['/services','Services'],['/work','Work'],['/contact','Contact']];
   return <header className="site-header reference-header">
-    <Link className="wordmark" to="/">ADREKS<span className="brand-mark">.</span></Link>
+    <Link className="wordmark" to="/">ADREKS</Link>
     <nav className="reference-nav" aria-label="Main navigation">
       {links.map(([to,label])=><NavLink key={to} to={to}>{label}</NavLink>)}
     </nav>
@@ -46,7 +46,7 @@ function Header(){
   </header>;
 }
 
-function Footer(){return <footer className="site-footer"><div className="footer-brand"><Link className="wordmark" to="/">ADREKS<span className="brand-mark">.</span></Link><p>Advertising + Design<br/>Reach + Engagement<br/>Keep Scaling</p></div><div className="footer-nav"><strong>EXPLORE</strong><Link to="/studio">Studio</Link><Link to="/services">Services</Link><Link to="/work">Selected work</Link><Link to="/contact">Contact</Link></div><div className="footer-nav"><strong>SERVICES</strong>{services.map(s=><Link key={s.slug} to={'/services/'+s.slug}>{s.title}</Link>)}</div><div className="footer-meta"><span>INDEPENDENT CREATIVE STUDIO</span><span>AHMEDABAD · WORKING EVERYWHERE</span><a href={portfolio} target="_blank" rel="noreferrer">Kavan’s portfolio ↗</a></div></footer>}
+function Footer(){return <footer className="site-footer"><div className="footer-brand"><Link className="wordmark" to="/">ADREKS</Link><p>Advertising + Design<br/>Reach + Engagement<br/>Keep Scaling</p></div><div className="footer-nav"><strong>EXPLORE</strong><Link to="/studio">Studio</Link><Link to="/services">Services</Link><Link to="/work">Selected work</Link><Link to="/contact">Contact</Link></div><div className="footer-nav"><strong>SERVICES</strong>{services.map(s=><Link key={s.slug} to={'/services/'+s.slug}>{s.title}</Link>)}</div><div className="footer-meta"><span>INDEPENDENT CREATIVE STUDIO</span><span>AHMEDABAD · WORKING EVERYWHERE</span><a href={portfolio} target="_blank" rel="noreferrer">Kavan’s portfolio ↗</a></div></footer>}
 function PageTop({eyebrow,title,description}){return <section className="page-top page-enter"><p className="eyebrow">{eyebrow}</p><h1>{title}</h1>{description&&<p className="page-lede">{description}</p>}</section>}
 function CtaBand({compact=false}){return <section className={'cta-band '+(compact?'compact':'')} data-reveal><div><p className="eyebrow">HAVE A GOOD BRIEF?</p><h2>Let’s make the next<br/><em>move count.</em></h2></div><div><p>Tell us where you want to go. We’ll help work out the right creative and marketing steps to get there.</p><Link className="cta-link" to="/contact">Talk to Adreks <span>↗</span></Link></div></section>}
 function ProjectGrid({limit=6}){return <div className="project-grid">{projects.slice(0,limit).map((p,i)=><a className="project-card" href={portfolio+'#work'} target="_blank" rel="noreferrer" key={p[0]+p[2]} data-reveal><div className="project-image"><img src={'/assets/'+p[2]} alt={p[0]+' '+p[1]}/><span className="project-index">0{i+1}</span><span className="project-arrow">↗</span></div><div className="project-meta"><span>{p[1]}</span><h3>{p[0]}</h3><p>{p[3]}</p></div></a>)}</div>}

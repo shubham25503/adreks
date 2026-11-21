@@ -66,7 +66,7 @@ export function Services() {
       }}
     >
       <div className="container-custom">
-        <SectionLabel index="04">Capabilities & Services</SectionLabel>
+        <SectionLabel index="03">Capabilities & Services</SectionLabel>
         <RollText
           as="h2"
           className="font-display"

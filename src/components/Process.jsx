@@ -20,7 +20,7 @@ export function Process() {
       }}
     >
       <div className="container-custom">
-        <SectionLabel index="05">How We Work</SectionLabel>
+        <SectionLabel index="04">How We Work</SectionLabel>
         <RollText
           as="h2"
           className="font-display"

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
-import { delay, PurpleWaveMesh, Watermark } from "./Primitives";
+import { delay, Watermark } from "./Primitives";
 import { Link } from "./Router";
+import { HeroWireframeHelix } from "./HeroWireframeHelix";
 
 function useTilt() {
   const wrap = useRef(null);
@@ -72,8 +73,8 @@ export function Hero() {
         }}
       />
 
-      {/* Subtle purple wave mesh */}
-      <PurpleWaveMesh />
+      {/* Outlined wireframe helix continuing seamlessly into the solid helix below */}
+      <HeroWireframeHelix />
 
       {/* Deep ambient radial light (matte & soft, no neon) */}
       <div

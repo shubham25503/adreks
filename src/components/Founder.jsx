@@ -113,13 +113,10 @@ export function Founder() {
               }}
             >
               <p data-reveal>
-                Kavan started Adreks to give ambitious businesses one accountable partner for strategy, creative and growth — an agency that thinks like an owner, not a vendor.
+                Kavan started Adreks to give growing businesses a dedicated partner for creative strategy, brand building, and growth marketing. We approach every challenge with an owner’s mindset.
               </p>
               <p data-reveal style={delay(100)}>
-                He sets the creative direction, shapes the business thinking behind every campaign and stays personally involved in client relationships, from the first conversation to the work that goes live.
-              </p>
-              <p data-reveal style={delay(200)} style={{ fontSize: "0.95rem", color: "rgba(248, 247, 251, 0.55)" }}>
-                Adreks is the agency. Kavan’s own design and marketing work lives separately on his personal portfolio.
+                From initial brand direction to campaign execution, Kavan stays personally involved in the work, ensuring clear communication, purposeful design, and real business results.
               </p>
             </div>
 
@@ -175,15 +172,6 @@ export function Founder() {
             >
               <a href="#contact" className="btn-primary" data-magnetic>
                 Start a conversation ↗
-              </a>
-              <a
-                href="https://desaikavan03.github.io/kavan-desai-portfolio/"
-                target="_blank"
-                rel="noreferrer"
-                className="btn-secondary"
-                data-magnetic
-              >
-                Kavan’s portfolio ↗
               </a>
             </div>
           </div>

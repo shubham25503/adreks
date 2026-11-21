@@ -64,7 +64,7 @@ export function AboutIntro() {
               color: "rgba(248, 246, 252, 0.9)",
             }}
           >
-            Adreks is one team for strategy, content, advertising, branding and design — so your message stays consistent from the first post to the last campaign.
+            Adreks brings strategy, content, advertising, branding, and design under one roof, keeping your message consistent from the first post to the last campaign.
           </p>
           <p
             data-reveal

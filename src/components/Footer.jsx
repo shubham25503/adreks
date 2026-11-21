@@ -144,21 +144,6 @@ export function Footer() {
               >
                 hello@adreks.in
               </a>
-              <a
-                href="https://desaikavan03.github.io/kavan-desai-portfolio/"
-                target="_blank"
-                rel="noreferrer"
-                style={{
-                  color: "rgba(248, 246, 252, 0.65)",
-                  textDecoration: "none",
-                  fontSize: "0.92rem",
-                  transition: "color 0.2s",
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(248, 246, 252, 0.65)")}
-              >
-                Kavan’s portfolio ↗
-              </a>
             </div>
           </div>
         </div>

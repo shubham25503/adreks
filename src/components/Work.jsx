@@ -163,7 +163,7 @@ export function Work() {
               >
                 <img
                   src={item.image}
-                  alt={`${item.client} — ${item.type}`}
+                  alt={`${item.client}: ${item.type}`}
                   loading="lazy"
                   style={{
                     width: "100%",

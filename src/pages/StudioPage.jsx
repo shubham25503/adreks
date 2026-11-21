@@ -2,6 +2,7 @@ import React from "react";
 import { PageTop } from "../components/PageTop";
 import { CtaBand } from "../components/CtaBand";
 import { delay, SectionLabel, Star } from "../components/Primitives";
+import { Link } from "../components/Router";
 
 const PRINCIPLES = [
   {
@@ -141,7 +142,7 @@ export function StudioPage() {
                 }}
               >
                 <p data-reveal>
-                  Kavan is a digital marketer and creative strategist who works across social media, advertising and design. Adreks is the studio for bringing those skills together—close collaboration, thoughtful work and a clear line from idea to execution.
+                  Kavan is a digital marketer and creative strategist working across social media, advertising, and brand design. Adreks brings these disciplines together through close collaboration, thoughtful execution, and a direct line from concept to rollout.
                 </p>
                 <p data-reveal style={delay(100)}>
                   From a social post to a brand identity or a paid campaign, each project starts by understanding the people the work needs to reach.
@@ -186,17 +187,15 @@ export function StudioPage() {
                 </div>
               </div>
 
-              {/* Portfolio Link */}
+              {/* Action Button */}
               <div data-reveal style={{ ...delay(280), marginTop: "36px" }}>
-                <a
-                  href="https://desaikavan03.github.io/kavan-desai-portfolio/"
-                  target="_blank"
-                  rel="noreferrer"
+                <Link
+                  to="/contact"
                   className="btn-primary"
                   data-magnetic
                 >
-                  Explore Kavan’s full portfolio ↗
-                </a>
+                  Start a conversation ↗
+                </Link>
               </div>
             </div>
           </div>

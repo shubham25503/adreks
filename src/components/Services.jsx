@@ -27,7 +27,7 @@ export const SERVICES = [
   {
     n: "03",
     title: "Search & Digital Growth",
-    body: "Be found where people search — on Google, on maps and inside AI answers.",
+    body: "Get discovered where your customers search: on Google, on maps, and inside answer engines.",
     items: [
       "Search Engine Optimisation (SEO)",
       "Local SEO",

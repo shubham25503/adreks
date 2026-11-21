@@ -57,7 +57,7 @@ export function Clients() {
               justifySelf: "end",
             }}
           >
-            Healthcare, fitness, food and consumer businesses — different categories, the same need to be seen, understood and chosen.
+            From healthcare and fitness to food and consumer goods, every business shares the same goal: to be seen, understood, and chosen.
           </p>
         </div>
 

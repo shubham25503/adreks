@@ -1,39 +1,37 @@
 /* ==========================================================================
-   ADREKS — LUXURY DARK PURPLE & BLACK THEME
-   Inspired by deep violet gradient, glowing waves & high-impact motion
+   ADREKS — SOPHISTICATED DARK VIOLET & BLACK STUDIO THEME
+   Refined luxury agency aesthetic: matte, deep tones, zero neon glare
    ========================================================================== */
 
 :root {
   --radius: 1.25rem;
 
-  /* Colors */
-  --bg-deep: #07010e;
-  --bg-surface: #0e021a;
-  --bg-elevated: #160329;
-  --bg-card: rgba(20, 3, 36, 0.65);
-  --bg-card-hover: rgba(35, 6, 60, 0.82);
+  /* Colors: Elegant, deep, matte */
+  --bg-deep: #08020f;
+  --bg-surface: #0e0419;
+  --bg-elevated: #150624;
+  --bg-card: rgba(18, 5, 30, 0.7);
+  --bg-card-hover: rgba(28, 8, 46, 0.85);
 
-  --brand: #a855f7;          /* Vivid electric purple */
-  --brand-bright: #c084fc;   /* Lilac glow */
-  --brand-neon: #d946ef;     /* Magenta purple */
-  --brand-deep: #581c87;     /* Deep purple */
-  --brand-subtle: rgba(168, 85, 247, 0.12);
-  --brand-glow: rgba(168, 85, 247, 0.45);
+  --brand: #8b5cf6;          /* Deep refined violet */
+  --brand-bright: #a78bfa;   /* Soft lilac */
+  --brand-deep: #581c87;     /* Dark purple */
+  --brand-subtle: rgba(139, 92, 246, 0.08);
 
-  --lavender: #e9d5ff;
-  --lavender-pale: #f3e8ff;
+  --lavender: #ddd6fe;
+  --lavender-pale: #ede9fe;
 
-  --ink: #07010e;
-  --paper: #f8f6fc;
-  --paper-soft: rgba(248, 246, 252, 0.72);
-  --paper-muted: rgba(248, 246, 252, 0.45);
-  --paper-faint: rgba(248, 246, 252, 0.18);
+  --ink: #08020f;
+  --paper: #f8f7fb;
+  --paper-soft: rgba(248, 247, 251, 0.75);
+  --paper-muted: rgba(248, 247, 251, 0.45);
+  --paper-faint: rgba(248, 247, 251, 0.15);
 
-  --border-subtle: rgba(168, 85, 247, 0.15);
-  --border-bright: rgba(192, 132, 252, 0.38);
+  --border-subtle: rgba(139, 92, 246, 0.12);
+  --border-bright: rgba(167, 139, 250, 0.25);
 
-  --shadow-brand: 0 16px 45px -10px rgba(168, 85, 247, 0.42);
-  --shadow-card: 0 30px 60px -25px rgba(0, 0, 0, 0.8);
+  --shadow-brand: 0 8px 24px -4px rgba(139, 92, 246, 0.2);
+  --shadow-card: 0 24px 50px -20px rgba(0, 0, 0, 0.85);
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -72,7 +70,7 @@ body.preloader-active {
 /* ---------- Typography ---------- */
 .font-display {
   font-family: 'Bricolage Grotesque', 'DM Sans', sans-serif;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.045em;
   font-weight: 700;
   line-height: 0.98;
 }
@@ -85,13 +83,13 @@ body.preloader-active {
   font-family: 'Instrument Serif', Georgia, serif;
   font-style: italic;
   font-weight: 400;
-  color: var(--brand-bright);
+  color: var(--lavender);
 }
 
 .label-mono {
   font-family: 'DM Mono', monospace;
   font-size: 0.72rem;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
@@ -104,41 +102,41 @@ body.preloader-active {
   padding-right: clamp(20px, 4.5vw, 64px);
 }
 
-/* ---------- Background effects ---------- */
+/* ---------- Subtle Backgrounds (No Neon) ---------- */
 .grid-lines {
   background-image:
-    linear-gradient(to right, rgba(168, 85, 247, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(168, 85, 247, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(139, 92, 246, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(139, 92, 246, 0.035) 1px, transparent 1px);
   background-size: 80px 80px;
 }
 
 .glow-brand {
-  background: radial-gradient(closest-side, rgba(168, 85, 247, 0.35), transparent);
-  filter: blur(60px);
+  background: radial-gradient(closest-side, rgba(109, 40, 217, 0.18), transparent);
+  filter: blur(80px);
   pointer-events: none;
 }
 
 .glow-lavender {
-  background: radial-gradient(closest-side, rgba(217, 70, 239, 0.25), transparent);
-  filter: blur(70px);
+  background: radial-gradient(closest-side, rgba(139, 92, 246, 0.12), transparent);
+  filter: blur(90px);
   pointer-events: none;
 }
 
 .purple-gradient-bg {
-  background: radial-gradient(ellipse at 85% 20%, #4c007a 0%, transparent 55%),
-              radial-gradient(ellipse at 15% 85%, #350058 0%, transparent 60%),
-              radial-gradient(ellipse at 50% 50%, #170228 0%, #07010e 100%);
+  background: radial-gradient(ellipse at 80% 20%, #220538 0%, transparent 60%),
+              radial-gradient(ellipse at 20% 80%, #170327 0%, transparent 65%),
+              radial-gradient(ellipse at 50% 50%, #0d0218 0%, #08020f 100%);
 }
 
 .text-gradient-purple {
-  background: linear-gradient(115deg, #ffffff 10%, #d8b4fe 45%, #a855f7 85%, #f472b6 100%);
+  background: linear-gradient(115deg, #ffffff 40%, #ddd6fe 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .text-gradient-brand {
-  background: linear-gradient(110deg, var(--lavender), var(--brand) 60%, var(--brand-neon));
+  background: linear-gradient(110deg, #ffffff, var(--lavender) 70%, var(--brand-bright));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -150,8 +148,8 @@ body.preloader-active {
   top: 0;
   left: 0;
   right: 0;
-  height: 3px;
-  background: linear-gradient(to right, #a855f7, #d946ef, #c084fc);
+  height: 2px;
+  background: linear-gradient(to right, #6d28d9, #8b5cf6, #a78bfa);
   transform-origin: left;
   transform: scaleX(0);
   z-index: 9999;
@@ -168,8 +166,8 @@ body.preloader-active {
   pointer-events: none;
   user-select: none;
   font-size: clamp(6rem, 24vw, 22rem);
-  color: rgba(248, 246, 252, 0.025);
-  -webkit-text-stroke: 1px rgba(168, 85, 247, 0.08);
+  color: rgba(248, 247, 251, 0.018);
+  -webkit-text-stroke: 1px rgba(139, 92, 246, 0.05);
 }
 
 /* ---------- Keyframe animations ---------- */
@@ -180,7 +178,7 @@ body.preloader-active {
 
 @keyframes float {
   0%, 100% { transform: translate3d(0, 0, 0) rotate(var(--r, 0deg)); }
-  50% { transform: translate3d(0, -14px, 0) rotate(var(--r, 0deg)); }
+  50% { transform: translate3d(0, -12px, 0) rotate(var(--r, 0deg)); }
 }
 
 @keyframes spin-slow {
@@ -190,26 +188,20 @@ body.preloader-active {
 
 @keyframes glow-drift {
   0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(-4%, 6%, 0) scale(1.12); }
-}
-
-@keyframes pulse-ring {
-  0% { transform: scale(0.95); opacity: 0.6; }
-  50% { transform: scale(1.05); opacity: 0.9; }
-  100% { transform: scale(0.95); opacity: 0.6; }
+  50% { transform: translate3d(-3%, 4%, 0) scale(1.08); }
 }
 
 /* ---------- Scroll reveal animations ---------- */
 [data-reveal] {
   opacity: 0;
-  transform: translate3d(0, 42px, 0);
-  transition: opacity 0.9s var(--ease-out-expo), transform 1s var(--ease-out-expo);
+  transform: translate3d(0, 36px, 0);
+  transition: opacity 0.85s var(--ease-out-expo), transform 0.95s var(--ease-out-expo);
   transition-delay: var(--d, 0ms);
 }
 
-[data-reveal="left"] { transform: translate3d(-50px, 0, 0); }
-[data-reveal="right"] { transform: translate3d(50px, 0, 0); }
-[data-reveal="scale"] { transform: scale(0.93); }
+[data-reveal="left"] { transform: translate3d(-40px, 0, 0); }
+[data-reveal="right"] { transform: translate3d(40px, 0, 0); }
+[data-reveal="scale"] { transform: scale(0.95); }
 [data-reveal="fade"] { transform: none; }
 
 [data-reveal][data-shown] {
@@ -241,7 +233,7 @@ body.preloader-active {
 .draw-line {
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 1.3s var(--ease-out-expo);
+  transition: transform 1.2s var(--ease-out-expo);
   transition-delay: var(--d, 0ms);
 }
 
@@ -249,7 +241,7 @@ body.preloader-active {
   transform: scaleX(1);
 }
 
-/* Hero reveal (ready state from preloader) */
+/* Hero reveal */
 .hero-line {
   display: block;
   overflow: hidden;
@@ -259,16 +251,16 @@ body.preloader-active {
 
 .hero-line > span {
   display: inline-block;
-  transform: translate3d(0, 115%, 0) rotate(2deg);
+  transform: translate3d(0, 115%, 0) rotate(1.5deg);
   transform-origin: left bottom;
-  transition: transform 1.2s var(--ease-out-expo);
+  transition: transform 1.1s var(--ease-out-expo);
   transition-delay: var(--d, 0ms);
 }
 
 .hero-fade {
   opacity: 0;
-  transform: translate3d(0, 20px, 0);
-  transition: opacity 1.1s var(--ease-out-expo), transform 1.1s var(--ease-out-expo);
+  transform: translate3d(0, 18px, 0);
+  transition: opacity 1s var(--ease-out-expo), transform 1s var(--ease-out-expo);
   transition-delay: var(--d, 0ms);
 }
 
@@ -281,7 +273,7 @@ html[data-ready] .hero-fade {
   transform: none;
 }
 
-/* ---------- Card Spotlight effect ---------- */
+/* ---------- Card Spotlight effect (Subtle, No Neon) ---------- */
 .spotlight {
   --mx: 50%;
   --my: 50%;
@@ -290,7 +282,7 @@ html[data-ready] .hero-fade {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius);
-  transition: border-color 0.4s ease, transform 0.4s ease, background 0.4s ease;
+  transition: border-color 0.35s ease, transform 0.35s ease, background 0.35s ease;
 }
 
 .spotlight::before {
@@ -298,9 +290,9 @@ html[data-ready] .hero-fade {
   position: absolute;
   inset: -1px;
   border-radius: inherit;
-  background: radial-gradient(420px circle at var(--mx) var(--my), rgba(168, 85, 247, 0.24), transparent 65%);
+  background: radial-gradient(380px circle at var(--mx) var(--my), rgba(139, 92, 246, 0.1), transparent 65%);
   opacity: 0;
-  transition: opacity 0.45s ease;
+  transition: opacity 0.4s ease;
   z-index: 0;
   pointer-events: none;
 }
@@ -314,7 +306,7 @@ html[data-ready] .hero-fade {
   opacity: 1;
 }
 
-/* ---------- Custom magnetic cursor ---------- */
+/* ---------- Custom magnetic cursor (Clean, Minimal) ---------- */
 html.has-cursor,
 html.has-cursor a,
 html.has-cursor button {
@@ -332,50 +324,48 @@ html.has-cursor button {
 }
 
 .cursor-dot {
-  width: 6px;
-  height: 6px;
-  margin: -3px 0 0 -3px;
-  background: var(--brand-bright);
-  box-shadow: 0 0 10px var(--brand);
+  width: 5px;
+  height: 5px;
+  margin: -2.5px 0 0 -2.5px;
+  background: var(--lavender);
 }
 
 .cursor-ring {
-  width: 38px;
-  height: 38px;
-  margin: -19px 0 0 -19px;
-  border: 1px solid rgba(192, 132, 252, 0.45);
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border: 1px solid rgba(221, 214, 254, 0.35);
   display: grid;
   place-items: center;
-  transition: width 0.35s var(--ease-out-expo),
-              height 0.35s var(--ease-out-expo),
-              margin 0.35s var(--ease-out-expo),
-              background 0.3s ease,
-              border-color 0.3s ease;
+  transition: width 0.3s var(--ease-out-expo),
+              height 0.3s var(--ease-out-expo),
+              margin 0.3s var(--ease-out-expo),
+              background 0.25s ease,
+              border-color 0.25s ease;
 }
 
 .cursor-ring[data-state="hover"] {
-  width: 64px;
-  height: 64px;
-  margin: -32px 0 0 -32px;
-  background: rgba(168, 85, 247, 0.16);
+  width: 54px;
+  height: 54px;
+  margin: -27px 0 0 -27px;
+  background: rgba(139, 92, 246, 0.1);
   border-color: var(--brand-bright);
 }
 
 .cursor-ring[data-state="label"] {
-  width: 90px;
-  height: 90px;
-  margin: -45px 0 0 -45px;
+  width: 80px;
+  height: 80px;
+  margin: -40px 0 0 -40px;
   background: var(--brand);
-  border-color: var(--brand-bright);
-  box-shadow: 0 0 25px rgba(168, 85, 247, 0.5);
+  border-color: var(--brand);
 }
 
 .cursor-ring .cursor-label {
   display: none;
   font-family: 'DM Mono', monospace;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 500;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #fff;
 }
@@ -395,7 +385,7 @@ html.has-cursor button {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.8s var(--ease-out-expo), visibility 0.8s;
+  transition: opacity 0.7s var(--ease-out-expo), visibility 0.7s;
 }
 
 .preloader[data-stage="fade"] {
@@ -405,15 +395,14 @@ html.has-cursor button {
 
 .preloader[data-stage="reveal"] {
   transform: translate3d(0, -100%, 0);
-  transition: transform 1.1s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 .preloader-letter {
   display: inline-block;
   transform: translate3d(0, 110%, 0);
   opacity: 0;
-  filter: blur(8px);
-  transition: transform 0.8s var(--ease-out-expo), opacity 0.8s ease, filter 0.8s ease;
+  transition: transform 0.75s var(--ease-out-expo), opacity 0.75s ease;
   transition-delay: var(--d, 0ms);
 }
 
@@ -422,55 +411,54 @@ html.has-cursor button {
 .preloader[data-stage="load"] .preloader-letter.active {
   transform: none;
   opacity: 1;
-  filter: blur(0);
 }
 
-/* ---------- Button styles ---------- */
+/* ---------- Button styles (Matte & Sophisticated) ---------- */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
+  gap: 8px;
+  background: #7c3aed;
   color: #fff;
   font-family: 'DM Sans', sans-serif;
   font-weight: 500;
-  font-size: 0.92rem;
-  padding: 13px 26px;
+  font-size: 0.9rem;
+  padding: 12px 24px;
   border-radius: 9999px;
-  border: 1px solid rgba(216, 180, 254, 0.35);
-  box-shadow: 0 8px 30px -6px rgba(168, 85, 247, 0.5);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  border: 1px solid rgba(167, 139, 250, 0.25);
+  box-shadow: 0 4px 16px -2px rgba(124, 58, 237, 0.35);
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
   text-decoration: none;
   cursor: pointer;
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, #c084fc 0%, #9333ea 100%);
-  box-shadow: 0 12px 40px -4px rgba(168, 85, 247, 0.7);
+  background: #8b5cf6;
+  border-color: rgba(196, 181, 253, 0.4);
 }
 
 .btn-secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  background: rgba(255, 255, 255, 0.05);
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.04);
   color: var(--paper);
   font-family: 'DM Sans', sans-serif;
   font-weight: 500;
-  font-size: 0.92rem;
-  padding: 13px 26px;
+  font-size: 0.9rem;
+  padding: 12px 24px;
   border-radius: 9999px;
-  border: 1px solid rgba(168, 85, 247, 0.25);
-  backdrop-filter: blur(12px);
-  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  border: 1px solid rgba(139, 92, 246, 0.18);
+  backdrop-filter: blur(10px);
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
   text-decoration: none;
   cursor: pointer;
 }
 
 .btn-secondary:hover {
-  background: rgba(168, 85, 247, 0.15);
+  background: rgba(139, 92, 246, 0.12);
   border-color: var(--brand-bright);
   color: #fff;
 }

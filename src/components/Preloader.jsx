@@ -24,12 +24,12 @@ export function Preloader() {
     document.body.classList.add("preloader-active");
     const html = document.documentElement;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const minDur = reduce ? 400 : 1600;
+    const minDur = reduce ? 400 : 1500;
     const start = performance.now();
     let loaded = document.readyState === "complete";
     const onLoad = () => (loaded = true);
     window.addEventListener("load", onLoad);
-    const force = window.setTimeout(() => (loaded = true), 6000);
+    const force = window.setTimeout(() => (loaded = true), 5000);
     const timers = [];
     let p = 0;
     let raf = 0;
@@ -42,15 +42,15 @@ export function Preloader() {
         timers.push(window.setTimeout(() => setStage("done"), 400));
         return;
       }
-      timers.push(window.setTimeout(() => setStage("bloom"), 160));
+      timers.push(window.setTimeout(() => setStage("bloom"), 150));
       timers.push(
         window.setTimeout(() => {
           setStage("reveal");
           html.dataset.ready = "true";
           document.body.classList.remove("preloader-active");
-        }, 1400)
+        }, 1300)
       );
-      timers.push(window.setTimeout(() => setStage("done"), 2500));
+      timers.push(window.setTimeout(() => setStage("done"), 2300));
     };
 
     const tick = (now) => {
@@ -88,7 +88,7 @@ export function Preloader() {
       aria-label={`Loading Adreks, ${Math.floor(pct)}%`}
     >
       <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
-        {/* Ambient background glow */}
+        {/* Soft background ambient glow */}
         <div
           className="glow-brand"
           style={{
@@ -96,37 +96,36 @@ export function Preloader() {
             left: "50%",
             top: "50%",
             transform: "translate(-50%, -50%)",
-            width: "60vmax",
-            height: "60vmax",
-            opacity: 0.55,
+            width: "50vmax",
+            height: "50vmax",
+            opacity: 0.3,
           }}
         />
 
-        {/* Orbit track & satellite */}
+        {/* Orbit track & minimal satellite */}
         <div
           style={{
             position: "absolute",
             left: "50%",
             top: "50%",
             transform: "translate(-50%, -50%)",
-            width: "65vmin",
-            height: "65vmin",
+            width: "60vmin",
+            height: "60vmin",
             borderRadius: "50%",
-            border: "1px solid rgba(168, 85, 247, 0.15)",
+            border: "1px solid rgba(139, 92, 246, 0.12)",
           }}
         >
-          <div style={{ position: "absolute", inset: 0, animation: "spin-slow 24s linear infinite" }}>
+          <div style={{ position: "absolute", inset: 0, animation: "spin-slow 28s linear infinite" }}>
             <span
               style={{
                 position: "absolute",
                 top: "-4px",
                 left: "50%",
                 transform: "translateX(-50%)",
-                width: "8px",
-                height: "8px",
+                width: "7px",
+                height: "7px",
                 borderRadius: "50%",
-                background: "var(--brand-bright)",
-                boxShadow: "0 0 16px var(--brand)",
+                background: "var(--lavender)",
               }}
             />
           </div>
@@ -140,7 +139,7 @@ export function Preloader() {
             inset: "24px 32px auto 32px",
             display: "flex",
             justifyContent: "space-between",
-            color: "rgba(248, 246, 252, 0.45)",
+            color: "rgba(248, 247, 251, 0.4)",
           }}
         >
           <span>Independent Digital & Creative Agency</span>
@@ -164,7 +163,7 @@ export function Preloader() {
               alignItems: "center",
               fontSize: "clamp(3.5rem, 16vw, 13rem)",
               lineHeight: 0.85,
-              letterSpacing: "-0.06em",
+              letterSpacing: "-0.05em",
               color: "#fff",
             }}
           >
@@ -200,13 +199,13 @@ export function Preloader() {
             alignItems: "flex-end",
           }}
         >
-          <div className="label-mono" style={{ color: "rgba(248, 246, 252, 0.4)" }}>
+          <div className="label-mono" style={{ color: "rgba(248, 247, 251, 0.35)" }}>
             <span>CREATIVE STRATEGY · BRANDING · PERFORMANCE</span>
           </div>
           <div
             className="label-mono font-mono"
             style={{
-              fontSize: "1.2rem",
+              fontSize: "1.1rem",
               fontWeight: 500,
               color: "var(--brand-bright)",
             }}

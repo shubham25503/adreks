@@ -20,9 +20,9 @@ function useTilt() {
       const r = w.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width - 0.5;
       const y = (e.clientY - r.top) / r.height - 0.5;
-      c.style.transform = `rotateY(${x * 15}deg) rotateX(${-y * 13}deg) translateZ(0)`;
-      w.style.setProperty("--px", `${x * 24}px`);
-      w.style.setProperty("--py", `${y * 24}px`);
+      c.style.transform = `rotateY(${x * 12}deg) rotateX(${-y * 10}deg) translateZ(0)`;
+      w.style.setProperty("--px", `${x * 18}px`);
+      w.style.setProperty("--py", `${y * 18}px`);
     };
 
     const leave = () => {
@@ -72,37 +72,24 @@ export function Hero() {
         }}
       />
 
-      {/* Elegant purple wave mesh matching reference image */}
+      {/* Subtle purple wave mesh */}
       <PurpleWaveMesh />
 
-      {/* Glowing ambient radial light orbs */}
+      {/* Deep ambient radial light (matte & soft, no neon) */}
       <div
         className="glow-brand"
         style={{
           position: "absolute",
-          right: "-10%",
+          right: "-5%",
           top: "10%",
-          width: "55vmax",
-          height: "55vmax",
-          opacity: 0.45,
-          zIndex: -2,
-          animation: "glow-drift 14s ease-in-out infinite",
-        }}
-      />
-      <div
-        className="glow-lavender"
-        style={{
-          position: "absolute",
-          left: "-15%",
-          bottom: "-15%",
-          width: "45vmax",
-          height: "45vmax",
-          opacity: 0.35,
+          width: "50vmax",
+          height: "50vmax",
+          opacity: 0.25,
           zIndex: -2,
         }}
       />
 
-      {/* Orbit ring with glowing satellite */}
+      {/* Orbit ring with clean satellite marker */}
       <div
         aria-hidden="true"
         style={{
@@ -113,22 +100,22 @@ export function Hero() {
           width: "68vmax",
           height: "68vmax",
           borderRadius: "50%",
-          border: "1px solid rgba(168, 85, 247, 0.08)",
+          border: "1px solid rgba(139, 92, 246, 0.06)",
           zIndex: -2,
           pointerEvents: "none",
         }}
       >
-        <div style={{ position: "absolute", inset: 0, animation: "spin-slow 38s linear infinite" }}>
+        <div style={{ position: "absolute", inset: 0, animation: "spin-slow 44s linear infinite" }}>
           <span
             style={{
               position: "absolute",
               left: "50%",
-              top: "-5px",
-              width: "10px",
-              height: "10px",
+              top: "-4px",
+              width: "7px",
+              height: "7px",
               borderRadius: "50%",
-              background: "var(--brand-bright)",
-              boxShadow: "0 0 16px var(--brand-neon)",
+              background: "var(--lavender)",
+              opacity: 0.7,
             }}
           />
         </div>
@@ -150,7 +137,7 @@ export function Hero() {
         >
           {/* Left Column: Headline & Value Prop */}
           <div>
-            {/* Badge */}
+            {/* Clean studio badge */}
             <div
               className="hero-fade label-mono"
               style={{
@@ -160,24 +147,22 @@ export function Hero() {
                 gap: "10px",
                 padding: "8px 18px",
                 borderRadius: "9999px",
-                background: "rgba(22, 3, 38, 0.75)",
-                border: "1px solid rgba(168, 85, 247, 0.28)",
+                background: "rgba(18, 5, 30, 0.8)",
+                border: "1px solid rgba(139, 92, 246, 0.2)",
                 color: "var(--paper)",
-                backdropFilter: "blur(12px)",
                 marginBottom: "28px",
               }}
             >
               <span
                 style={{
-                  width: "8px",
-                  height: "8px",
+                  width: "7px",
+                  height: "7px",
                   borderRadius: "50%",
-                  background: "#4ade80",
-                  boxShadow: "0 0 10px #4ade80",
+                  background: "#22c55e",
                 }}
               />
               <span>Independent Digital & Creative Agency</span>
-              <span style={{ color: "rgba(248, 246, 252, 0.4)" }}>· Ahmedabad</span>
+              <span style={{ color: "rgba(248, 247, 251, 0.35)" }}>· Ahmedabad</span>
             </div>
 
             {/* Main Headline */}
@@ -187,7 +172,7 @@ export function Hero() {
                 fontSize: "clamp(2.8rem, 6.2vw, 6.6rem)",
                 lineHeight: 1.02,
                 color: "#ffffff",
-                letterSpacing: "-0.05em",
+                letterSpacing: "-0.045em",
                 margin: 0,
               }}
             >
@@ -195,7 +180,7 @@ export function Hero() {
                 <span style={delay(100)}>Make your brand</span>
               </span>
               <span className="hero-line">
-                <span className="serif-em" style={{ ...delay(220), color: "#d8b4fe" }}>
+                <span className="serif-em" style={{ ...delay(220), color: "#ddd6fe" }}>
                   impossible
                 </span>
               </span>
@@ -213,9 +198,9 @@ export function Hero() {
                 ...delay(500),
                 marginTop: "24px",
                 maxWidth: "540px",
-                fontSize: "clamp(1rem, 1.3vw, 1.2rem)",
+                fontSize: "clamp(1rem, 1.3vw, 1.15rem)",
                 lineHeight: 1.7,
-                color: "rgba(248, 246, 252, 0.75)",
+                color: "rgba(248, 247, 251, 0.72)",
               }}
             >
               We bring strategy, creative and performance marketing together to help ambitious businesses get noticed, earn attention and grow.
@@ -229,7 +214,7 @@ export function Hero() {
                 marginTop: "36px",
                 display: "flex",
                 flexWrap: "wrap",
-                gap: "16px",
+                gap: "14px",
                 alignItems: "center",
               }}
             >
@@ -241,7 +226,7 @@ export function Hero() {
               </Link>
             </div>
 
-            {/* Founder Pill linking to Studio / About Us */}
+            {/* Founder link pill */}
             <div
               className="hero-fade"
               style={{
@@ -250,35 +235,34 @@ export function Hero() {
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "14px",
-                padding: "10px 18px",
+                padding: "8px 16px",
                 borderRadius: "9999px",
-                background: "rgba(22, 3, 38, 0.4)",
-                border: "1px solid rgba(168, 85, 247, 0.15)",
+                background: "rgba(18, 5, 30, 0.6)",
+                border: "1px solid rgba(139, 92, 246, 0.15)",
               }}
             >
               <img
                 src="/assets/kavan-desai.webp"
                 alt="Kavan Desai"
                 style={{
-                  width: "36px",
-                  height: "36px",
+                  width: "32px",
+                  height: "32px",
                   borderRadius: "50%",
                   objectFit: "cover",
-                  border: "1px solid var(--brand)",
                 }}
               />
               <Link to="/studio" style={{ textDecoration: "none", display: "flex", flexDirection: "column" }}>
                 <span style={{ fontSize: "0.85rem", fontWeight: 600, color: "#fff" }}>
                   Kavan Desai ↗
                 </span>
-                <span className="label-mono" style={{ fontSize: "0.62rem", color: "var(--brand-bright)" }}>
+                <span className="label-mono" style={{ fontSize: "0.6rem", color: "var(--brand-bright)" }}>
                   Founder & Creative Strategist
                 </span>
               </Link>
             </div>
           </div>
 
-          {/* Right Column: Hero Visual Studio Card in 3D Interactive Tilt */}
+          {/* Right Column: Studio Visual Card in 3D Interactive Tilt */}
           <div className="hero-fade" style={{ ...delay(450), position: "relative" }}>
             <div
               ref={wrap}
@@ -294,10 +278,10 @@ export function Hero() {
                 className="spotlight"
                 style={{
                   position: "relative",
-                  borderRadius: "2.2rem",
+                  borderRadius: "2rem",
                   overflow: "hidden",
-                  border: "1px solid rgba(192, 132, 252, 0.35)",
-                  boxShadow: "0 28px 70px -15px rgba(0,0,0,0.85), 0 0 50px -10px rgba(168, 85, 247, 0.35)",
+                  border: "1px solid rgba(139, 92, 246, 0.22)",
+                  boxShadow: "0 24px 60px -15px rgba(0, 0, 0, 0.85)",
                   transition: "transform 0.15s ease-out",
                   willChange: "transform",
                 }}
@@ -310,33 +294,32 @@ export function Hero() {
                     width: "100%",
                     aspectRatio: "4/5",
                     objectFit: "cover",
-                    filter: "contrast(1.05) brightness(0.95)",
                   }}
                 />
 
-                {/* Overlaid luxury gradient badge */}
+                {/* Overlaid card badge */}
                 <div
                   style={{
                     position: "absolute",
-                    inset: "auto 20px 20px 20px",
-                    padding: "18px 22px",
-                    borderRadius: "1.4rem",
-                    background: "rgba(10, 1, 20, 0.88)",
-                    backdropFilter: "blur(16px)",
-                    WebkitBackdropFilter: "blur(16px)",
-                    border: "1px solid rgba(168, 85, 247, 0.3)",
+                    inset: "auto 18px 18px 18px",
+                    padding: "16px 20px",
+                    borderRadius: "1.2rem",
+                    background: "rgba(12, 3, 20, 0.9)",
+                    backdropFilter: "blur(14px)",
+                    WebkitBackdropFilter: "blur(14px)",
+                    border: "1px solid rgba(139, 92, 246, 0.2)",
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
                   }}
                 >
                   <div>
-                    <p className="label-mono" style={{ color: "var(--brand-bright)" }}>
+                    <p className="label-mono" style={{ color: "var(--brand-bright)", fontSize: "0.65rem" }}>
                       Adreks Studio
                     </p>
                     <p
                       className="font-display"
-                      style={{ fontSize: "1.1rem", color: "#fff", marginTop: "3px" }}
+                      style={{ fontSize: "1.05rem", color: "#fff", marginTop: "2px" }}
                     >
                       Ideas into impact.
                     </p>
@@ -345,14 +328,14 @@ export function Hero() {
                     to="/services"
                     aria-label="Explore services"
                     style={{
-                      width: "42px",
-                      height: "42px",
+                      width: "38px",
+                      height: "38px",
                       borderRadius: "50%",
-                      background: "linear-gradient(135deg, var(--brand), var(--brand-deep))",
+                      background: "var(--brand)",
                       display: "grid",
                       placeItems: "center",
                       color: "#fff",
-                      fontSize: "1.2rem",
+                      fontSize: "1.1rem",
                       textDecoration: "none",
                     }}
                   >

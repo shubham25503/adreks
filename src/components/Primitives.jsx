@@ -18,8 +18,8 @@ export function Star({ className = "", style }) {
 }
 
 /**
- * AdreksLogo matching the user's uploaded reference image:
- * Stylized sharp 'A' with the vibrant curved purple/magenta swoosh arc
+ * AdreksLogo matching clean agency branding:
+ * Crisp modern 'A' letterform with subtle curved purple swoosh, zero neon glow
  */
 export function AdreksLogo({ size = 32, showText = true, subtitle = "A DIGITAL MARKETING AGENCY" }) {
   return (
@@ -35,29 +35,23 @@ export function AdreksLogo({ size = 32, showText = true, subtitle = "A DIGITAL M
       >
         <defs>
           <linearGradient id="swoosh-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#d946ef" />
-            <stop offset="50%" stopColor="#a855f7" />
-            <stop offset="100%" stopColor="#7e22ce" />
-          </linearGradient>
-          <linearGradient id="letter-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#ffffff" />
-            <stop offset="100%" stopColor="#e9d5ff" />
+            <stop offset="0%" stopColor="#a78bfa" />
+            <stop offset="100%" stopColor="#6d28d9" />
           </linearGradient>
         </defs>
 
         {/* Sharp modern 'A' letterform */}
         <path
           d="M60 12 L95 104 L74 104 L60 66 L46 104 L25 104 Z"
-          fill="url(#letter-grad)"
+          fill="#ffffff"
         />
         {/* Inner cutout triangle */}
-        <polygon points="60,34 70,64 50,64" fill="#07010e" />
+        <polygon points="60,34 70,64 50,64" fill="#08020f" />
 
-        {/* Dynamic curved swoosh cutting through the 'A' */}
+        {/* Curved swoosh cutting through the 'A' */}
         <path
           d="M12 92 C 34 82, 68 56, 114 62 C 90 70, 52 88, 12 92 Z"
           fill="url(#swoosh-grad)"
-          filter="drop-shadow(0 0 8px rgba(217, 70, 239, 0.6))"
         />
       </svg>
 
@@ -67,9 +61,9 @@ export function AdreksLogo({ size = 32, showText = true, subtitle = "A DIGITAL M
           <span
             className="font-display"
             style={{
-              fontSize: "1.25rem",
+              fontSize: "1.2rem",
               fontWeight: 800,
-              letterSpacing: "0.08em",
+              letterSpacing: "0.06em",
               lineHeight: 1,
               color: "#ffffff",
             }}
@@ -81,9 +75,10 @@ export function AdreksLogo({ size = 32, showText = true, subtitle = "A DIGITAL M
               className="label-mono"
               style={{
                 fontSize: "0.55rem",
-                letterSpacing: "0.22em",
-                color: "var(--brand-bright)",
+                letterSpacing: "0.2em",
+                color: "var(--lavender)",
                 marginTop: "3px",
+                opacity: 0.85,
               }}
             >
               {subtitle}
@@ -97,7 +92,7 @@ export function AdreksLogo({ size = 32, showText = true, subtitle = "A DIGITAL M
 
 /**
  * PurpleWaveMesh:
- * Elegant glowing wavy lines matching the top-right wave pattern in the user's reference image
+ * Refined architectural contour wave lines, subtle & low-contrast (no neon glare)
  */
 export function PurpleWaveMesh({ className = "" }) {
   return (
@@ -108,8 +103,8 @@ export function PurpleWaveMesh({ className = "" }) {
         position: "absolute",
         top: 0,
         right: 0,
-        width: "min(900px, 85vw)",
-        height: "min(700px, 80vh)",
+        width: "min(850px, 80vw)",
+        height: "min(650px, 75vh)",
         pointerEvents: "none",
         overflow: "hidden",
         zIndex: 0,
@@ -122,19 +117,17 @@ export function PurpleWaveMesh({ className = "" }) {
         style={{
           width: "100%",
           height: "100%",
-          opacity: 0.75,
+          opacity: 0.35,
         }}
       >
         <defs>
           <linearGradient id="wave-stroke-grad" x1="0%" y1="0%" x2="100%" y2="80%">
-            <stop offset="0%" stopColor="#c084fc" stopOpacity="0.8" />
-            <stop offset="40%" stopColor="#a855f7" stopOpacity="0.4" />
-            <stop offset="80%" stopColor="#7e22ce" stopOpacity="0.15" />
-            <stop offset="100%" stopColor="#581c87" stopOpacity="0" />
+            <stop offset="0%" stopColor="#a78bfa" stopOpacity="0.45" />
+            <stop offset="50%" stopColor="#7c3aed" stopOpacity="0.2" />
+            <stop offset="100%" stopColor="#4c1d95" stopOpacity="0" />
           </linearGradient>
         </defs>
 
-        {/* 14 Harmonious curved contour wave paths */}
         {[
           "M 200,0 C 350,120 480,80 800,240",
           "M 230,0 C 370,140 500,100 800,270",
@@ -149,13 +142,12 @@ export function PurpleWaveMesh({ className = "" }) {
           "M 500,0 C 550,320 680,280 800,540",
           "M 530,0 C 570,340 700,300 800,570",
           "M 560,0 C 590,360 720,320 800,600",
-          "M 590,0 C 610,380 740,340 800,630",
         ].map((d, idx) => (
           <path
             key={idx}
             d={d}
             stroke="url(#wave-stroke-grad)"
-            strokeWidth={1.2}
+            strokeWidth={1}
             strokeLinecap="round"
           />
         ))}
@@ -224,7 +216,7 @@ export function Watermark({
   );
 }
 
-/** Section index label (e.g. (01) — Agency) */
+/** Section index label */
 export function SectionLabel({ index, children, className = "" }) {
   return (
     <div
@@ -233,17 +225,16 @@ export function SectionLabel({ index, children, className = "" }) {
       style={{
         display: "flex",
         alignItems: "center",
-        gap: "14px",
-        color: "rgba(248, 246, 252, 0.6)",
+        gap: "12px",
+        color: "rgba(248, 247, 251, 0.55)",
       }}
     >
       <span style={{ color: "var(--brand-bright)", fontWeight: 600 }}>({index})</span>
       <span
         style={{
-          width: "36px",
+          width: "32px",
           height: "1px",
-          background: "var(--brand)",
-          opacity: 0.4,
+          background: "rgba(139, 92, 246, 0.3)",
         }}
       />
       <span>{children}</span>

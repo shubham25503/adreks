@@ -9,10 +9,10 @@ export function Marquee() {
       aria-label="Capabilities ticker"
       style={{
         overflow: "hidden",
-        borderTop: "1px solid rgba(168, 85, 247, 0.22)",
-        borderBottom: "1px solid rgba(168, 85, 247, 0.22)",
-        background: "linear-gradient(90deg, #090113 0%, #170329 50%, #090113 100%)",
-        padding: "26px 0",
+        borderTop: "1px solid rgba(139, 92, 246, 0.14)",
+        borderBottom: "1px solid rgba(139, 92, 246, 0.14)",
+        background: "linear-gradient(90deg, #08020f 0%, #130422 50%, #08020f 100%)",
+        padding: "24px 0",
         position: "relative",
       }}
     >
@@ -20,7 +20,7 @@ export function Marquee() {
         style={{
           display: "flex",
           width: "max-content",
-          animation: "marquee 28s linear infinite",
+          animation: "marquee 32s linear infinite",
         }}
       >
         {[0, 1].map((k) => (
@@ -36,12 +36,12 @@ export function Marquee() {
               >
                 <span
                   style={{
-                    padding: "0 36px",
-                    fontSize: "clamp(2rem, 4.5vw, 4rem)",
+                    padding: "0 34px",
+                    fontSize: "clamp(1.9rem, 4vw, 3.8rem)",
                     letterSpacing: "-0.04em",
                     fontFamily: idx % 2 === 1 ? "'Instrument Serif', Georgia, serif" : "'Bricolage Grotesque', sans-serif",
                     fontStyle: idx % 2 === 1 ? "italic" : "normal",
-                    color: idx % 2 === 1 ? "#d8b4fe" : "#ffffff",
+                    color: idx % 2 === 1 ? "#ddd6fe" : "#ffffff",
                     whiteSpace: "nowrap",
                   }}
                 >
@@ -49,10 +49,10 @@ export function Marquee() {
                 </span>
                 <Star
                   style={{
-                    width: "clamp(22px, 2.5vw, 36px)",
-                    height: "clamp(22px, 2.5vw, 36px)",
+                    width: "clamp(18px, 2.2vw, 28px)",
+                    height: "clamp(18px, 2.2vw, 28px)",
                     color: "var(--brand)",
-                    filter: "drop-shadow(0 0 8px rgba(168, 85, 247, 0.6))",
+                    opacity: 0.75,
                   }}
                 />
               </span>

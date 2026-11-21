@@ -2,7 +2,6 @@ import React from "react";
 import { PageTop } from "../components/PageTop";
 import { CtaBand } from "../components/CtaBand";
 import { delay, SectionLabel, Star } from "../components/Primitives";
-import { Link } from "../components/Router";
 
 const PRINCIPLES = [
   {
@@ -30,7 +29,7 @@ export function StudioPage() {
         title={
           <>
             Independent by nature.<br />
-            <span className="serif-em" style={{ color: "#d8b4fe" }}>Collaborative by choice.</span>
+            <span className="serif-em" style={{ color: "#ddd6fe" }}>Collaborative by choice.</span>
           </>
         }
         description="Adreks is an advertising and design practice shaped around thoughtful creative, clear communication and the people behind the business."
@@ -58,11 +57,11 @@ export function StudioPage() {
               <div
                 style={{
                   position: "relative",
-                  borderRadius: "2.5rem",
+                  borderRadius: "2.2rem",
                   overflow: "hidden",
-                  border: "1px solid rgba(192, 132, 252, 0.35)",
-                  boxShadow: "0 28px 70px -15px rgba(0, 0, 0, 0.85), 0 0 50px -10px rgba(168, 85, 247, 0.4)",
-                  background: "linear-gradient(180deg, #2b0548 0%, #150226 60%, #080112 100%)",
+                  border: "1px solid rgba(139, 92, 246, 0.22)",
+                  boxShadow: "0 24px 60px -15px rgba(0, 0, 0, 0.85)",
+                  background: "linear-gradient(180deg, #1f0433 0%, #0e021a 100%)",
                 }}
               >
                 <img
@@ -82,20 +81,20 @@ export function StudioPage() {
               <div
                 style={{
                   position: "absolute",
-                  bottom: "-16px",
-                  right: "-16px",
-                  padding: "16px 24px",
-                  borderRadius: "1.2rem",
-                  background: "rgba(12, 1, 24, 0.94)",
-                  backdropFilter: "blur(16px)",
-                  border: "1px solid rgba(168, 85, 247, 0.4)",
-                  boxShadow: "0 16px 40px rgba(0, 0, 0, 0.6)",
+                  bottom: "-14px",
+                  right: "-14px",
+                  padding: "14px 22px",
+                  borderRadius: "1.1rem",
+                  background: "rgba(12, 3, 22, 0.94)",
+                  backdropFilter: "blur(14px)",
+                  border: "1px solid rgba(139, 92, 246, 0.25)",
+                  boxShadow: "0 12px 30px rgba(0, 0, 0, 0.6)",
                 }}
               >
-                <p className="label-mono" style={{ color: "var(--brand-bright)", fontSize: "0.68rem" }}>
+                <p className="label-mono" style={{ color: "var(--brand-bright)", fontSize: "0.65rem" }}>
                   Digital & Creative Lead
                 </p>
-                <p className="font-display" style={{ fontSize: "1.15rem", color: "#fff", marginTop: "3px" }}>
+                <p className="font-display" style={{ fontSize: "1.1rem", color: "#fff", marginTop: "2px" }}>
                   Kavan Desai
                 </p>
               </div>
@@ -103,13 +102,13 @@ export function StudioPage() {
               <Star
                 style={{
                   position: "absolute",
-                  top: "-18px",
-                  left: "-18px",
-                  width: "52px",
-                  height: "52px",
-                  color: "var(--brand-neon)",
-                  animation: "spin-slow 22s linear infinite",
-                  filter: "drop-shadow(0 0 10px rgba(217, 70, 239, 0.6))",
+                  top: "-16px",
+                  left: "-16px",
+                  width: "44px",
+                  height: "44px",
+                  color: "var(--brand-bright)",
+                  animation: "spin-slow 24s linear infinite",
+                  opacity: 0.8,
                 }}
               />
             </div>
@@ -127,7 +126,7 @@ export function StudioPage() {
                 }}
               >
                 Meet Kavan<br />
-                <span className="serif-em" style={{ color: "#d8b4fe" }}>Desai.</span>
+                <span className="serif-em" style={{ color: "#ddd6fe" }}>Desai.</span>
               </h2>
 
               <div
@@ -138,7 +137,7 @@ export function StudioPage() {
                   gap: "18px",
                   fontSize: "1.1rem",
                   lineHeight: 1.75,
-                  color: "rgba(248, 246, 252, 0.8)",
+                  color: "rgba(248, 247, 251, 0.8)",
                 }}
               >
                 <p data-reveal>
@@ -158,14 +157,14 @@ export function StudioPage() {
                   gap: "clamp(20px, 4vw, 44px)",
                   marginTop: "36px",
                   paddingTop: "24px",
-                  borderTop: "1px solid rgba(168, 85, 247, 0.18)",
+                  borderTop: "1px solid rgba(139, 92, 246, 0.15)",
                 }}
               >
                 <div>
                   <strong className="font-display" style={{ fontSize: "2.2rem", color: "var(--brand-bright)" }}>
                     100+
                   </strong>
-                  <p className="label-mono" style={{ color: "rgba(248, 246, 252, 0.5)", marginTop: "4px" }}>
+                  <p className="label-mono" style={{ color: "rgba(248, 247, 251, 0.45)", marginTop: "4px" }}>
                     Designs created
                   </p>
                 </div>
@@ -173,7 +172,7 @@ export function StudioPage() {
                   <strong className="font-display" style={{ fontSize: "2.2rem", color: "var(--brand-bright)" }}>
                     10+
                   </strong>
-                  <p className="label-mono" style={{ color: "rgba(248, 246, 252, 0.5)", marginTop: "4px" }}>
+                  <p className="label-mono" style={{ color: "rgba(248, 247, 251, 0.45)", marginTop: "4px" }}>
                     Happy clients
                   </p>
                 </div>
@@ -181,7 +180,7 @@ export function StudioPage() {
                   <strong className="font-display" style={{ fontSize: "2.2rem", color: "var(--brand-bright)" }}>
                     1.5+
                   </strong>
-                  <p className="label-mono" style={{ color: "rgba(248, 246, 252, 0.5)", marginTop: "4px" }}>
+                  <p className="label-mono" style={{ color: "rgba(248, 247, 251, 0.45)", marginTop: "4px" }}>
                     Years experience
                   </p>
                 </div>
@@ -209,7 +208,7 @@ export function StudioPage() {
         style={{
           padding: "clamp(70px, 9vw, 120px) 0",
           background: "var(--bg-surface)",
-          borderTop: "1px solid rgba(168, 85, 247, 0.15)",
+          borderTop: "1px solid rgba(139, 92, 246, 0.12)",
         }}
       >
         <div className="container-custom">
@@ -252,7 +251,7 @@ export function StudioPage() {
                 <h3 className="font-display" style={{ fontSize: "1.45rem", color: "#fff", marginTop: "18px" }}>
                   {p.title}
                 </h3>
-                <p style={{ marginTop: "12px", fontSize: "0.98rem", lineHeight: 1.7, color: "rgba(248, 246, 252, 0.7)" }}>
+                <p style={{ marginTop: "12px", fontSize: "0.98rem", lineHeight: 1.7, color: "rgba(248, 247, 251, 0.7)" }}>
                   {p.desc}
                 </p>
               </div>

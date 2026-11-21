@@ -25,19 +25,19 @@ export function Founder() {
           }}
           className="founder-grid"
         >
-          {/* Photo with floating badges */}
+          {/* Photo with floating badge */}
           <div data-reveal="left" style={{ position: "relative", maxWidth: "460px", margin: "0 auto" }}>
             <div
               style={{
                 position: "relative",
-                borderRadius: "2.4rem",
+                borderRadius: "2.2rem",
                 overflow: "hidden",
-                border: "1px solid rgba(192, 132, 252, 0.3)",
-                boxShadow: "0 28px 70px -15px rgba(0, 0, 0, 0.8), 0 0 45px -10px rgba(168, 85, 247, 0.3)",
+                border: "1px solid rgba(139, 92, 246, 0.22)",
+                boxShadow: "0 24px 60px -15px rgba(0, 0, 0, 0.85)",
               }}
             >
               <img
-                src="/assets/founder-kavan.webp"
+                src="/assets/kavan-desai.webp"
                 alt="Kavan Desai, Founder of Adreks"
                 loading="lazy"
                 style={{
@@ -53,35 +53,35 @@ export function Founder() {
             <div
               style={{
                 position: "absolute",
-                bottom: "-16px",
-                right: "-16px",
-                padding: "16px 22px",
-                borderRadius: "1.2rem",
-                background: "rgba(10, 1, 20, 0.92)",
-                backdropFilter: "blur(16px)",
-                border: "1px solid rgba(168, 85, 247, 0.35)",
-                boxShadow: "0 16px 40px rgba(0, 0, 0, 0.6)",
+                bottom: "-14px",
+                right: "-14px",
+                padding: "14px 20px",
+                borderRadius: "1.1rem",
+                background: "rgba(12, 3, 22, 0.94)",
+                backdropFilter: "blur(14px)",
+                border: "1px solid rgba(139, 92, 246, 0.25)",
+                boxShadow: "0 12px 30px rgba(0, 0, 0, 0.6)",
               }}
             >
-              <p className="label-mono" style={{ color: "var(--brand-bright)" }}>
+              <p className="label-mono" style={{ color: "var(--brand-bright)", fontSize: "0.65rem" }}>
                 Founder & CEO
               </p>
-              <p className="font-display" style={{ fontSize: "1.15rem", color: "#fff", marginTop: "3px" }}>
+              <p className="font-display" style={{ fontSize: "1.1rem", color: "#fff", marginTop: "2px" }}>
                 Kavan Desai
               </p>
             </div>
 
-            {/* Rotating Star Badge */}
+            {/* Minimal Star Badge (No Neon) */}
             <Star
               style={{
                 position: "absolute",
-                top: "-20px",
-                left: "-20px",
-                width: "56px",
-                height: "56px",
-                color: "var(--brand-neon)",
-                animation: "spin-slow 20s linear infinite",
-                filter: "drop-shadow(0 0 12px rgba(217, 70, 239, 0.7))",
+                top: "-16px",
+                left: "-16px",
+                width: "44px",
+                height: "44px",
+                color: "var(--brand-bright)",
+                animation: "spin-slow 24s linear infinite",
+                opacity: 0.8,
               }}
             />
           </div>
@@ -109,7 +109,7 @@ export function Founder() {
                 gap: "18px",
                 fontSize: "1.08rem",
                 lineHeight: 1.75,
-                color: "rgba(248, 246, 252, 0.78)",
+                color: "rgba(248, 247, 251, 0.78)",
               }}
             >
               <p data-reveal>
@@ -118,7 +118,7 @@ export function Founder() {
               <p data-reveal style={delay(100)}>
                 He sets the creative direction, shapes the business thinking behind every campaign and stays personally involved in client relationships, from the first conversation to the work that goes live.
               </p>
-              <p data-reveal style={delay(200)} style={{ fontSize: "0.95rem", color: "rgba(248, 246, 252, 0.55)" }}>
+              <p data-reveal style={delay(200)} style={{ fontSize: "0.95rem", color: "rgba(248, 247, 251, 0.55)" }}>
                 Adreks is the agency. Kavan’s own design and marketing work lives separately on his personal portfolio.
               </p>
             </div>
@@ -132,14 +132,14 @@ export function Founder() {
                 gap: "clamp(20px, 4vw, 44px)",
                 marginTop: "36px",
                 paddingTop: "24px",
-                borderTop: "1px solid rgba(168, 85, 247, 0.18)",
+                borderTop: "1px solid rgba(139, 92, 246, 0.15)",
               }}
             >
               <div>
                 <strong className="font-display" style={{ fontSize: "2rem", color: "var(--brand-bright)" }}>
                   100+
                 </strong>
-                <p className="label-mono" style={{ color: "rgba(248, 246, 252, 0.5)", marginTop: "4px" }}>
+                <p className="label-mono" style={{ color: "rgba(248, 247, 251, 0.45)", marginTop: "4px" }}>
                   Designs created
                 </p>
               </div>
@@ -147,7 +147,7 @@ export function Founder() {
                 <strong className="font-display" style={{ fontSize: "2rem", color: "var(--brand-bright)" }}>
                   10+
                 </strong>
-                <p className="label-mono" style={{ color: "rgba(248, 246, 252, 0.5)", marginTop: "4px" }}>
+                <p className="label-mono" style={{ color: "rgba(248, 247, 251, 0.45)", marginTop: "4px" }}>
                   Happy clients
                 </p>
               </div>
@@ -155,7 +155,7 @@ export function Founder() {
                 <strong className="font-display" style={{ fontSize: "2rem", color: "var(--brand-bright)" }}>
                   1.5+
                 </strong>
-                <p className="label-mono" style={{ color: "rgba(248, 246, 252, 0.5)", marginTop: "4px" }}>
+                <p className="label-mono" style={{ color: "rgba(248, 247, 251, 0.45)", marginTop: "4px" }}>
                   Years experience
                 </p>
               </div>

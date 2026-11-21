@@ -35,8 +35,10 @@ export function AdrexksLogo({ size = 32, showText = true, subtitle = "A DIGITAL 
       >
         <defs>
           <linearGradient id="swoosh-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#a78bfa" />
-            <stop offset="100%" stopColor="#6d28d9" />
+            <stop offset="0%" stopColor="#c084fc" />
+            <stop offset="38%" stopColor="#9333ea" />
+            <stop offset="68%" stopColor="#f43f5e" />
+            <stop offset="100%" stopColor="#7c3aed" />
           </linearGradient>
         </defs>
 
@@ -236,7 +238,7 @@ export function SectionLabel({ index, children, className = "" }) {
         style={{
           width: "32px",
           height: "1px",
-          background: "rgba(139, 92, 246, 0.3)",
+          background: "linear-gradient(to right, rgba(244, 63, 94, 0.55), rgba(168, 85, 247, 0.25))",
         }}
       />
       <span>{children}</span>

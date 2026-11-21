@@ -117,7 +117,7 @@ body.preloader-active {
 }
 
 .glow-brand {
-  background: radial-gradient(closest-side, rgba(109, 40, 217, 0.18), transparent);
+  background: radial-gradient(closest-side, rgba(190, 24, 93, 0.14), rgba(109, 40, 217, 0.18), transparent);
   filter: blur(80px);
   pointer-events: none;
 }
@@ -129,20 +129,21 @@ body.preloader-active {
 }
 
 .purple-gradient-bg {
-  background: radial-gradient(ellipse at 80% 20%, #220538 0%, transparent 60%),
-              radial-gradient(ellipse at 20% 80%, #170327 0%, transparent 65%),
+  background: radial-gradient(ellipse at 85% 18%, rgba(190, 18, 60, 0.11) 0%, transparent 45%),
+              radial-gradient(ellipse at 80% 20%, #24063c 0%, transparent 60%),
+              radial-gradient(ellipse at 15% 75%, rgba(159, 18, 57, 0.08) 0%, #160326 35%, transparent 65%),
               radial-gradient(ellipse at 50% 50%, #0d0218 0%, #08020f 100%);
 }
 
 .text-gradient-purple {
-  background: linear-gradient(115deg, #ffffff 40%, #ddd6fe 100%);
+  background: linear-gradient(115deg, #ffffff 40%, #ddd6fe 75%, #f472b6 90%, #a855f7 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .text-gradient-brand {
-  background: linear-gradient(110deg, #ffffff, var(--lavender) 70%, var(--brand-bright));
+  background: linear-gradient(110deg, #ffffff 30%, var(--lavender) 65%, #f43f5e 88%, var(--brand-bright) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -155,7 +156,7 @@ body.preloader-active {
   left: 0;
   right: 0;
   height: 2.5px;
-  background: linear-gradient(to right, #6d28d9, #8b5cf6, var(--acid-lime));
+  background: linear-gradient(to right, #6d28d9, #9333ea, #e11d48 55%, #c084fc 80%, var(--acid-lime));
   transform-origin: left;
   transform: scaleX(0);
   z-index: 9999;
@@ -296,7 +297,7 @@ html[data-ready] .hero-fade {
   position: absolute;
   inset: -1px;
   border-radius: inherit;
-  background: radial-gradient(380px circle at var(--mx) var(--my), rgba(139, 92, 246, 0.1), transparent 65%);
+  background: radial-gradient(380px circle at var(--mx) var(--my), rgba(168, 85, 247, 0.12), rgba(225, 29, 72, 0.08), transparent 65%);
   opacity: 0;
   transition: opacity 0.4s ease;
   z-index: 0;

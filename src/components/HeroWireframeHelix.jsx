@@ -77,10 +77,10 @@ export function HeroWireframeHelix() {
       const d = 600;
 
       // Same mathematical curve parameters as the solid helix below
-      const NUM_SEGS = 120;
+      const NUM_SEGS = 180;
       const TOTAL_TURNS = 2.0; // Winding down through Hero
-      const R_BASE = Math.min(width * 0.38, 420);
-      const RIBBON_W = Math.min(width * 0.10, 88);
+      const R_BASE = Math.min(width * 0.36, 420);
+      const RIBBON_W = Math.min(width * 0.14, 130);
 
       // Scroll-driven rotation (identical speed & direction as HelicalMethod)
       const scrollRotation = scrollYRef.current * 0.0022;

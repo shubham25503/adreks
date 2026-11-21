@@ -89,8 +89,9 @@ export function Navbar() {
                 }}
                 activeStyle={{
                   color: "#ffffff",
-                  background: "rgba(168, 85, 247, 0.25)",
-                  border: "1px solid rgba(168, 85, 247, 0.35)",
+                  background: "linear-gradient(135deg, rgba(147, 51, 234, 0.32) 0%, rgba(225, 29, 72, 0.18) 100%)",
+                  border: "1px solid rgba(244, 63, 94, 0.35)",
+                  boxShadow: "0 2px 14px -3px rgba(225, 29, 72, 0.22)",
                 }}
               >
                 {link.label}

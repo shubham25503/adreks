@@ -20,7 +20,6 @@ const NODES = [
     ],
     accent: "#a78bfa",
     accentLight: "rgba(167, 139, 250, 0.15)",
-    isAcidLime: false,
     textPosition: "right", // Helix curves LEFT, text on RIGHT
     u: 0.15,
   },
@@ -42,7 +41,6 @@ const NODES = [
     ],
     accent: "#c084fc",
     accentLight: "rgba(192, 132, 252, 0.15)",
-    isAcidLime: false,
     textPosition: "left", // Helix curves RIGHT, text on LEFT
     u: 0.40,
   },
@@ -169,10 +167,10 @@ export function HelicalMethod() {
       const d = 600; // 3D Perspective distance
 
       // Single continuous helix configuration
-      const NUM_SEGS = 240;
+      const NUM_SEGS = 320;
       const TOTAL_TURNS = 4.0; // 4 full loops down the section
-      const R_BASE = Math.min(cssW * 0.38, 420); // Wide amplitude so it curves left and right!
-      const RIBBON_W = Math.min(cssW * 0.10, 88); // Thick strips!
+      const R_BASE = Math.min(cssW * 0.36, 420); // Wide amplitude so it curves left and right!
+      const RIBBON_W = Math.min(cssW * 0.14, 130); // Thick sculptural ribbon matching 3D render!
 
       // Scroll-driven rotation: as user scrolls down, helix rotates continuously!
       const scrollRotation = scrollYRef.current * 0.0022;
@@ -258,7 +256,6 @@ export function HelicalMethod() {
           p: { x: cx + x * scale, y: y, scale },
           r: sph.r * scale,
           z: zRot,
-          isAcidLime: sph.isAcidLime,
         });
       });
 
@@ -300,32 +297,33 @@ export function HelicalMethod() {
           const depthAlpha = Math.max(0.2, Math.min(0.95, (item.z + 500) / 1000));
 
           if (isFront) {
-            // Front side: Thick glossy metallic purple exterior (identical & consistent throughout)
+            // Front side: Pure glossy metallic purple exterior (identical & consistent throughout)
             const grad = ctx.createLinearGradient(item.p0.x, item.p0.y, item.p2.x, item.p2.y);
-            grad.addColorStop(0, "#7c3aed");
-            grad.addColorStop(0.35, "#a855f7");
-            grad.addColorStop(0.7, "#c084fc");
-            grad.addColorStop(1, "#581c87");
+            grad.addColorStop(0, "#4a0e8f");
+            grad.addColorStop(0.25, "#7c3aed");
+            grad.addColorStop(0.55, "#a855f7");
+            grad.addColorStop(0.78, "#c084fc");
+            grad.addColorStop(1, "#3b0764");
             ctx.fillStyle = grad;
           } else {
             // Back/inside side: Silky silver-lavender satin interior
             const grad = ctx.createLinearGradient(item.p0.x, item.p0.y, item.p2.x, item.p2.y);
-            grad.addColorStop(0, `rgba(221, 214, 254, ${0.85 * depthAlpha})`);
-            grad.addColorStop(0.5, `rgba(196, 181, 253, ${0.75 * depthAlpha})`);
-            grad.addColorStop(1, `rgba(109, 40, 217, ${0.65 * depthAlpha})`);
+            grad.addColorStop(0, `rgba(237, 233, 254, ${0.9 * depthAlpha})`);
+            grad.addColorStop(0.5, `rgba(216, 180, 254, ${0.78 * depthAlpha})`);
+            grad.addColorStop(1, `rgba(139, 92, 246, ${0.65 * depthAlpha})`);
             ctx.fillStyle = grad;
           }
 
           ctx.fill();
 
-          // Highlight outer spine edge
+          // Highlight outer spine edge with crisp specular shine
           ctx.strokeStyle = isFront
-            ? `rgba(243, 232, 255, ${0.35 * depthAlpha})`
-            : "rgba(139, 92, 246, 0.12)";
-          ctx.lineWidth = isFront ? 1.5 : 0.8;
+            ? `rgba(255, 255, 255, ${0.45 * depthAlpha})`
+            : "rgba(168, 85, 247, 0.15)";
+          ctx.lineWidth = isFront ? 1.6 : 0.8;
           ctx.stroke();
         } else if (item.type === "sphere") {
-          // Draw metallic chrome purple spheres (identical throughout)
+          // Draw metallic chrome purple spheres (identical throughout, matching 3D render)
           const rad = Math.max(6, item.r);
           const grad = ctx.createRadialGradient(
             item.p.x - rad * 0.35,
@@ -337,17 +335,17 @@ export function HelicalMethod() {
           );
 
           grad.addColorStop(0, "#ffffff");
-          grad.addColorStop(0.25, "#ede9fe");
+          grad.addColorStop(0.22, "#ede9fe");
           grad.addColorStop(0.55, "#a855f7");
           grad.addColorStop(0.85, "#6b21a8");
-          grad.addColorStop(1, "#120224");
+          grad.addColorStop(1, "#1e0836");
 
           ctx.beginPath();
           ctx.arc(item.p.x, item.p.y, rad, 0, Math.PI * 2);
           ctx.fillStyle = grad;
           ctx.fill();
 
-          ctx.strokeStyle = "rgba(233, 213, 255, 0.45)";
+          ctx.strokeStyle = "rgba(233, 213, 255, 0.5)";
           ctx.lineWidth = 1;
           ctx.stroke();
         } else if (item.type === "node") {
@@ -540,9 +538,7 @@ function NodeContentCard({ node }) {
         background: "rgba(14, 3, 26, 0.78)",
         backdropFilter: "blur(20px)",
         WebkitBackdropFilter: "blur(20px)",
-        border: node.isAcidLime
-          ? "1px solid rgba(214, 255, 117, 0.35)"
-          : "1px solid rgba(139, 92, 246, 0.24)",
+        border: "1px solid rgba(139, 92, 246, 0.24)",
         borderRadius: "2.2rem",
         padding: "clamp(28px, 4vw, 44px)",
         boxShadow: "0 30px 80px -20px rgba(0, 0, 0, 0.9)",
@@ -558,7 +554,7 @@ function NodeContentCard({ node }) {
           padding: "6px 14px",
           borderRadius: "9999px",
           background: node.accentLight,
-          border: `1px solid ${node.isAcidLime ? "rgba(214, 255, 117, 0.35)" : "rgba(168, 85, 247, 0.25)"}`,
+          border: "1px solid rgba(168, 85, 247, 0.25)",
           marginBottom: "18px",
         }}
       >
@@ -567,16 +563,14 @@ function NodeContentCard({ node }) {
             width: "7px",
             height: "7px",
             borderRadius: "50%",
-            background: node.isAcidLime ? "var(--acid-lime)" : "var(--brand-bright)",
-            boxShadow: node.isAcidLime
-              ? "0 0 10px rgba(214, 255, 117, 0.8)"
-              : "0 0 10px rgba(168, 85, 247, 0.8)",
+            background: "var(--brand-bright)",
+            boxShadow: "0 0 10px rgba(168, 85, 247, 0.8)",
           }}
         />
         <span
           className="label-mono font-mono"
           style={{
-            color: node.isAcidLime ? "var(--acid-lime)" : "var(--paper)",
+            color: "var(--paper)",
             fontWeight: 600,
             fontSize: "0.72rem",
           }}
@@ -599,7 +593,7 @@ function NodeContentCard({ node }) {
         {node.acronym}:{" "}
         <span
           style={{
-            color: node.isAcidLime ? "var(--acid-lime)" : "var(--lavender)",
+            color: "var(--lavender)",
             fontWeight: 400,
             fontFamily: "'Instrument Serif', Georgia, serif",
             fontStyle: "italic",
@@ -625,7 +619,7 @@ function NodeContentCard({ node }) {
       <p
         style={{
           fontSize: "0.98rem",
-          color: node.isAcidLime ? "var(--acid-lime)" : "var(--lavender)",
+          color: "var(--lavender)",
           fontWeight: 600,
           marginBottom: "10px",
         }}
@@ -647,9 +641,7 @@ function NodeContentCard({ node }) {
       <div
         style={{
           background: "rgba(10, 2, 18, 0.6)",
-          border: node.isAcidLime
-            ? "1px solid rgba(214, 255, 117, 0.22)"
-            : "1px solid rgba(139, 92, 246, 0.16)",
+          border: "1px solid rgba(139, 92, 246, 0.16)",
           borderRadius: "1.2rem",
           padding: "18px 22px",
           display: "grid",
@@ -672,7 +664,7 @@ function NodeContentCard({ node }) {
           >
             <span
               style={{
-                color: node.isAcidLime ? "var(--acid-lime)" : "var(--brand-bright)",
+                color: "var(--brand-bright)",
                 fontSize: "0.95rem",
                 fontWeight: 700,
                 lineHeight: 1.1,

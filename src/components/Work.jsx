@@ -115,11 +115,11 @@ export function Work() {
                   fontFamily: "inherit",
                   cursor: "pointer",
                   transition: "all 0.3s ease",
-                  border: filter === f ? "1px solid var(--brand-bright)" : "1px solid rgba(168, 85, 247, 0.18)",
-                  background: filter === f ? "var(--brand)" : "rgba(255, 255, 255, 0.04)",
-                  color: filter === f ? "#ffffff" : "rgba(248, 246, 252, 0.7)",
+                  border: filter === f ? "1px solid var(--acid-lime)" : "1px solid rgba(168, 85, 247, 0.18)",
+                  background: filter === f ? "var(--acid-lime)" : "rgba(255, 255, 255, 0.04)",
+                  color: filter === f ? "#08020f" : "rgba(248, 246, 252, 0.7)",
                   fontWeight: filter === f ? 600 : 400,
-                  boxShadow: filter === f ? "0 4px 20px -2px rgba(168, 85, 247, 0.5)" : "none",
+                  boxShadow: filter === f ? "0 4px 18px -2px rgba(214, 255, 117, 0.3)" : "none",
                 }}
               >
                 {f}

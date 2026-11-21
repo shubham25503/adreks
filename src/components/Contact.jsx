@@ -27,8 +27,8 @@ export function Contact() {
         setForm((f) => ({ ...f, service: title }));
       }
     };
-    window.addEventListener("adreks:service", onPick);
-    return () => window.removeEventListener("adreks:service", onPick);
+    window.addEventListener("adrexks:service", onPick);
+    return () => window.removeEventListener("adrexks:service", onPick);
   }, []);
 
   const handleChange = (k, v) => {
@@ -125,7 +125,7 @@ export function Contact() {
 
             <div data-reveal style={{ ...delay(100), marginTop: "44px", display: "grid", gap: "20px" }}>
               <a
-                href="mailto:hello@adreks.in"
+                href="mailto:hello@adrexks.in"
                 style={{
                   display: "flex",
                   alignItems: "center",
@@ -135,7 +135,7 @@ export function Contact() {
                   textDecoration: "none",
                   transition: "color 0.25s",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--brand-bright)")}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--acid-lime, #D6FF75)")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "#fff")}
               >
                 <span
@@ -147,12 +147,12 @@ export function Contact() {
                     placeItems: "center",
                     border: "1px solid rgba(168, 85, 247, 0.3)",
                     background: "rgba(168, 85, 247, 0.1)",
-                    color: "var(--brand-bright)",
+                    color: "var(--acid-lime, #D6FF75)",
                   }}
                 >
                   ✉
                 </span>
-                <span>hello@adreks.in</span>
+                <span>hello@adrexks.in</span>
               </a>
 
               <p
@@ -306,9 +306,10 @@ export function Contact() {
                             fontFamily: "inherit",
                             cursor: "pointer",
                             transition: "all 0.25s",
-                            border: form.service === opt ? "1px solid var(--brand-bright)" : "1px solid rgba(168, 85, 247, 0.16)",
-                            background: form.service === opt ? "var(--brand)" : "rgba(255, 255, 255, 0.04)",
-                            color: form.service === opt ? "#ffffff" : "rgba(248, 246, 252, 0.7)",
+                            border: form.service === opt ? "1px solid var(--acid-lime)" : "1px solid rgba(168, 85, 247, 0.16)",
+                            background: form.service === opt ? "var(--acid-lime)" : "rgba(255, 255, 255, 0.04)",
+                            color: form.service === opt ? "#08020f" : "rgba(248, 246, 252, 0.7)",
+                            fontWeight: form.service === opt ? 600 : 400,
                           }}
                         >
                           {opt}

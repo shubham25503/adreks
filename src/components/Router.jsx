@@ -9,10 +9,10 @@ export function useLocation() {
     const onPop = () => setPathname(window.location.pathname);
     const onNav = () => setPathname(window.location.pathname);
     window.addEventListener("popstate", onPop);
-    window.addEventListener("adreks:navigate", onNav);
+    window.addEventListener("adrexks:navigate", onNav);
     return () => {
       window.removeEventListener("popstate", onPop);
-      window.removeEventListener("adreks:navigate", onNav);
+      window.removeEventListener("adrexks:navigate", onNav);
     };
   }, []);
 
@@ -26,7 +26,7 @@ export function navigate(to) {
     return;
   }
   window.history.pushState({}, "", to);
-  window.dispatchEvent(new Event("adreks:navigate"));
+  window.dispatchEvent(new Event("adrexks:navigate"));
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 

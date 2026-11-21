@@ -38,7 +38,7 @@ export function Founder() {
             >
               <img
                 src="/assets/kavan-desai.webp"
-                alt="Kavan Desai, Founder of Adreks"
+                alt="Kavan Desai, Founder of Adrexks"
                 loading="lazy"
                 style={{
                   display: "block",
@@ -113,7 +113,7 @@ export function Founder() {
               }}
             >
               <p data-reveal>
-                Kavan started Adreks to give growing businesses a dedicated partner for creative strategy, brand building, and growth marketing. We approach every challenge with an owner’s mindset.
+                Kavan started Adrexks to give growing businesses a dedicated partner for creative strategy, brand building, and growth marketing. We approach every challenge with an owner’s mindset.
               </p>
               <p data-reveal style={delay(100)}>
                 From initial brand direction to campaign execution, Kavan stays personally involved in the work, ensuring clear communication, purposeful design, and real business results.
@@ -133,7 +133,7 @@ export function Founder() {
               }}
             >
               <div>
-                <strong className="font-display" style={{ fontSize: "2rem", color: "var(--brand-bright)" }}>
+                <strong className="font-display" style={{ fontSize: "2rem", color: "var(--acid-lime, #D6FF75)" }}>
                   100+
                 </strong>
                 <p className="label-mono" style={{ color: "rgba(248, 247, 251, 0.45)", marginTop: "4px" }}>
@@ -141,7 +141,7 @@ export function Founder() {
                 </p>
               </div>
               <div>
-                <strong className="font-display" style={{ fontSize: "2rem", color: "var(--brand-bright)" }}>
+                <strong className="font-display" style={{ fontSize: "2rem", color: "var(--acid-lime, #D6FF75)" }}>
                   10+
                 </strong>
                 <p className="label-mono" style={{ color: "rgba(248, 247, 251, 0.45)", marginTop: "4px" }}>
@@ -149,7 +149,7 @@ export function Founder() {
                 </p>
               </div>
               <div>
-                <strong className="font-display" style={{ fontSize: "2rem", color: "var(--brand-bright)" }}>
+                <strong className="font-display" style={{ fontSize: "2rem", color: "var(--acid-lime, #D6FF75)" }}>
                   1.5+
                 </strong>
                 <p className="label-mono" style={{ color: "rgba(248, 247, 251, 0.45)", marginTop: "4px" }}>

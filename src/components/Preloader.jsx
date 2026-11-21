@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const LETTERS = ["A", "D", "R", "E", "K", "S"];
+const LETTERS = ["A", "D", "R", "E", "X", "K", "S"];
 
 export function StarIcon({ className = "", style }) {
   return (
@@ -85,7 +85,7 @@ export function Preloader() {
       className="preloader"
       data-stage={stage}
       role="status"
-      aria-label={`Loading Adreks, ${Math.floor(pct)}%`}
+      aria-label={`Loading Adrexks, ${Math.floor(pct)}%`}
     >
       <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
         {/* Soft background ambient glow */}
@@ -183,7 +183,7 @@ export function Preloader() {
                 width: "0.32em",
                 height: "0.32em",
                 marginLeft: "0.1em",
-                color: "var(--brand-bright)",
+                color: "var(--acid-lime, #D6FF75)",
               }}
             />
           </h2>
@@ -207,7 +207,7 @@ export function Preloader() {
             style={{
               fontSize: "1.1rem",
               fontWeight: 500,
-              color: "var(--brand-bright)",
+              color: "var(--acid-lime, #D6FF75)",
             }}
           >
             {String(Math.floor(pct)).padStart(2, "0")}%

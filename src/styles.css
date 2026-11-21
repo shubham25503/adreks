@@ -1,10 +1,16 @@
 /* ==========================================================================
-   ADREKS | SOPHISTICATED DARK VIOLET & BLACK STUDIO THEME
-   Refined luxury agency aesthetic: matte, deep tones, zero neon glare
+   ADREXKS | SOPHISTICATED DARK VIOLET & BLACK STUDIO THEME
+   Refined luxury agency aesthetic: matte, deep tones with acid lime accents (5-10%)
    ========================================================================== */
 
 :root {
   --radius: 1.25rem;
+
+  /* Subtle High-Impact Accent: Acid Lime (#D6FF75) 5-10% touch */
+  --acid-lime: #D6FF75;
+  --acid-lime-hover: #e3ffa1;
+  --acid-lime-subtle: rgba(214, 255, 117, 0.12);
+  --acid-lime-glow: rgba(214, 255, 117, 0.28);
 
   /* Colors: Elegant, deep, matte */
   --bg-deep: #08020f;
@@ -63,8 +69,8 @@ body.preloader-active {
 }
 
 ::selection {
-  background: var(--brand);
-  color: #fff;
+  background: var(--acid-lime);
+  color: #08020f;
 }
 
 /* ---------- Typography ---------- */
@@ -148,8 +154,8 @@ body.preloader-active {
   top: 0;
   left: 0;
   right: 0;
-  height: 2px;
-  background: linear-gradient(to right, #6d28d9, #8b5cf6, #a78bfa);
+  height: 2.5px;
+  background: linear-gradient(to right, #6d28d9, #8b5cf6, var(--acid-lime));
   transform-origin: left;
   transform: scaleX(0);
   z-index: 9999;
@@ -327,7 +333,7 @@ html.has-cursor button {
   width: 5px;
   height: 5px;
   margin: -2.5px 0 0 -2.5px;
-  background: var(--lavender);
+  background: var(--acid-lime);
 }
 
 .cursor-ring {
@@ -413,29 +419,31 @@ html.has-cursor button {
   opacity: 1;
 }
 
-/* ---------- Button styles (Matte & Sophisticated) ---------- */
+/* ---------- Button styles (Matte & Sophisticated with Acid Lime CTAs) ---------- */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: #7c3aed;
-  color: #fff;
+  background: var(--acid-lime);
+  color: #08020f;
   font-family: 'DM Sans', sans-serif;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 0.9rem;
-  padding: 12px 24px;
+  padding: 12px 26px;
   border-radius: 9999px;
-  border: 1px solid rgba(167, 139, 250, 0.25);
-  box-shadow: 0 4px 16px -2px rgba(124, 58, 237, 0.35);
-  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+  border: 1px solid rgba(214, 255, 117, 0.45);
+  box-shadow: 0 4px 20px -2px rgba(214, 255, 117, 0.25);
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
   text-decoration: none;
   cursor: pointer;
 }
 
 .btn-primary:hover {
-  background: #8b5cf6;
-  border-color: rgba(196, 181, 253, 0.4);
+  background: var(--acid-lime-hover);
+  border-color: rgba(214, 255, 117, 0.7);
+  box-shadow: 0 6px 26px rgba(214, 255, 117, 0.38);
+  transform: translateY(-2px);
 }
 
 .btn-secondary {
@@ -458,7 +466,7 @@ html.has-cursor button {
 }
 
 .btn-secondary:hover {
-  background: rgba(139, 92, 246, 0.12);
-  border-color: var(--brand-bright);
+  background: rgba(214, 255, 117, 0.08);
+  border-color: rgba(214, 255, 117, 0.35);
   color: #fff;
 }

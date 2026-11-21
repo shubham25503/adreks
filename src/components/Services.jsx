@@ -50,7 +50,7 @@ export const SERVICES = [
 
 export function Services() {
   const selectService = (title) => {
-    window.dispatchEvent(new CustomEvent("adreks:service", { detail: title }));
+    window.dispatchEvent(new CustomEvent("adrexks:service", { detail: title }));
     const contact = document.getElementById("contact");
     if (contact) contact.scrollIntoView({ behavior: "smooth" });
   };
@@ -117,11 +117,11 @@ export function Services() {
                     style={{
                       fontSize: "1.1rem",
                       fontWeight: 600,
-                      color: "var(--brand-bright)",
-                      background: "rgba(168, 85, 247, 0.12)",
+                      color: "var(--acid-lime, #D6FF75)",
+                      background: "rgba(214, 255, 117, 0.08)",
                       padding: "6px 14px",
                       borderRadius: "9999px",
-                      border: "1px solid rgba(168, 85, 247, 0.25)",
+                      border: "1px solid rgba(214, 255, 117, 0.25)",
                     }}
                   >
                     {service.n}
@@ -199,7 +199,7 @@ export function Services() {
                     padding: 0,
                   }}
                 >
-                  Discuss this service <span aria-hidden="true">↗</span>
+                  Discuss this service <span aria-hidden="true" style={{ color: "var(--acid-lime, #D6FF75)" }}>↗</span>
                 </button>
               </div>
             </div>

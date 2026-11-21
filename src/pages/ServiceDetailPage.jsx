@@ -55,8 +55,8 @@ export function ServiceDetailPage({ slug }) {
                 boxShadow: "0 20px 50px rgba(0,0,0,0.6)",
               }}
             >
-              <p className="label-mono font-mono" style={{ color: "var(--brand-bright)" }}>
-                ADREKS / SERVICE 0{serviceIndex}
+              <p className="label-mono font-mono" style={{ color: "var(--acid-lime, #D6FF75)" }}>
+                ADREXKS / SERVICE 0{serviceIndex}
               </p>
               <h2 className="font-display" style={{ fontSize: "1.8rem", color: "#fff", marginTop: "12px", lineHeight: 1.2 }}>
                 {service.title}

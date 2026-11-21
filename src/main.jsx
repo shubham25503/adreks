@@ -23,21 +23,21 @@ function App() {
   useEffect(() => {
     // Dynamic page title management
     if (pathname === '/') {
-      document.title = 'ADREKS | Digital Marketing & Creative Agency';
+      document.title = 'ADREXKS | Digital Marketing & Creative Agency';
     } else if (pathname === '/studio') {
-      document.title = 'Studio & Leadership | Adreks';
+      document.title = 'Studio & Leadership | Adrexks';
     } else if (pathname === '/services') {
-      document.title = 'Capabilities & Services | Adreks';
+      document.title = 'Capabilities & Services | Adrexks';
     } else if (pathname.startsWith('/services/')) {
       const slug = pathname.split('/')[2];
       const match = SERVICES_DATA.find((s) => s.slug === slug);
-      document.title = match ? `${match.title} | Adreks` : 'Service Details | Adreks';
+      document.title = match ? `${match.title} | Adrexks` : 'Service Details | Adrexks';
     } else if (pathname === '/work') {
-      document.title = 'Selected Work | Adreks';
+      document.title = 'Selected Work | Adrexks';
     } else if (pathname === '/contact') {
-      document.title = 'Contact & Project Briefs | Adreks';
+      document.title = 'Contact & Project Briefs | Adrexks';
     } else {
-      document.title = 'Page Not Found | Adreks';
+      document.title = 'Page Not Found | Adrexks';
     }
   }, [pathname]);
 

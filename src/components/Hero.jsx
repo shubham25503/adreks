@@ -122,7 +122,7 @@ export function Hero() {
       </div>
 
       {/* Background Watermark */}
-      <Watermark speed={0.1} text="ADREKS" className="bottom-[-4vw] -z-10" />
+      <Watermark speed={0.1} text="ADREXKS" className="bottom-[-4vw] -z-10" />
 
       {/* Main Container */}
       <div className="container-custom" style={{ width: "100%", zIndex: 2 }}>
@@ -158,7 +158,8 @@ export function Hero() {
                   width: "7px",
                   height: "7px",
                   borderRadius: "50%",
-                  background: "#22c55e",
+                  background: "var(--acid-lime, #D6FF75)",
+                  boxShadow: "0 0 10px rgba(214, 255, 117, 0.6)",
                 }}
               />
               <span>Independent Digital & Creative Agency</span>
@@ -288,7 +289,7 @@ export function Hero() {
               >
                 <img
                   src="/assets/hero-visual.webp"
-                  alt="Adreks Creative Work Visual"
+                  alt="Adrexks Creative Work Visual"
                   style={{
                     display: "block",
                     width: "100%",
@@ -314,8 +315,8 @@ export function Hero() {
                   }}
                 >
                   <div>
-                    <p className="label-mono" style={{ color: "var(--brand-bright)", fontSize: "0.65rem" }}>
-                      Adreks Studio
+                    <p className="label-mono" style={{ color: "var(--acid-lime, #D6FF75)", fontSize: "0.65rem" }}>
+                      Adrexks Studio
                     </p>
                     <p
                       className="font-display"

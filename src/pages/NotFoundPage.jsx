@@ -13,7 +13,7 @@ export function NotFoundPage() {
             <span className="serif-em" style={{ color: "#d8b4fe" }}>the right one.</span>
           </>
         }
-        description="That page isn’t here. Explore Adreks services or return to the homepage."
+        description="That page isn’t here. Explore Adrexks services or return to the homepage."
       />
 
       <div style={{ padding: "80px 0", textAlign: "center" }}>

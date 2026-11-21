@@ -18,10 +18,10 @@ export function Star({ className = "", style }) {
 }
 
 /**
- * AdreksLogo matching clean agency branding:
+ * AdrexksLogo matching clean agency branding:
  * Crisp modern 'A' letterform with subtle curved purple swoosh, zero neon glow
  */
-export function AdreksLogo({ size = 32, showText = true, subtitle = "A DIGITAL MARKETING AGENCY" }) {
+export function AdrexksLogo({ size = 32, showText = true, subtitle = "A DIGITAL MARKETING AGENCY" }) {
   return (
     <div style={{ display: "inline-flex", alignItems: "center", gap: "12px", textDecoration: "none" }}>
       {/* SVG Icon Mark */}
@@ -68,7 +68,7 @@ export function AdreksLogo({ size = 32, showText = true, subtitle = "A DIGITAL M
               color: "#ffffff",
             }}
           >
-            ADREKS
+            ADREXKS
           </span>
           {subtitle && (
             <span
@@ -89,6 +89,8 @@ export function AdreksLogo({ size = 32, showText = true, subtitle = "A DIGITAL M
     </div>
   );
 }
+
+
 
 /**
  * PurpleWaveMesh:
@@ -195,7 +197,7 @@ export function RollText({
 export function Watermark({
   className = "",
   speed = 0.12,
-  text = "ADREKS",
+  text = "ADREXKS",
 }) {
   return (
     <div
@@ -229,7 +231,7 @@ export function SectionLabel({ index, children, className = "" }) {
         color: "rgba(248, 247, 251, 0.55)",
       }}
     >
-      <span style={{ color: "var(--brand-bright)", fontWeight: 600 }}>({index})</span>
+      <span style={{ color: "var(--acid-lime, #D6FF75)", fontWeight: 600 }}>({index})</span>
       <span
         style={{
           width: "32px",

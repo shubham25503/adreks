@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { AdreksLogo } from "./Primitives";
+import { AdrexksLogo } from "./Primitives";
 import { Link, NavLink, useLocation } from "./Router";
 
 export const NAV_LINKS = [
@@ -56,8 +56,8 @@ export function Navbar() {
           }}
         >
           {/* Brand Logo */}
-          <Link to="/" style={{ textDecoration: "none" }} aria-label="Adreks Home">
-            <AdreksLogo size={36} />
+          <Link to="/" style={{ textDecoration: "none" }} aria-label="Adrexks Home">
+            <AdrexksLogo size={36} />
           </Link>
 
           {/* Desktop Nav */}

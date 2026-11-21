@@ -1,5 +1,5 @@
 import React from "react";
-import { AdreksLogo } from "./Primitives";
+import { AdrexksLogo } from "./Primitives";
 import { NAV_LINKS } from "./Navbar";
 import { SERVICES } from "./Services";
 
@@ -67,7 +67,7 @@ export function Footer() {
         >
           {/* Brand info */}
           <div>
-            <AdreksLogo size={34} />
+            <AdrexksLogo size={34} />
             <p
               style={{
                 marginTop: "20px",
@@ -131,7 +131,7 @@ export function Footer() {
             </p>
             <div style={{ marginTop: "16px", display: "grid", gap: "10px" }}>
               <a
-                href="mailto:hello@adreks.in"
+                href="mailto:hello@adrexks.in"
                 style={{
                   color: "#fff",
                   textDecoration: "none",
@@ -139,10 +139,10 @@ export function Footer() {
                   fontWeight: 500,
                   transition: "color 0.2s",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--brand-bright)")}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--acid-lime, #D6FF75)")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "#fff")}
               >
-                hello@adreks.in
+                hello@adrexks.in
               </a>
             </div>
           </div>
@@ -161,7 +161,7 @@ export function Footer() {
           }}
         >
           <p className="label-mono" style={{ color: "rgba(248, 246, 252, 0.4)" }}>
-            © {year} ADREKS. ALL RIGHTS RESERVED.
+            © {year} ADREXKS. ALL RIGHTS RESERVED.
           </p>
           <button
             type="button"

@@ -33,7 +33,7 @@ export function StudioPage() {
             <span className="serif-em" style={{ color: "#ddd6fe" }}>Collaborative by choice.</span>
           </>
         }
-        description="Adreks is an advertising and design practice shaped around thoughtful creative, clear communication and the people behind the business."
+        description="Adrexks is an advertising and design practice shaped around thoughtful creative, clear communication and the people behind the business."
       />
 
       {/* Main Studio Feature: Meet Kavan Desai */}
@@ -67,7 +67,7 @@ export function StudioPage() {
               >
                 <img
                   src="/assets/kavan-desai.webp"
-                  alt="Kavan Desai, Founder of Adreks"
+                  alt="Kavan Desai, Founder of Adrexks"
                   style={{
                     display: "block",
                     width: "100%",
@@ -142,7 +142,7 @@ export function StudioPage() {
                 }}
               >
                 <p data-reveal>
-                  Kavan is a digital marketer and creative strategist working across social media, advertising, and brand design. Adreks brings these disciplines together through close collaboration, thoughtful execution, and a direct line from concept to rollout.
+                  Kavan is a digital marketer and creative strategist working across social media, advertising, and brand design. Adrexks brings these disciplines together through close collaboration, thoughtful execution, and a direct line from concept to rollout.
                 </p>
                 <p data-reveal style={delay(100)}>
                   From a social post to a brand identity or a paid campaign, each project starts by understanding the people the work needs to reach.
@@ -162,7 +162,7 @@ export function StudioPage() {
                 }}
               >
                 <div>
-                  <strong className="font-display" style={{ fontSize: "2.2rem", color: "var(--brand-bright)" }}>
+                  <strong className="font-display" style={{ fontSize: "2.2rem", color: "var(--acid-lime, #D6FF75)" }}>
                     100+
                   </strong>
                   <p className="label-mono" style={{ color: "rgba(248, 247, 251, 0.45)", marginTop: "4px" }}>
@@ -170,7 +170,7 @@ export function StudioPage() {
                   </p>
                 </div>
                 <div>
-                  <strong className="font-display" style={{ fontSize: "2.2rem", color: "var(--brand-bright)" }}>
+                  <strong className="font-display" style={{ fontSize: "2.2rem", color: "var(--acid-lime, #D6FF75)" }}>
                     10+
                   </strong>
                   <p className="label-mono" style={{ color: "rgba(248, 247, 251, 0.45)", marginTop: "4px" }}>
@@ -178,7 +178,7 @@ export function StudioPage() {
                   </p>
                 </div>
                 <div>
-                  <strong className="font-display" style={{ fontSize: "2.2rem", color: "var(--brand-bright)" }}>
+                  <strong className="font-display" style={{ fontSize: "2.2rem", color: "var(--acid-lime, #D6FF75)" }}>
                     1.5+
                   </strong>
                   <p className="label-mono" style={{ color: "rgba(248, 247, 251, 0.45)", marginTop: "4px" }}>

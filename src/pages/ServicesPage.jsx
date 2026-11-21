@@ -16,7 +16,7 @@ export function ServicesPage() {
             of <span className="serif-em" style={{ color: "#d8b4fe" }}>growth services.</span>
           </>
         }
-        description="From the way your brand looks to the way it gets found, followed and chosen, Adreks brings the right creative and marketing work together."
+        description="From the way your brand looks to the way it gets found, followed and chosen, Adrexks brings the right creative and marketing work together."
       />
 
       {/* Services Grid */}
@@ -156,7 +156,7 @@ export function ServicesPage() {
                       gap: "6px",
                     }}
                   >
-                    Explore service in detail <span>↗</span>
+                    Explore service in detail <span style={{ color: "var(--acid-lime, #D6FF75)" }}>↗</span>
                   </Link>
                 </div>
               </div>

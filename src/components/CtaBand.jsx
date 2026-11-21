@@ -53,7 +53,7 @@ export function CtaBand({ compact = false }) {
               Tell us where you want to go. We’ll help work out the right creative and marketing steps to get there.
             </p>
             <Link to="/contact" className="btn-primary" data-magnetic>
-              Talk to Adreks <span>↗</span>
+              Talk to Adrexks <span>↗</span>
             </Link>
           </div>
         </div>

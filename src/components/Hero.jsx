@@ -265,7 +265,7 @@ export function Hero() {
           </div>
 
           {/* Right Column: Studio Visual Card in 3D Interactive Tilt */}
-          <div className="hero-fade" style={{ ...delay(450), position: "relative" }}>
+          <div className="hero-fade hero-visual-card-col" style={{ ...delay(450), position: "relative" }}>
             <div
               ref={wrap}
               style={{
@@ -356,6 +356,9 @@ export function Hero() {
           .hero-grid {
             grid-template-columns: 1fr !important;
             gap: 40px !important;
+          }
+          .hero-visual-card-col {
+            display: none !important;
           }
         }
       `}</style>

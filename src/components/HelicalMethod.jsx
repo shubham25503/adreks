@@ -465,7 +465,7 @@ export function HelicalMethod() {
         </div>
 
         {/* 4 Alternating Chapters: Right, Left, Right, Left */}
-        <div style={{ display: "grid", gap: "clamp(120px, 18vh, 220px)" }}>
+        <div style={{ display: "grid", gap: "clamp(120px, 18vh, 220px)" }} className="helix-chapters-container">
           {NODES.map((node) => {
             const isTextOnRight = node.textPosition === "right";
 
@@ -487,14 +487,14 @@ export function HelicalMethod() {
                     <div style={{ minHeight: "280px" }} className="empty-helix-space" />
 
                     {/* Content on the RIGHT */}
-                    <div>
+                    <div className="node-card-wrapper">
                       <NodeContentCard node={node} />
                     </div>
                   </>
                 ) : (
                   <>
                     {/* Content on the LEFT */}
-                    <div>
+                    <div className="node-card-wrapper">
                       <NodeContentCard node={node} />
                     </div>
 
@@ -514,13 +514,51 @@ export function HelicalMethod() {
             grid-template-columns: 1fr !important;
             gap: 16px !important;
           }
+          .helix-chapters-container {
+            gap: clamp(48px, 10vh, 84px) !important;
+          }
           .node-row-right,
           .node-row-left {
             grid-template-columns: 1fr !important;
-            gap: 20px !important;
+            gap: 0 !important;
+          }
+          .node-card-wrapper {
+            max-width: 580px;
+            margin: 0 auto;
+            width: 100%;
           }
           .empty-helix-space {
             display: none !important;
+          }
+          .node-content-card {
+            border-radius: 1.6rem !important;
+            padding: clamp(22px, 5vw, 32px) !important;
+            background: rgba(14, 3, 26, 0.84) !important;
+            backdrop-filter: blur(16px) !important;
+            -webkit-backdrop-filter: blur(16px) !important;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .deliverables-grid {
+            grid-template-columns: 1fr !important;
+            padding: 14px 16px !important;
+            gap: 10px !important;
+          }
+          .node-content-card {
+            border-radius: 1.3rem !important;
+            padding: 20px 16px !important;
+          }
+          .node-eyebrow-pill {
+            padding: 5px 12px !important;
+            margin-bottom: 12px !important;
+          }
+          .node-title {
+            font-size: clamp(1.6rem, 6.5vw, 2.1rem) !important;
+            margin-bottom: 8px !important;
+          }
+          .node-desc {
+            margin-bottom: 18px !important;
           }
         }
       `}</style>

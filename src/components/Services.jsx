@@ -37,6 +37,7 @@ export const SERVICES = [
 export function Services() {
   const sectionRef = useRef(null);
   const [step, setStep] = useState(0); // 0: initial circle, 1: phone up out of circle, 2-6: cards 1-5 out
+  const [hoveredIndex, setHoveredIndex] = useState(null);
   const [windowDimensions, setWindowDimensions] = useState({
     w: typeof window !== "undefined" ? window.innerWidth : 1200,
     h: typeof window !== "undefined" ? window.innerHeight : 800,
@@ -292,17 +293,26 @@ export function Services() {
     };
   }, []);
 
-  const isCompact = windowDimensions.w < 1340 || windowDimensions.h < 850;
+  const isMobile = windowDimensions.w < 860;
+  const isLaptop = !isMobile && (windowDimensions.w < 1340 || windowDimensions.h < 820);
   const scaleRatio = Math.min(windowDimensions.w / 1440, 1) * Math.min(windowDimensions.h / 900, 1);
 
-  // Desktop target coordinates: symmetrical 2-left, 2-right, and Card 05 anchored at bottom center
-  const desktopCardTargets = [
-    { x: -440 * scaleRatio, y: -130 * scaleRatio, r: -3 }, // 01 Top Left
-    { x: 440 * scaleRatio, y: -140 * scaleRatio, r: 3 },  // 02 Top Right
-    { x: -450 * scaleRatio, y: 130 * scaleRatio, r: -2 }, // 03 Bottom Left
-    { x: 450 * scaleRatio, y: 130 * scaleRatio, r: 2 },   // 04 Bottom Right
-    { x: 0, y: 245 * scaleRatio, r: 0 },                  // 05 Bottom Center
-  ];
+  // Desktop & Laptop target coordinates: symmetrical 2-left, 2-right, and Card 05 anchored at bottom center
+  const desktopCardTargets = isLaptop
+    ? [
+        { x: -340, y: -110, r: -2.5 }, // 01 Top Left
+        { x: 340, y: -115, r: 2.5 },  // 02 Top Right
+        { x: -350, y: 105, r: -1.5 }, // 03 Bottom Left
+        { x: 350, y: 105, r: 1.5 },   // 04 Bottom Right
+        { x: 0, y: 195, r: 0 },       // 05 Bottom Center
+      ]
+    : [
+        { x: -440 * scaleRatio, y: -130 * scaleRatio, r: -3 }, // 01 Top Left
+        { x: 440 * scaleRatio, y: -140 * scaleRatio, r: 3 },  // 02 Top Right
+        { x: -450 * scaleRatio, y: 130 * scaleRatio, r: -2 }, // 03 Bottom Left
+        { x: 450 * scaleRatio, y: 130 * scaleRatio, r: 2 },   // 04 Bottom Right
+        { x: 0, y: 245 * scaleRatio, r: 0 },                  // 05 Bottom Center
+      ];
 
   const phoneUp = step >= 1;
 
@@ -353,7 +363,7 @@ export function Services() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          minHeight: isCompact ? "460px" : "550px",
+          minHeight: isMobile ? "460px" : isLaptop ? "490px" : "560px",
         }}
       >
         {/* Phone + Circle Pedestal Unit */}
@@ -364,8 +374,8 @@ export function Services() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            width: "clamp(220px, 19vw, 270px)",
-            height: "clamp(440px, 37vw, 520px)",
+            width: isLaptop ? "205px" : "clamp(220px, 18vw, 260px)",
+            height: isLaptop ? "410px" : "clamp(440px, 36vw, 500px)",
           }}
         >
           {/* Simple Matte Circle Base: positioned UNDER the phone */}
@@ -375,11 +385,11 @@ export function Services() {
             className="services-circle-base"
             style={{
               position: "absolute",
-              bottom: "clamp(-60px, -5vw, -78px)",
+              bottom: isLaptop ? "-52px" : "clamp(-60px, -5vw, -78px)",
               left: "50%",
               transform: "translateX(-50%)",
-              width: "clamp(320px, 28vw, 400px)",
-              height: "clamp(320px, 28vw, 400px)",
+              width: isLaptop ? "270px" : "clamp(300px, 26vw, 380px)",
+              height: isLaptop ? "270px" : "clamp(300px, 26vw, 380px)",
               borderRadius: "50%",
               border: "1px solid rgba(255, 255, 255, 0.1)",
               background:
@@ -397,7 +407,7 @@ export function Services() {
               position: "relative",
               width: "100%",
               height: "100%",
-              borderRadius: "44px",
+              borderRadius: isLaptop ? "38px" : "44px",
               background: "linear-gradient(180deg, #120624 0%, #080112 100%)",
               border: "1.5px solid rgba(255, 255, 255, 0.14)",
               boxShadow: "0 24px 60px rgba(0, 0, 0, 0.85)",
@@ -412,11 +422,11 @@ export function Services() {
             {/* Top Speaker / Dynamic Island */}
             <div
               style={{
-                width: "74px",
-                height: "20px",
+                width: isLaptop ? "64px" : "74px",
+                height: isLaptop ? "16px" : "20px",
                 background: "#000000",
                 borderRadius: "9999px",
-                margin: "10px auto 0",
+                margin: isLaptop ? "7px auto 0" : "10px auto 0",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "flex-end",
@@ -441,8 +451,8 @@ export function Services() {
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                padding: "4px 22px 0",
-                fontSize: "0.68rem",
+                padding: isLaptop ? "3px 18px 0" : "4px 22px 0",
+                fontSize: isLaptop ? "0.62rem" : "0.68rem",
                 fontWeight: 600,
                 color: "#ffffff",
                 letterSpacing: "-0.01em",
@@ -471,7 +481,7 @@ export function Services() {
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                padding: "16px 20px 10px",
+                padding: isLaptop ? "10px 16px 6px" : "16px 20px 10px",
                 borderBottom: "1px solid rgba(255, 255, 255, 0.08)",
               }}
             >
@@ -480,7 +490,7 @@ export function Services() {
               </span>
               <span
                 className="font-display"
-                style={{ fontSize: "0.88rem", fontWeight: 700, color: "#fff", letterSpacing: "0.08em" }}
+                style={{ fontSize: isLaptop ? "0.8rem" : "0.88rem", fontWeight: 700, color: "#fff", letterSpacing: "0.08em" }}
               >
                 ADREXKS
               </span>
@@ -488,14 +498,14 @@ export function Services() {
             </div>
 
             {/* In-Phone Stack Header */}
-            <div style={{ padding: "14px 18px 8px" }}>
+            <div style={{ padding: isLaptop ? "10px 14px 4px" : "14px 18px 8px" }}>
               <p
                 className="label-mono font-mono"
-                style={{ fontSize: "0.55rem", color: "var(--acid-lime)", letterSpacing: "0.18em" }}
+                style={{ fontSize: "0.52rem", color: "var(--acid-lime)", letterSpacing: "0.18em" }}
               >
                 GROWTH SUITE · 05 DISCIPLINES
               </p>
-              <h4 className="font-display" style={{ fontSize: "1.05rem", color: "#fff", marginTop: "3px" }}>
+              <h4 className="font-display" style={{ fontSize: isLaptop ? "0.95rem" : "1.05rem", color: "#fff", marginTop: "2px" }}>
                 Active Stack
               </h4>
             </div>
@@ -503,22 +513,22 @@ export function Services() {
             {/* In-Phone Mini Preview Cards */}
             <div
               style={{
-                padding: "4px 14px",
+                padding: isLaptop ? "2px 10px" : "4px 14px",
                 display: "flex",
                 flexDirection: "column",
-                gap: "8px",
+                gap: isLaptop ? "5px" : "8px",
                 overflowY: "hidden",
                 flex: 1,
               }}
             >
               {SERVICES.map((srv, idx) => {
-                const isActive = step >= idx + 2;
+                const isActive = step >= idx + 2 || hoveredIndex === idx;
                 return (
                   <div
                     key={srv.n}
                     style={{
-                      padding: "8px 12px",
-                      borderRadius: "14px",
+                      padding: isLaptop ? "5px 10px" : "8px 12px",
+                      borderRadius: isLaptop ? "10px" : "14px",
                       background: isActive
                         ? "rgba(255, 255, 255, 0.07)"
                         : "rgba(255, 255, 255, 0.02)",
@@ -536,18 +546,18 @@ export function Services() {
                         <span
                           className="font-mono"
                           style={{
-                            fontSize: "0.55rem",
+                            fontSize: "0.52rem",
                             color: isActive ? "var(--acid-lime)" : "rgba(248, 246, 252, 0.5)",
                             fontWeight: 700,
                           }}
                         >
                           {srv.n}
                         </span>
-                        <span style={{ fontSize: "0.72rem", color: "#fff", fontWeight: 600 }}>{srv.title}</span>
+                        <span style={{ fontSize: isLaptop ? "0.64rem" : "0.72rem", color: "#fff", fontWeight: 600 }}>{srv.title}</span>
                       </div>
                       <span
                         className="label-mono"
-                        style={{ fontSize: "0.5rem", color: "rgba(248, 246, 252, 0.45)", display: "block" }}
+                        style={{ fontSize: "0.45rem", color: "rgba(248, 246, 252, 0.45)", display: "block" }}
                       >
                         {srv.tag}
                       </span>
@@ -575,133 +585,182 @@ export function Services() {
         </div>
 
         {/* ============================================================ */}
-        {/* DESKTOP MODE (Wide Screens): Cards spread in left/right cols */}
+        {/* DESKTOP & LAPTOP MODE: 5 Symmetrical Cards around Phone      */}
         {/* ============================================================ */}
-        {!isCompact &&
+        {!isMobile &&
           SERVICES.map((service, i) => {
             const isCardOut = step >= i + 2;
             const target = desktopCardTargets[i];
+            const isHovered = hoveredIndex === i;
 
             return (
               <div
                 key={service.n}
-                className="service-floating-card spotlight"
+                className="service-card-slot"
+                onMouseEnter={() => setHoveredIndex(i)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                onClick={() => selectService(service.title)}
                 style={{
                   position: "absolute",
-                  width: "clamp(280px, 24vw, 350px)",
+                  width: isLaptop ? "clamp(250px, 21vw, 290px)" : "clamp(280px, 23vw, 340px)",
                   transform: isCardOut
                     ? `translate3d(${target.x}px, ${target.y}px, 0) scale(1) rotate(${target.r}deg)`
                     : "translate3d(0, 0, 0) scale(0.25) rotate(0deg)",
                   opacity: isCardOut ? 1 : 0,
                   pointerEvents: isCardOut ? "auto" : "none",
-                  zIndex: i === 4 ? 7 : 5,
-                  padding: "24px 26px",
-                  borderRadius: "1.5rem",
-                  background: "rgba(14, 5, 24, 0.94)",
-                  border: "1px solid rgba(255, 255, 255, 0.1)",
-                  boxShadow: "0 22px 55px -10px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.05)",
-                  backdropFilter: "blur(18px)",
-                  WebkitBackdropFilter: "blur(18px)",
-                  cursor: "default",
+                  zIndex: isHovered ? 20 : i === 4 ? 7 : 5,
+                  cursor: "pointer",
+                  transition: "transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease",
                 }}
               >
-                {/* Card Header */}
+                {/* Inner Interactive Card with smooth micro-lift, border highlight, and depth */}
                 <div
+                  className="service-floating-card"
                   style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    marginBottom: "16px",
+                    width: "100%",
+                    padding: isLaptop ? "16px 18px" : "22px 24px",
+                    borderRadius: isLaptop ? "1.2rem" : "1.4rem",
+                    background: isHovered ? "rgba(20, 8, 34, 0.98)" : "rgba(14, 5, 24, 0.94)",
+                    border: isHovered
+                      ? "1px solid rgba(255, 255, 255, 0.28)"
+                      : "1px solid rgba(255, 255, 255, 0.1)",
+                    boxShadow: isHovered
+                      ? "0 28px 70px -10px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 255, 255, 0.12)"
+                      : "0 20px 50px -10px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.05)",
+                    backdropFilter: "blur(18px)",
+                    WebkitBackdropFilter: "blur(18px)",
+                    transform: isHovered ? "translateY(-6px) scale(1.025)" : "translateY(0) scale(1)",
+                    transition:
+                      "transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease",
                   }}
                 >
-                  <span
-                    className="label-mono font-mono"
+                  {/* Card Header */}
+                  <div
                     style={{
-                      fontSize: "0.85rem",
-                      fontWeight: 700,
-                      color: "var(--acid-lime, #D6FF75)",
-                      background: "rgba(214, 255, 117, 0.08)",
-                      padding: "4px 12px",
-                      borderRadius: "9999px",
-                      border: "1px solid rgba(214, 255, 117, 0.22)",
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      marginBottom: isLaptop ? "10px" : "14px",
                     }}
                   >
-                    {service.n}
-                  </span>
-                  <NinjaStar style={{ width: "16px", height: "16px", color: "rgba(255, 255, 255, 0.35)" }} />
-                </div>
+                    <span
+                      className="label-mono font-mono"
+                      style={{
+                        fontSize: isLaptop ? "0.78rem" : "0.85rem",
+                        fontWeight: 700,
+                        color: "var(--acid-lime, #D6FF75)",
+                        background: isHovered ? "rgba(214, 255, 117, 0.18)" : "rgba(214, 255, 117, 0.08)",
+                        padding: isLaptop ? "2px 9px" : "4px 12px",
+                        borderRadius: "9999px",
+                        border: isHovered
+                          ? "1px solid rgba(214, 255, 117, 0.45)"
+                          : "1px solid rgba(214, 255, 117, 0.22)",
+                        transform: isHovered ? "scale(1.06)" : "scale(1)",
+                        transition: "all 0.3s ease",
+                      }}
+                    >
+                      {service.n}
+                    </span>
+                    <NinjaStar
+                      style={{
+                        width: isLaptop ? "14px" : "16px",
+                        height: isLaptop ? "14px" : "16px",
+                        color: isHovered ? "var(--acid-lime)" : "rgba(255, 255, 255, 0.35)",
+                        transform: isHovered ? "rotate(90deg) scale(1.2)" : "rotate(0deg) scale(1)",
+                        transition: "transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease",
+                      }}
+                    />
+                  </div>
 
-                {/* Title */}
-                <h3
-                  className="font-display"
-                  style={{
-                    fontSize: "clamp(1.2rem, 1.6vw, 1.5rem)",
-                    letterSpacing: "-0.035em",
-                    color: "#ffffff",
-                    lineHeight: 1.18,
-                  }}
-                >
-                  {service.title}
-                </h3>
-
-                {/* Body description */}
-                <p
-                  style={{
-                    marginTop: "10px",
-                    fontSize: "0.88rem",
-                    lineHeight: 1.55,
-                    color: "rgba(248, 246, 252, 0.72)",
-                  }}
-                >
-                  {service.body}
-                </p>
-
-                {/* Bottom Divider + Button */}
-                <div
-                  style={{
-                    marginTop: "20px",
-                    borderTop: "1px solid rgba(255, 255, 255, 0.08)",
-                    paddingTop: "14px",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}
-                >
-                  <button
-                    type="button"
-                    onClick={() => selectService(service.title)}
-                    className="service-card-btn"
+                  {/* Title */}
+                  <h3
+                    className="font-display"
                     style={{
-                      background: "transparent",
-                      border: "none",
+                      fontSize: isLaptop ? "clamp(1.05rem, 1.3vw, 1.25rem)" : "clamp(1.2rem, 1.55vw, 1.45rem)",
+                      letterSpacing: "-0.035em",
                       color: "#ffffff",
-                      fontFamily: "inherit",
-                      fontSize: "0.85rem",
-                      fontWeight: 600,
-                      cursor: "pointer",
-                      padding: 0,
-                      transition: "color 0.2s ease",
+                      lineHeight: 1.18,
+                      textShadow: isHovered ? "0 2px 14px rgba(255, 255, 255, 0.15)" : "none",
+                      transition: "text-shadow 0.3s ease",
                     }}
                   >
-                    Discuss this service
-                  </button>
-                  <span className="label-mono" style={{ fontSize: "0.6rem", color: "rgba(248, 246, 252, 0.45)" }}>
-                    {service.tag}
-                  </span>
+                    {service.title}
+                  </h3>
+
+                  {/* Body description */}
+                  <p
+                    style={{
+                      marginTop: isLaptop ? "6px" : "10px",
+                      fontSize: isLaptop ? "0.78rem" : "0.86rem",
+                      lineHeight: 1.45,
+                      color: isHovered ? "rgba(248, 246, 252, 0.94)" : "rgba(248, 246, 252, 0.72)",
+                      transition: "color 0.3s ease",
+                    }}
+                  >
+                    {service.body}
+                  </p>
+
+                  {/* Bottom Divider + Button */}
+                  <div
+                    style={{
+                      marginTop: isLaptop ? "12px" : "18px",
+                      borderTop: isHovered ? "1px solid rgba(255, 255, 255, 0.14)" : "1px solid rgba(255, 255, 255, 0.08)",
+                      paddingTop: isLaptop ? "10px" : "12px",
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      transition: "border-color 0.3s ease",
+                    }}
+                  >
+                    <span
+                      className="service-card-btn"
+                      style={{
+                        color: isHovered ? "var(--acid-lime)" : "#ffffff",
+                        fontSize: isLaptop ? "0.78rem" : "0.84rem",
+                        fontWeight: 600,
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "6px",
+                        transition: "color 0.25s ease",
+                      }}
+                    >
+                      <span>Discuss this service</span>
+                      <span
+                        style={{
+                          display: "inline-block",
+                          transform: isHovered ? "translateX(4px)" : "translateX(0)",
+                          transition: "transform 0.25s ease",
+                        }}
+                      >
+                        →
+                      </span>
+                    </span>
+                    <span
+                      className="label-mono"
+                      style={{
+                        fontSize: isLaptop ? "0.54rem" : "0.58rem",
+                        color: isHovered ? "rgba(248, 246, 252, 0.65)" : "rgba(248, 246, 252, 0.45)",
+                        transition: "color 0.3s ease",
+                      }}
+                    >
+                      {service.tag}
+                    </span>
+                  </div>
                 </div>
               </div>
             );
           })}
 
         {/* ============================================================ */}
-        {/* COMPACT MODE (Laptops, Tablets & Mobile): Focused slide-left */}
+        {/* MOBILE MODE: Focused slide-left                              */}
         {/* ============================================================ */}
-        {isCompact &&
+        {isMobile &&
           SERVICES.map((service, i) => {
             const activeIndex = step - 2;
             const isPast = activeIndex > i;
             const isActive = activeIndex === i;
             const isUpcoming = activeIndex < i;
+            const isHovered = hoveredIndex === i;
 
             // Transform & opacity: upcoming emerges from phone, active rests in center, past slides left
             let transform = "translate3d(-50%, -40px, 0) scale(0.35) rotate(3deg)";
@@ -709,7 +768,9 @@ export function Services() {
             let pointerEvents = "none";
 
             if (isActive) {
-              transform = "translate3d(-50%, 0, 0) scale(1) rotate(0deg)";
+              transform = isHovered
+                ? "translate3d(-50%, -6px, 0) scale(1.02) rotate(0deg)"
+                : "translate3d(-50%, 0, 0) scale(1) rotate(0deg)";
               opacity = 1;
               pointerEvents = "auto";
             } else if (isPast) {
@@ -728,22 +789,32 @@ export function Services() {
               <div
                 key={service.n}
                 className="service-compact-card"
+                onMouseEnter={() => setHoveredIndex(i)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                onClick={() => selectService(service.title)}
                 style={{
                   position: "absolute",
                   left: "50%",
                   bottom: "clamp(8px, 1.8vh, 24px)",
                   width: "clamp(290px, 88vw, 380px)",
-                  zIndex: isActive ? 8 : isPast ? 5 : 6,
+                  zIndex: isActive ? (isHovered ? 20 : 8) : isPast ? 5 : 6,
                   padding: "20px 22px",
                   borderRadius: "1.4rem",
-                  background: "rgba(14, 5, 24, 0.95)",
-                  border: "1px solid rgba(255, 255, 255, 0.12)",
-                  boxShadow: "0 24px 60px -8px rgba(0, 0, 0, 0.92), 0 0 0 1px rgba(255, 255, 255, 0.05)",
+                  background: isHovered ? "rgba(20, 8, 34, 0.98)" : "rgba(14, 5, 24, 0.95)",
+                  border: isHovered
+                    ? "1px solid rgba(255, 255, 255, 0.28)"
+                    : "1px solid rgba(255, 255, 255, 0.12)",
+                  boxShadow: isHovered
+                    ? "0 28px 70px -8px rgba(0, 0, 0, 0.96), 0 0 0 1px rgba(255, 255, 255, 0.12)"
+                    : "0 24px 60px -8px rgba(0, 0, 0, 0.92), 0 0 0 1px rgba(255, 255, 255, 0.05)",
                   backdropFilter: "blur(20px)",
                   WebkitBackdropFilter: "blur(20px)",
+                  cursor: "pointer",
                   transform,
                   opacity,
                   pointerEvents,
+                  transition:
+                    "transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease, background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease",
                 }}
               >
                 {/* Active Card Header */}
@@ -762,10 +833,14 @@ export function Services() {
                         fontSize: "0.82rem",
                         fontWeight: 700,
                         color: "var(--acid-lime, #D6FF75)",
-                        background: "rgba(214, 255, 117, 0.08)",
+                        background: isHovered ? "rgba(214, 255, 117, 0.18)" : "rgba(214, 255, 117, 0.08)",
                         padding: "3px 10px",
                         borderRadius: "9999px",
-                        border: "1px solid rgba(214, 255, 117, 0.22)",
+                        border: isHovered
+                          ? "1px solid rgba(214, 255, 117, 0.45)"
+                          : "1px solid rgba(214, 255, 117, 0.22)",
+                        transform: isHovered ? "scale(1.06)" : "scale(1)",
+                        transition: "all 0.3s ease",
                       }}
                     >
                       {service.n}
@@ -774,7 +849,15 @@ export function Services() {
                       {i + 1} / 05
                     </span>
                   </div>
-                  <NinjaStar style={{ width: "16px", height: "16px", color: "rgba(255, 255, 255, 0.35)" }} />
+                  <NinjaStar
+                    style={{
+                      width: "16px",
+                      height: "16px",
+                      color: isHovered ? "var(--acid-lime)" : "rgba(255, 255, 255, 0.35)",
+                      transform: isHovered ? "rotate(90deg) scale(1.2)" : "rotate(0deg) scale(1)",
+                      transition: "transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease",
+                    }}
+                  />
                 </div>
 
                 <h3
@@ -794,7 +877,8 @@ export function Services() {
                     marginTop: "8px",
                     fontSize: "0.85rem",
                     lineHeight: 1.5,
-                    color: "rgba(248, 246, 252, 0.72)",
+                    color: isHovered ? "rgba(248, 246, 252, 0.94)" : "rgba(248, 246, 252, 0.72)",
+                    transition: "color 0.3s ease",
                   }}
                 >
                   {service.body}
@@ -803,32 +887,39 @@ export function Services() {
                 <div
                   style={{
                     marginTop: "16px",
-                    borderTop: "1px solid rgba(255, 255, 255, 0.08)",
+                    borderTop: isHovered ? "1px solid rgba(255, 255, 255, 0.14)" : "1px solid rgba(255, 255, 255, 0.08)",
                     paddingTop: "12px",
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
+                    transition: "border-color 0.3s ease",
                   }}
                 >
-                  <button
-                    type="button"
-                    onClick={() => selectService(service.title)}
+                  <span
                     className="service-card-btn"
                     style={{
-                      background: "transparent",
-                      border: "none",
-                      color: "#ffffff",
+                      color: isHovered ? "var(--acid-lime)" : "#ffffff",
                       fontFamily: "inherit",
                       fontSize: "0.85rem",
                       fontWeight: 600,
-                      cursor: "pointer",
-                      padding: 0,
-                      transition: "color 0.2s ease",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "6px",
+                      transition: "color 0.25s ease",
                     }}
                   >
-                    Discuss this service
-                  </button>
-                  <span className="label-mono" style={{ fontSize: "0.58rem", color: "rgba(248, 246, 252, 0.45)" }}>
+                    <span>Discuss this service</span>
+                    <span
+                      style={{
+                        display: "inline-block",
+                        transform: isHovered ? "translateX(4px)" : "translateX(0)",
+                        transition: "transform 0.25s ease",
+                      }}
+                    >
+                      →
+                    </span>
+                  </span>
+                  <span className="label-mono" style={{ fontSize: "0.58rem", color: isHovered ? "rgba(248, 246, 252, 0.65)" : "rgba(248, 246, 252, 0.45)" }}>
                     {service.tag}
                   </span>
                 </div>

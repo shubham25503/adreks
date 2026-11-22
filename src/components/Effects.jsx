@@ -66,6 +66,12 @@ export function SiteEffects() {
         const offset = (r.top + r.height / 2 - vh / 2) * speed;
         el.style.transform = `translate3d(${offset}px, 0, 0)`;
       });
+
+      document.querySelectorAll("[data-parallax-lr]").forEach((el) => {
+        const speed = Number(el.dataset["parallaxLr"] || 0.16);
+        const offset = window.scrollY * speed;
+        el.style.transform = `translate3d(${offset}px, 0, 0)`;
+      });
     };
 
     const onScroll = () => {

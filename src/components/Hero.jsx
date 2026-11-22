@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { delay, Watermark } from "./Primitives";
+import { delay } from "./Primitives";
 import { Link } from "./Router";
 import { HeroWireframeHelix } from "./HeroWireframeHelix";
 
@@ -122,15 +122,42 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Background Watermark */}
-      <Watermark speed={0.1} text="ADREXKS" className="bottom-[-4vw] -z-10" />
+      {/* Background Watermark in Bottom Left, translating Left to Right on scroll */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          bottom: "clamp(12px, 2.5vw, 44px)",
+          left: "clamp(24px, 4.5vw, 72px)",
+          pointerEvents: "none",
+          zIndex: 0,
+          overflow: "visible",
+          userSelect: "none",
+        }}
+      >
+        <div
+          data-parallax-lr="0.16"
+          className="watermark"
+          style={{
+            textAlign: "left",
+            fontSize: "clamp(5.5rem, 17vw, 16.5rem)",
+            color: "rgba(248, 247, 251, 0.022)",
+            WebkitTextStroke: "1px rgba(168, 85, 247, 0.12)",
+            lineHeight: 0.85,
+            letterSpacing: "-0.05em",
+            willChange: "transform",
+          }}
+        >
+          ADREXKS
+        </div>
+      </div>
 
       {/* Main Container */}
       <div className="container-custom" style={{ width: "100%", zIndex: 2 }}>
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "1.2fr 0.9fr",
+            gridTemplateColumns: "1.15fr 1fr",
             gap: "clamp(30px, 5vw, 70px)",
             alignItems: "center",
           }}
@@ -264,26 +291,62 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right Column: Studio Visual Card in 3D Interactive Tilt */}
+          {/* Right Column: Studio Visual Card with Floating Positioning & Location Badges */}
           <div className="hero-fade hero-visual-card-col" style={{ ...delay(450), position: "relative" }}>
             <div
               ref={wrap}
               style={{
                 position: "relative",
-                maxWidth: "460px",
+                maxWidth: "530px",
                 margin: "0 auto",
                 perspective: "1200px",
               }}
             >
+              {/* Rotating Circular Ideas Into Impact Badge (Top Right) */}
+              <div className="hero-stamp-badge">
+                <div style={{ animation: "spin-slow 24s linear infinite" }}>
+                  <svg viewBox="0 0 100 100" width="86" height="86" style={{ overflow: "visible" }}>
+                    <defs>
+                      <path
+                        id="hero-stamp-circle"
+                        d="M 50, 50 m -36, 0 a 36,36 0 1,1 72,0 a 36,36 0 1,1 -72,0"
+                      />
+                    </defs>
+                    <text
+                      fill="rgba(248, 247, 251, 0.72)"
+                      fontSize="8.2"
+                      fontFamily="'DM Sans', sans-serif"
+                      letterSpacing="0.22em"
+                      style={{ textTransform: "uppercase", fontWeight: 600 }}
+                    >
+                      <textPath xlinkHref="#hero-stamp-circle" href="#hero-stamp-circle" startOffset="0%">
+                        · IDEAS INTO IMPACT · ADREXKS
+                      </textPath>
+                    </text>
+                    <path
+                      d="M50 38 C51.5 46 54 48.5 62 50 C54 51.5 51.5 54 50 62 C48.5 54 46 51.5 38 50 C46 48.5 48.5 46 50 38Z"
+                      fill="var(--brand, #9f00f6)"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              {/* Floating Badge 1: Top-Left White Positioning Card */}
+              <div className="hero-badge-top-left">
+                <p className="hero-badge-label-dark">CORE POSITIONING</p>
+                <p className="hero-badge-value-dark">Strategy · Creative · Growth</p>
+              </div>
+
+              {/* 3D Interactive Tilt Card with Hero Visual */}
               <div
                 ref={card}
                 className="spotlight"
                 style={{
                   position: "relative",
-                  borderRadius: "2rem",
+                  borderRadius: "2.2rem",
                   overflow: "hidden",
                   border: "1px solid rgba(139, 92, 246, 0.22)",
-                  boxShadow: "0 24px 60px -15px rgba(0, 0, 0, 0.85)",
+                  boxShadow: "0 28px 70px -15px rgba(0, 0, 0, 0.9)",
                   transition: "transform 0.15s ease-out",
                   willChange: "transform",
                 }}
@@ -298,53 +361,12 @@ export function Hero() {
                     objectFit: "cover",
                   }}
                 />
+              </div>
 
-                {/* Overlaid card badge */}
-                <div
-                  style={{
-                    position: "absolute",
-                    inset: "auto 18px 18px 18px",
-                    padding: "16px 20px",
-                    borderRadius: "1.2rem",
-                    background: "rgba(12, 3, 20, 0.9)",
-                    backdropFilter: "blur(14px)",
-                    WebkitBackdropFilter: "blur(14px)",
-                    border: "1px solid rgba(139, 92, 246, 0.2)",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}
-                >
-                  <div>
-                    <p className="label-mono" style={{ color: "var(--acid-lime, #D6FF75)", fontSize: "0.65rem" }}>
-                      Adrexks Studio
-                    </p>
-                    <p
-                      className="font-display"
-                      style={{ fontSize: "1.05rem", color: "#fff", marginTop: "2px" }}
-                    >
-                      Ideas into impact.
-                    </p>
-                  </div>
-                  <Link
-                    to="/services"
-                    aria-label="Explore services"
-                    style={{
-                      width: "38px",
-                      height: "38px",
-                      borderRadius: "50%",
-                      background: "linear-gradient(135deg, #9333ea 0%, #e11d48 100%)",
-                      boxShadow: "0 4px 18px -2px rgba(225, 29, 72, 0.4)",
-                      display: "grid",
-                      placeItems: "center",
-                      color: "#fff",
-                      fontSize: "1.1rem",
-                      textDecoration: "none",
-                    }}
-                  >
-                    ↗
-                  </Link>
-                </div>
+              {/* Floating Badge 2: Bottom-Right Purple Location Card */}
+              <div className="hero-badge-bottom-right">
+                <p className="hero-badge-label-purple">BASED IN</p>
+                <p className="hero-badge-value-purple">Ahmedabad · Working everywhere</p>
               </div>
             </div>
           </div>

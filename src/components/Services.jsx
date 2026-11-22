@@ -46,15 +46,17 @@ export function Services() {
   stepRef.current = step;
 
   const isFrozenRef = useRef(false);
-  const completedRef = useRef(false);
+  const unlockCooldownRef = useRef(0);
   const cooldownRef = useRef(0);
   const deltaAccumulatorRef = useRef(0);
   const touchStartYRef = useRef(0);
+  const lastScrollYRef = useRef(0);
 
   const unlockScroll = () => {
     isFrozenRef.current = false;
     document.documentElement.style.overflow = "";
     document.body.style.overflow = "";
+    unlockCooldownRef.current = Date.now();
   };
 
   const lockScrollAtSection = () => {
@@ -69,7 +71,6 @@ export function Services() {
 
   const selectService = (title) => {
     unlockScroll();
-    completedRef.current = true;
     window.dispatchEvent(new CustomEvent("adrexks:service", { detail: title }));
     const contact = document.getElementById("contact");
     if (contact) contact.scrollIntoView({ behavior: "smooth" });
@@ -80,46 +81,54 @@ export function Services() {
       setWindowDimensions({ w: window.innerWidth, h: window.innerHeight });
     };
 
-    // Scroll listener: catches fast momentum scrolling and locks screen the moment services is reached
+    // Scroll listener: catches fast momentum scrolling and locks screen whether entering from above or below
     const handleScroll = () => {
+      if (isFrozenRef.current || !sectionRef.current) return;
+      if (Date.now() - unlockCooldownRef.current < 450) return;
+
+      const rect = sectionRef.current.getBoundingClientRect();
       const currentScrollY = window.scrollY;
+      const prevScrollY = lastScrollYRef.current;
+      lastScrollYRef.current = currentScrollY;
 
-      // If user scrolls back up near the top of the site, reset completed state so it locks again on next scroll down
-      if (currentScrollY < 120) {
-        completedRef.current = false;
-      }
-
-      if (completedRef.current || isFrozenRef.current) {
+      // Scrolling DOWN from above into services: lock if animation is not finished (step < 6)
+      if (prevScrollY <= currentScrollY && rect.top <= 10 && rect.bottom >= window.innerHeight * 0.25 && stepRef.current < 6) {
+        lockScrollAtSection();
         return;
       }
 
-      if (!sectionRef.current) return;
-      const rect = sectionRef.current.getBoundingClientRect();
-
-      // Once section top reaches or crosses viewport top, completely freeze the screen if animation is not finished
-      if (rect.top <= 10 && rect.bottom >= window.innerHeight * 0.25 && stepRef.current < 6) {
+      // Scrolling UP from below into services: lock if animation has not reversed to 0 (step > 0)
+      if (prevScrollY >= currentScrollY && rect.top <= 10 && rect.bottom >= window.innerHeight * 0.35 && stepRef.current > 0) {
         lockScrollAtSection();
+        return;
       }
     };
 
-    // Wheel listener: intercepts scrolling and strictly prevents passing through until animation is complete
+    // Wheel listener: intercepts scrolling bidirectionally with hard freeze and full animation reversal
     const handleWheel = (e) => {
       if (!sectionRef.current) return;
 
       if (!isFrozenRef.current) {
-        // If approaching section from above, immediately lock and do not let page scroll past
-        if (!completedRef.current && stepRef.current < 6) {
-          const rect = sectionRef.current.getBoundingClientRect();
-          if (e.deltaY > 0 && rect.top <= 120 && rect.bottom >= window.innerHeight * 0.3) {
-            e.preventDefault();
-            lockScrollAtSection();
-            return;
-          }
+        if (Date.now() - unlockCooldownRef.current < 450) return;
+        const rect = sectionRef.current.getBoundingClientRect();
+
+        // Approaching section from above (scrolling down): lock if step < 6
+        if (e.deltaY > 0 && rect.top <= 120 && rect.bottom >= window.innerHeight * 0.3 && stepRef.current < 6) {
+          e.preventDefault();
+          lockScrollAtSection();
+          return;
+        }
+
+        // Approaching section from below (scrolling up): lock if step > 0
+        if (e.deltaY < 0 && rect.bottom >= window.innerHeight * 0.3 && rect.top <= 80 && stepRef.current > 0) {
+          e.preventDefault();
+          lockScrollAtSection();
+          return;
         }
         return;
       }
 
-      // FROZEN SCREEN MODE: Absolutely no page scroll allowed until all 6 steps are completed
+      // FROZEN SCREEN MODE: Absolutely no page scroll allowed until animation reaches boundary
       e.preventDefault();
       e.stopPropagation();
 
@@ -130,7 +139,7 @@ export function Services() {
       // SCROLL DOWN
       if (delta > 0) {
         if (currentStep < 6) {
-          // Drive animation step by step (no scrolling beyond allowed)
+          // Advance forward through animation (0 -> 6)
           if (now - cooldownRef.current < 320) return;
           deltaAccumulatorRef.current += delta;
           if (deltaAccumulatorRef.current > 25) {
@@ -139,14 +148,13 @@ export function Services() {
             setStep((prev) => Math.min(prev + 1, 6));
           }
         } else {
-          // Animation fully completed (step 6). Only now does downward scroll allow continuing to next section
+          // At step 6: forward animation complete! Continue scrolling down to next section
           if (now - cooldownRef.current < 320) return;
           deltaAccumulatorRef.current += delta;
           if (deltaAccumulatorRef.current > 35) {
             deltaAccumulatorRef.current = 0;
             cooldownRef.current = now;
             unlockScroll();
-            completedRef.current = true;
             window.scrollBy({ top: 120, behavior: "smooth" });
           }
         }
@@ -156,7 +164,7 @@ export function Services() {
       // SCROLL UP
       if (delta < 0) {
         if (currentStep > 0) {
-          // Step backward through animation (no scrolling beyond allowed)
+          // Reverse animation backward (6 -> 0)
           if (now - cooldownRef.current < 320) return;
           deltaAccumulatorRef.current += delta;
           if (deltaAccumulatorRef.current < -25) {
@@ -165,7 +173,7 @@ export function Services() {
             setStep((prev) => Math.max(prev - 1, 0));
           }
         } else {
-          // At step 0 and scrolling up: user wants to navigate back up to About section
+          // At step 0: reverse animation complete! Continue scrolling up to section above
           if (now - cooldownRef.current < 320) return;
           deltaAccumulatorRef.current += delta;
           if (deltaAccumulatorRef.current < -35) {
@@ -188,18 +196,25 @@ export function Services() {
       if (!sectionRef.current) return;
 
       if (!isFrozenRef.current) {
-        if (!completedRef.current && stepRef.current < 6) {
-          const rect = sectionRef.current.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom >= window.innerHeight * 0.3) {
-            lockScrollAtSection();
-          }
+        if (Date.now() - unlockCooldownRef.current < 450) return;
+        const rect = sectionRef.current.getBoundingClientRect();
+        const touchY = e.touches[0].clientY;
+        const diff = touchStartYRef.current - touchY;
+
+        // Swiping up (moving down into section): lock if step < 6
+        if (diff > 0 && rect.top <= 100 && rect.bottom >= window.innerHeight * 0.3 && stepRef.current < 6) {
+          lockScrollAtSection();
+        }
+        // Swiping down (moving up into section from below): lock if step > 0
+        if (diff < 0 && rect.bottom >= window.innerHeight * 0.3 && rect.top <= 80 && stepRef.current > 0) {
+          lockScrollAtSection();
         }
         return;
       }
 
       e.preventDefault();
       const touchY = e.touches[0].clientY;
-      const diff = touchStartYRef.current - touchY; // positive = swipe up (scroll down)
+      const diff = touchStartYRef.current - touchY; // positive = swipe up (scroll down), negative = swipe down (scroll up)
       const currentStep = stepRef.current;
       const now = Date.now();
 
@@ -211,7 +226,6 @@ export function Services() {
             setStep((prev) => Math.min(prev + 1, 6));
           } else {
             unlockScroll();
-            completedRef.current = true;
             window.scrollBy({ top: 100, behavior: "smooth" });
           }
         }
@@ -238,7 +252,6 @@ export function Services() {
           setStep((prev) => Math.min(prev + 1, 6));
         } else {
           unlockScroll();
-          completedRef.current = true;
           window.scrollBy({ top: 120, behavior: "smooth" });
         }
       } else if (e.key === "ArrowUp" || e.key === "PageUp") {
@@ -279,16 +292,16 @@ export function Services() {
     };
   }, []);
 
-  const isMobile = windowDimensions.w < 860;
-  const scaleRatio = Math.min(windowDimensions.w / 1400, 1) * Math.min(windowDimensions.h / 860, 1);
+  const isCompact = windowDimensions.w < 1340 || windowDimensions.h < 850;
+  const scaleRatio = Math.min(windowDimensions.w / 1440, 1) * Math.min(windowDimensions.h / 900, 1);
 
-  // Desktop Target coordinates for the 5 cards fanning out around the phone
+  // Desktop target coordinates: symmetrical 2-left, 2-right, and Card 05 anchored at bottom center
   const desktopCardTargets = [
-    { x: -390 * scaleRatio, y: -135 * scaleRatio, r: -3.5 },
-    { x: 390 * scaleRatio, y: -135 * scaleRatio, r: 3.5 },
-    { x: -420 * scaleRatio, y: 105 * scaleRatio, r: -2.5 },
-    { x: 420 * scaleRatio, y: 105 * scaleRatio, r: 2.5 },
-    { x: 0, y: 245 * scaleRatio, r: 0 },
+    { x: -440 * scaleRatio, y: -130 * scaleRatio, r: -3 }, // 01 Top Left
+    { x: 440 * scaleRatio, y: -140 * scaleRatio, r: 3 },  // 02 Top Right
+    { x: -450 * scaleRatio, y: 130 * scaleRatio, r: -2 }, // 03 Bottom Left
+    { x: 450 * scaleRatio, y: 130 * scaleRatio, r: 2 },   // 04 Bottom Right
+    { x: 0, y: 245 * scaleRatio, r: 0 },                  // 05 Bottom Center
   ];
 
   const phoneUp = step >= 1;
@@ -340,7 +353,7 @@ export function Services() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          minHeight: isMobile ? "460px" : "550px",
+          minHeight: isCompact ? "460px" : "550px",
         }}
       >
         {/* Phone + Circle Pedestal Unit */}
@@ -351,56 +364,31 @@ export function Services() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            width: "clamp(230px, 20vw, 275px)",
-            height: "clamp(450px, 38vw, 535px)",
+            width: "clamp(220px, 19vw, 270px)",
+            height: "clamp(440px, 37vw, 520px)",
           }}
         >
-          {/* Glowing Circle Base: positioned UNDER the phone */}
-          {/* 80% covered by phone body, 20% visible as a glowing pedestal at the bottom */}
-          {/* Gradient starts strictly from bottom of circle with red & purple, fading into dark background */}
+          {/* Simple Matte Circle Base: positioned UNDER the phone */}
+          {/* Understated matte dark plum/wine base, clean hairline border, zero neon */}
           <div
             aria-hidden="true"
             className="services-circle-base"
             style={{
               position: "absolute",
-              bottom: "clamp(-65px, -5.5vw, -82px)",
+              bottom: "clamp(-60px, -5vw, -78px)",
               left: "50%",
               transform: "translateX(-50%)",
-              width: "clamp(340px, 29vw, 420px)",
-              height: "clamp(340px, 29vw, 420px)",
+              width: "clamp(320px, 28vw, 400px)",
+              height: "clamp(320px, 28vw, 400px)",
               borderRadius: "50%",
-              border: "1.5px solid rgba(181, 0, 255, 0.45)",
+              border: "1px solid rgba(255, 255, 255, 0.1)",
               background:
-                "radial-gradient(circle at 50% 100%, #e11d48 0%, #be185d 16%, #b500ff 36%, #7928ca 56%, rgba(15, 3, 28, 0.9) 76%, var(--bg-deep) 100%)",
-              boxShadow: phoneUp
-                ? "0 25px 85px 12px rgba(181, 0, 255, 0.52), 0 35px 80px 15px rgba(225, 29, 72, 0.45), inset 0 -25px 45px rgba(225, 29, 72, 0.35), 0 0 25px rgba(181, 0, 255, 0.25)"
-                : "0 15px 50px 8px rgba(181, 0, 255, 0.32), 0 20px 45px 10px rgba(225, 29, 72, 0.28), inset 0 -15px 30px rgba(225, 29, 72, 0.22)",
+                "radial-gradient(circle at 50% 115%, #38122d 0%, #200a2f 45%, #0d0317 80%, var(--bg-deep) 100%)",
+              boxShadow: "0 24px 50px rgba(0, 0, 0, 0.8)",
               zIndex: 1,
               pointerEvents: "none",
-              transition: "box-shadow 0.7s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.5s ease",
             }}
-          >
-            {/* Rotating dashed orbital ring */}
-            <div
-              style={{
-                position: "absolute",
-                inset: "-14px",
-                borderRadius: "50%",
-                border: "1px dashed rgba(244, 63, 94, 0.38)",
-                animation: "spin-slow 32s linear infinite",
-              }}
-            />
-            {/* Inner radiant halo ring */}
-            <div
-              style={{
-                position: "absolute",
-                inset: "16%",
-                borderRadius: "50%",
-                border: "1px solid rgba(168, 85, 247, 0.22)",
-                boxShadow: "inset 0 -22px 35px rgba(225, 29, 72, 0.45), inset 0 -45px 55px rgba(181, 0, 255, 0.35)",
-              }}
-            />
-          </div>
+          />
 
           {/* Smartphone rising out from the circle base */}
           <div
@@ -410,10 +398,9 @@ export function Services() {
               width: "100%",
               height: "100%",
               borderRadius: "44px",
-              background: "linear-gradient(180deg, #150628 0%, #0c0217 100%)",
-              border: "2.5px solid rgba(255, 255, 255, 0.24)",
-              boxShadow:
-                "0 32px 80px -10px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(0, 0, 0, 0.8), inset 0 0 0 2px rgba(255, 255, 255, 0.08)",
+              background: "linear-gradient(180deg, #120624 0%, #080112 100%)",
+              border: "1.5px solid rgba(255, 255, 255, 0.14)",
+              boxShadow: "0 24px 60px rgba(0, 0, 0, 0.85)",
               transform: phoneUp ? "translate3d(0, 0, 0) scale(1)" : "translate3d(0, 180px, 0) scale(0.76)",
               opacity: phoneUp ? 1 : 0.2,
               zIndex: 3,
@@ -485,7 +472,7 @@ export function Services() {
                 justifyContent: "space-between",
                 alignItems: "center",
                 padding: "16px 20px 10px",
-                borderBottom: "1px solid rgba(168, 85, 247, 0.18)",
+                borderBottom: "1px solid rgba(255, 255, 255, 0.08)",
               }}
             >
               <span style={{ fontSize: "0.85rem", color: "var(--brand-bright)", fontWeight: 700, cursor: "pointer" }}>
@@ -533,15 +520,15 @@ export function Services() {
                       padding: "8px 12px",
                       borderRadius: "14px",
                       background: isActive
-                        ? "linear-gradient(135deg, rgba(168, 85, 247, 0.35) 0%, rgba(112, 0, 176, 0.28) 100%)"
-                        : "rgba(255, 255, 255, 0.03)",
+                        ? "rgba(255, 255, 255, 0.07)"
+                        : "rgba(255, 255, 255, 0.02)",
                       border: isActive
-                        ? "1px solid rgba(214, 255, 117, 0.55)"
-                        : "1px solid rgba(168, 85, 247, 0.12)",
+                        ? "1px solid rgba(255, 255, 255, 0.16)"
+                        : "1px solid rgba(255, 255, 255, 0.05)",
                       display: "flex",
                       justifyContent: "space-between",
                       alignItems: "center",
-                      transition: "all 0.4s ease",
+                      transition: "all 0.35s ease",
                     }}
                   >
                     <div>
@@ -568,11 +555,10 @@ export function Services() {
                     {isActive ? (
                       <div
                         style={{
-                          width: "7px",
-                          height: "7px",
+                          width: "6px",
+                          height: "6px",
                           borderRadius: "50%",
                           background: "var(--acid-lime)",
-                          boxShadow: "0 0 8px var(--acid-lime)",
                         }}
                       />
                     ) : null}
@@ -589,9 +575,9 @@ export function Services() {
         </div>
 
         {/* ============================================================ */}
-        {/* DESKTOP MODE: Cards Emerging from Phone Step by Step         */}
+        {/* DESKTOP MODE (Wide Screens): Cards spread in left/right cols */}
         {/* ============================================================ */}
-        {!isMobile &&
+        {!isCompact &&
           SERVICES.map((service, i) => {
             const isCardOut = step >= i + 2;
             const target = desktopCardTargets[i];
@@ -608,12 +594,12 @@ export function Services() {
                     : "translate3d(0, 0, 0) scale(0.25) rotate(0deg)",
                   opacity: isCardOut ? 1 : 0,
                   pointerEvents: isCardOut ? "auto" : "none",
-                  zIndex: i === 4 ? 6 : 5,
+                  zIndex: i === 4 ? 7 : 5,
                   padding: "24px 26px",
                   borderRadius: "1.5rem",
-                  background: "rgba(16, 4, 28, 0.88)",
-                  border: "1px solid rgba(168, 85, 247, 0.28)",
-                  boxShadow: "0 24px 60px -10px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.08)",
+                  background: "rgba(14, 5, 24, 0.94)",
+                  border: "1px solid rgba(255, 255, 255, 0.1)",
+                  boxShadow: "0 22px 55px -10px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.05)",
                   backdropFilter: "blur(18px)",
                   WebkitBackdropFilter: "blur(18px)",
                   cursor: "default",
@@ -631,25 +617,25 @@ export function Services() {
                   <span
                     className="label-mono font-mono"
                     style={{
-                      fontSize: "0.88rem",
+                      fontSize: "0.85rem",
                       fontWeight: 700,
                       color: "var(--acid-lime, #D6FF75)",
-                      background: "rgba(214, 255, 117, 0.1)",
+                      background: "rgba(214, 255, 117, 0.08)",
                       padding: "4px 12px",
                       borderRadius: "9999px",
-                      border: "1px solid rgba(214, 255, 117, 0.3)",
+                      border: "1px solid rgba(214, 255, 117, 0.22)",
                     }}
                   >
                     {service.n}
                   </span>
-                  <NinjaStar style={{ width: "18px", height: "18px", color: "var(--brand)" }} />
+                  <NinjaStar style={{ width: "16px", height: "16px", color: "rgba(255, 255, 255, 0.35)" }} />
                 </div>
 
                 {/* Title */}
                 <h3
                   className="font-display"
                   style={{
-                    fontSize: "clamp(1.25rem, 1.7vw, 1.55rem)",
+                    fontSize: "clamp(1.2rem, 1.6vw, 1.5rem)",
                     letterSpacing: "-0.035em",
                     color: "#ffffff",
                     lineHeight: 1.18,
@@ -674,7 +660,7 @@ export function Services() {
                 <div
                   style={{
                     marginTop: "20px",
-                    borderTop: "1px solid rgba(168, 85, 247, 0.18)",
+                    borderTop: "1px solid rgba(255, 255, 255, 0.08)",
                     paddingTop: "14px",
                     display: "flex",
                     justifyContent: "space-between",
@@ -688,7 +674,7 @@ export function Services() {
                     style={{
                       background: "transparent",
                       border: "none",
-                      color: "var(--brand-bright)",
+                      color: "#ffffff",
                       fontFamily: "inherit",
                       fontSize: "0.85rem",
                       fontWeight: 600,
@@ -708,9 +694,9 @@ export function Services() {
           })}
 
         {/* ============================================================ */}
-        {/* MOBILE MODE: Cards emerging from phone and sliding left     */}
+        {/* COMPACT MODE (Laptops, Tablets & Mobile): Focused slide-left */}
         {/* ============================================================ */}
-        {isMobile &&
+        {isCompact &&
           SERVICES.map((service, i) => {
             const activeIndex = step - 2;
             const isPast = activeIndex > i;
@@ -718,22 +704,22 @@ export function Services() {
             const isUpcoming = activeIndex < i;
 
             // Transform & opacity: upcoming emerges from phone, active rests in center, past slides left
-            let transform = "translate3d(0, -50px, 0) scale(0.35) rotate(3deg)";
+            let transform = "translate3d(-50%, -40px, 0) scale(0.35) rotate(3deg)";
             let opacity = 0;
             let pointerEvents = "none";
 
             if (isActive) {
-              transform = "translate3d(0, 0, 0) scale(1) rotate(0deg)";
+              transform = "translate3d(-50%, 0, 0) scale(1) rotate(0deg)";
               opacity = 1;
               pointerEvents = "auto";
             } else if (isPast) {
-              // Previous card slides out to the left
-              transform = "translate3d(-125%, 0, 0) scale(0.85) rotate(-6deg)";
+              // Previous card slides out smoothly to the left
+              transform = "translate3d(-175%, 0, 0) scale(0.88) rotate(-6deg)";
               opacity = 0;
               pointerEvents = "none";
             } else if (isUpcoming) {
-              // Waiting to emerge out of phone
-              transform = "translate3d(0, -60px, 0) scale(0.3) rotate(4deg)";
+              // Waiting inside/behind phone
+              transform = "translate3d(-50%, -50px, 0) scale(0.3) rotate(4deg)";
               opacity = 0;
               pointerEvents = "none";
             }
@@ -741,17 +727,18 @@ export function Services() {
             return (
               <div
                 key={service.n}
-                className="service-mobile-card"
+                className="service-compact-card"
                 style={{
                   position: "absolute",
-                  bottom: "8px",
-                  width: "min(350px, 92vw)",
+                  left: "50%",
+                  bottom: "clamp(8px, 1.8vh, 24px)",
+                  width: "clamp(290px, 88vw, 380px)",
                   zIndex: isActive ? 8 : isPast ? 5 : 6,
                   padding: "20px 22px",
                   borderRadius: "1.4rem",
-                  background: "rgba(16, 4, 28, 0.94)",
-                  border: "1px solid rgba(168, 85, 247, 0.35)",
-                  boxShadow: "0 22px 55px -8px rgba(0, 0, 0, 0.92), 0 0 0 1px rgba(255, 255, 255, 0.1)",
+                  background: "rgba(14, 5, 24, 0.95)",
+                  border: "1px solid rgba(255, 255, 255, 0.12)",
+                  boxShadow: "0 24px 60px -8px rgba(0, 0, 0, 0.92), 0 0 0 1px rgba(255, 255, 255, 0.05)",
                   backdropFilter: "blur(20px)",
                   WebkitBackdropFilter: "blur(20px)",
                   transform,
@@ -759,7 +746,7 @@ export function Services() {
                   pointerEvents,
                 }}
               >
-                {/* Active Mobile Card Header */}
+                {/* Active Card Header */}
                 <div
                   style={{
                     display: "flex",
@@ -775,10 +762,10 @@ export function Services() {
                         fontSize: "0.82rem",
                         fontWeight: 700,
                         color: "var(--acid-lime, #D6FF75)",
-                        background: "rgba(214, 255, 117, 0.1)",
+                        background: "rgba(214, 255, 117, 0.08)",
                         padding: "3px 10px",
                         borderRadius: "9999px",
-                        border: "1px solid rgba(214, 255, 117, 0.3)",
+                        border: "1px solid rgba(214, 255, 117, 0.22)",
                       }}
                     >
                       {service.n}
@@ -787,7 +774,7 @@ export function Services() {
                       {i + 1} / 05
                     </span>
                   </div>
-                  <NinjaStar style={{ width: "16px", height: "16px", color: "var(--brand)" }} />
+                  <NinjaStar style={{ width: "16px", height: "16px", color: "rgba(255, 255, 255, 0.35)" }} />
                 </div>
 
                 <h3
@@ -816,7 +803,7 @@ export function Services() {
                 <div
                   style={{
                     marginTop: "16px",
-                    borderTop: "1px solid rgba(168, 85, 247, 0.18)",
+                    borderTop: "1px solid rgba(255, 255, 255, 0.08)",
                     paddingTop: "12px",
                     display: "flex",
                     justifyContent: "space-between",
@@ -826,15 +813,17 @@ export function Services() {
                   <button
                     type="button"
                     onClick={() => selectService(service.title)}
+                    className="service-card-btn"
                     style={{
                       background: "transparent",
                       border: "none",
-                      color: "var(--brand-bright)",
+                      color: "#ffffff",
                       fontFamily: "inherit",
                       fontSize: "0.85rem",
                       fontWeight: 600,
                       cursor: "pointer",
                       padding: 0,
+                      transition: "color 0.2s ease",
                     }}
                   >
                     Discuss this service
@@ -859,7 +848,7 @@ export function Services() {
         }}
       >
         {/* Navigation Indicator Dots */}
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
           {[0, 1, 2, 3, 4, 5, 6].map((st) => {
             const isCurrent = step === st;
             return (
@@ -869,11 +858,11 @@ export function Services() {
                 onClick={() => setStep(st)}
                 aria-label={`Jump to stage ${st}`}
                 style={{
-                  width: isCurrent ? "28px" : "8px",
-                  height: "8px",
+                  width: isCurrent ? "24px" : "6px",
+                  height: "6px",
                   borderRadius: "9999px",
-                  background: isCurrent ? "var(--acid-lime, #D6FF75)" : "rgba(168, 85, 247, 0.35)",
-                  boxShadow: isCurrent ? "0 0 10px rgba(214, 255, 117, 0.6)" : "none",
+                  background: isCurrent ? "#ffffff" : "rgba(255, 255, 255, 0.2)",
+                  boxShadow: "none",
                   border: "none",
                   cursor: "pointer",
                   padding: 0,
@@ -883,22 +872,6 @@ export function Services() {
             );
           })}
         </div>
-
-        {/* Status Hint */}
-        <p
-          className="label-mono"
-          style={{
-            fontSize: "0.62rem",
-            color: step === 6 ? "var(--acid-lime)" : "rgba(248, 246, 252, 0.5)",
-            margin: 0,
-            letterSpacing: "0.14em",
-          }}
-        >
-          {step === 0 && "Scroll down to reveal phone"}
-          {step === 1 && "Scroll down to emerge service cards (1 of 5)"}
-          {step >= 2 && step < 6 && `Scroll to emerge next card (${step - 1} of 5)`}
-          {step === 6 && "All services revealed · Scroll down to continue"}
-        </p>
       </div>
 
       <style>{`
@@ -909,10 +882,11 @@ export function Services() {
                       border-color 0.35s ease;
           will-change: transform, opacity;
         }
-        .service-mobile-card {
+        .service-compact-card {
           transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
                       opacity 0.5s ease,
-                      box-shadow 0.35s ease;
+                      box-shadow 0.35s ease,
+                      border-color 0.35s ease;
           will-change: transform, opacity;
         }
         .services-phone-frame {
@@ -925,9 +899,9 @@ export function Services() {
           will-change: box-shadow;
         }
         .service-floating-card:hover,
-        .service-mobile-card:hover {
-          border-color: rgba(168, 85, 247, 0.6) !important;
-          box-shadow: 0 32px 75px -8px rgba(159, 0, 246, 0.65), 0 0 25px rgba(168, 85, 247, 0.35) !important;
+        .service-compact-card:hover {
+          border-color: rgba(255, 255, 255, 0.24) !important;
+          box-shadow: 0 28px 65px rgba(0, 0, 0, 0.9) !important;
         }
         .service-card-btn:hover {
           color: var(--acid-lime) !important;

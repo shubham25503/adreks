@@ -111,7 +111,7 @@ export function Services() {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
-                minHeight: "360px",
+                minHeight: "300px",
               }}
             >
               <div>
@@ -162,33 +162,6 @@ export function Services() {
                 >
                   {service.body}
                 </p>
-
-                {/* Deliverables list */}
-                <ul
-                  style={{
-                    marginTop: "24px",
-                    display: "flex",
-                    flexWrap: "wrap",
-                    gap: "8px",
-                    listStyle: "none",
-                  }}
-                >
-                  {service.items.map((item) => (
-                    <li
-                      key={item}
-                      style={{
-                        fontSize: "0.82rem",
-                        padding: "6px 14px",
-                        borderRadius: "9999px",
-                        background: "rgba(255, 255, 255, 0.04)",
-                        border: "1px solid rgba(168, 85, 247, 0.16)",
-                        color: "rgba(248, 246, 252, 0.8)",
-                      }}
-                    >
-                      {item}
-                    </li>
-                  ))}
-                </ul>
               </div>
 
               {/* Action trigger */}

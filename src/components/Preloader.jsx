@@ -290,31 +290,12 @@ export function Preloader() {
           viewBox="0 0 200 200"
           aria-hidden="true"
           className="preloader-star"
+          fill="currentColor"
         >
-          {/* Solid 4-pointed Shuriken */}
+          {/* 100% Solid 4-pointed Ninja Star */}
           <polygon
             points="100,4 128,72 196,100 128,128 100,196 72,128 4,100 72,72"
-            fill="#242323"
           />
-
-          {/* Faceted 3D Blade Planes converging at solid center */}
-          <g className="preloader-star-details">
-            {/* Top blade facets */}
-            <polygon points="100,4 72,72 100,100" fill="#383737" opacity="0.85" />
-            <polygon points="100,4 100,100 128,72" fill="#181818" opacity="0.9" />
-
-            {/* Right blade facets */}
-            <polygon points="196,100 128,72 100,100" fill="#383737" opacity="0.85" />
-            <polygon points="196,100 100,100 128,128" fill="#181818" opacity="0.9" />
-
-            {/* Bottom blade facets */}
-            <polygon points="100,196 128,128 100,100" fill="#383737" opacity="0.85" />
-            <polygon points="100,196 100,100 72,128" fill="#181818" opacity="0.9" />
-
-            {/* Left blade facets */}
-            <polygon points="4,100 72,128 100,100" fill="#383737" opacity="0.85" />
-            <polygon points="4,100 100,100 72,72" fill="#181818" opacity="0.9" />
-          </g>
         </svg>
       </div>
     </div>

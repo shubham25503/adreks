@@ -37,7 +37,7 @@ export function Preloader() {
           document.body.classList.remove("preloader-active");
         }, 780)
       );
-      timers.push(window.setTimeout(() => setStage("done"), 1450));
+      timers.push(window.setTimeout(() => setStage("done"), 1680));
     };
 
     const tick = (now) => {

@@ -561,7 +561,7 @@ html.has-cursor button {
   height: 100%;
   color: #242323;
   transform: scale(0) rotate(0deg);
-  transition: transform 0.52s cubic-bezier(0.7, 0, 0.2, 1) 0.16s;
+  transition: transform 1.08s cubic-bezier(0.7, 0, 0.2, 1) 0.14s;
 }
 
 .preloader[data-stage="bloom"] .preloader-bloom,

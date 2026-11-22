@@ -310,7 +310,7 @@ export function Hero() {
               <div className="hero-badge-float-tl">
                 <div className="hero-badge-card hero-badge-card-white">
                   <div className="hero-badge-sheen" />
-                  <p className="hero-badge-label-dark">GOAL</p>
+                  <p className="hero-badge-label-dark">OUR GOAL</p>
                   <p className="hero-badge-value-dark">Think Beyond the Scroll</p>
                 </div>
               </div>

@@ -193,6 +193,22 @@ body.preloader-active {
   }
 }
 
+/* ---------- Marquee Capabilities Ticker ---------- */
+.marquee-wrapper:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-item:hover .marquee-text {
+  color: #ffffff;
+  text-shadow: 0 0 24px rgba(168, 85, 247, 0.5);
+}
+
+.marquee-item:hover .marquee-star {
+  transform: rotate(45deg) scale(1.25);
+  color: var(--acid-lime, #D6FF75);
+  filter: drop-shadow(0 0 10px rgba(214, 255, 117, 0.65));
+}
+
 @keyframes float {
 
   0%,

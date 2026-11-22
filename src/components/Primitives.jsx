@@ -17,6 +17,21 @@ export function Star({ className = "", style }) {
   );
 }
 
+/** Solid 4-pointed Ninja Star */
+export function NinjaStar({ className = "", style }) {
+  return (
+    <svg
+      viewBox="0 0 200 200"
+      aria-hidden="true"
+      className={className}
+      style={{ display: "inline-block", ...style }}
+      fill="currentColor"
+    >
+      <polygon points="100,4 128,72 196,100 128,128 100,196 72,128 4,100 72,72" />
+    </svg>
+  );
+}
+
 /**
  * AdrexksMark:
  * The official vector emblem mark for ADREXKS.

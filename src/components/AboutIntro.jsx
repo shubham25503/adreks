@@ -9,8 +9,8 @@ export function AboutIntro() {
         paddingTop: "clamp(90px, 11vw, 150px)",
         paddingBottom: "clamp(80px, 10vw, 140px)",
         position: "relative",
-        background: "radial-gradient(ellipse at 88% 0%, rgba(181, 0, 255, 0.07), transparent 45%), #f3eee6",
-        color: "#161515",
+        background: "var(--bg-deep)",
+        color: "#ffffff",
       }}
     >
       <div className="container-custom" style={{ maxWidth: "1440px" }}>
@@ -22,7 +22,7 @@ export function AboutIntro() {
             display: "flex",
             alignItems: "center",
             gap: "12px",
-            color: "rgba(22, 21, 21, 0.6)",
+            color: "rgba(248, 247, 251, 0.6)",
           }}
         >
           <span style={{ color: "#b500ff", fontWeight: 700 }}>(02)</span>
@@ -30,8 +30,7 @@ export function AboutIntro() {
             style={{
               width: "40px",
               height: "1px",
-              background: "#161515",
-              opacity: 0.3,
+              background: "rgba(248, 247, 251, 0.3)",
             }}
           />
           <span style={{ letterSpacing: "0.18em", fontSize: "0.72rem" }}>The agency</span>
@@ -48,7 +47,7 @@ export function AboutIntro() {
             fontSize: "clamp(2.2rem, 5.2vw, 5.4rem)",
             lineHeight: 1.02,
             letterSpacing: "-0.04em",
-            color: "#161515",
+            color: "#ffffff",
             fontWeight: 700,
           }}
           parts={[
@@ -63,7 +62,7 @@ export function AboutIntro() {
           style={{
             marginTop: "4rem",
             paddingTop: "2.5rem",
-            borderTop: "1px solid rgba(22, 21, 21, 0.12)",
+            borderTop: "1px solid rgba(168, 85, 247, 0.18)",
             display: "grid",
             gridTemplateColumns: "repeat(12, 1fr)",
             gap: "2.5rem",
@@ -74,7 +73,7 @@ export function AboutIntro() {
             className="label-mono"
             style={{
               gridColumn: "span 3",
-              color: "rgba(22, 21, 21, 0.5)",
+              color: "rgba(248, 247, 251, 0.45)",
               fontSize: "0.72rem",
               letterSpacing: "0.18em",
               textTransform: "uppercase",
@@ -90,7 +89,7 @@ export function AboutIntro() {
               gridColumn: "span 5",
               fontSize: "1.25rem",
               lineHeight: 1.62,
-              color: "rgba(22, 21, 21, 0.82)",
+              color: "rgba(248, 247, 251, 0.88)",
               margin: 0,
             }}
           >
@@ -105,6 +104,7 @@ export function AboutIntro() {
                 height: "20px",
                 borderRadius: "50%",
                 border: "1.5px solid #b500ff",
+                background: "rgba(181, 0, 255, 0.08)",
                 verticalAlign: "middle",
                 marginLeft: "10px",
                 opacity: 0.9,
@@ -127,7 +127,7 @@ export function AboutIntro() {
               gridColumn: "span 4",
               fontSize: "0.95rem",
               lineHeight: 1.65,
-              color: "rgba(22, 21, 21, 0.6)",
+              color: "rgba(248, 247, 251, 0.6)",
               margin: 0,
             }}
           >

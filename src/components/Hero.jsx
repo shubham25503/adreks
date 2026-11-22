@@ -56,8 +56,8 @@ export function Hero() {
         minHeight: "100vh",
         display: "flex",
         alignItems: "center",
-        paddingTop: "clamp(120px, 14vw, 160px)",
-        paddingBottom: "clamp(60px, 8vw, 100px)",
+        paddingTop: "clamp(96px, 11vw, 150px)",
+        paddingBottom: "clamp(48px, 6vw, 90px)",
         overflow: "hidden",
       }}
     >
@@ -168,18 +168,19 @@ export function Hero() {
           <div>
             {/* Clean studio badge */}
             <div
-              className="hero-fade label-mono"
+              className="hero-fade hero-studio-badge label-mono"
               style={{
                 ...delay(120),
                 display: "inline-flex",
                 alignItems: "center",
-                gap: "10px",
-                padding: "8px 18px",
+                gap: "8px",
+                padding: "6px 14px",
                 borderRadius: "9999px",
                 background: "rgba(18, 5, 30, 0.8)",
                 border: "1px solid rgba(139, 92, 246, 0.2)",
                 color: "var(--paper)",
-                marginBottom: "28px",
+                marginBottom: "20px",
+                maxWidth: "100%",
               }}
             >
               <span
@@ -189,17 +190,19 @@ export function Hero() {
                   borderRadius: "50%",
                   background: "var(--acid-lime, #D6FF75)",
                   boxShadow: "0 0 10px rgba(214, 255, 117, 0.6)",
+                  flexShrink: 0,
                 }}
               />
-              <span>Independent Digital & Creative Agency</span>
-              <span style={{ color: "rgba(248, 247, 251, 0.35)" }}>· Ahmedabad</span>
+              <span className="hero-studio-text" style={{ whiteSpace: "nowrap" }}>
+                Independent Creative Agency <span style={{ color: "rgba(248, 247, 251, 0.38)" }}>· Ahmedabad</span>
+              </span>
             </div>
 
             {/* Main Headline */}
             <h1
-              className="font-display"
+              className="font-display hero-main-heading"
               style={{
-                fontSize: "clamp(2.8rem, 6.2vw, 6.6rem)",
+                fontSize: "clamp(2.5rem, 6.2vw, 6.6rem)",
                 lineHeight: 1.02,
                 color: "#ffffff",
                 letterSpacing: "-0.045em",
@@ -223,13 +226,13 @@ export function Hero() {
 
             {/* Subtitle */}
             <p
-              className="hero-fade"
+              className="hero-fade hero-subtitle"
               style={{
                 ...delay(500),
-                marginTop: "24px",
+                marginTop: "20px",
                 maxWidth: "540px",
-                fontSize: "clamp(1rem, 1.3vw, 1.15rem)",
-                lineHeight: 1.7,
+                fontSize: "clamp(0.95rem, 1.3vw, 1.15rem)",
+                lineHeight: 1.65,
                 color: "rgba(248, 247, 251, 0.72)",
               }}
             >
@@ -238,13 +241,13 @@ export function Hero() {
 
             {/* CTAs */}
             <div
-              className="hero-fade"
+              className="hero-fade hero-cta-group"
               style={{
                 ...delay(650),
-                marginTop: "36px",
+                marginTop: "28px",
                 display: "flex",
                 flexWrap: "wrap",
-                gap: "14px",
+                gap: "12px",
                 alignItems: "center",
               }}
             >
@@ -358,10 +361,77 @@ export function Hero() {
         @media (max-width: 960px) {
           .hero-grid {
             grid-template-columns: 1fr !important;
-            gap: 40px !important;
+            gap: 36px !important;
           }
           .hero-visual-card-col {
-            display: none !important;
+            display: block !important;
+            width: 100% !important;
+            max-width: min(340px, 86vw) !important;
+            margin: 18px auto 0 !important;
+            padding: 14px 8px !important;
+          }
+          .hero-badge-float-tl {
+            top: -14px !important;
+            left: -10px !important;
+          }
+          .hero-badge-float-br {
+            bottom: -14px !important;
+            right: -8px !important;
+          }
+          .hero-badge-card {
+            padding: 8px 14px !important;
+            border-radius: 1rem !important;
+          }
+          .hero-badge-label-dark,
+          .hero-badge-label-purple {
+            font-size: 0.52rem !important;
+            letter-spacing: 0.18em !important;
+            margin-bottom: 2px !important;
+          }
+          .hero-badge-value-dark {
+            font-size: 0.76rem !important;
+          }
+          .hero-badge-value-purple {
+            font-size: 0.74rem !important;
+          }
+          .hero-stamp-badge {
+            top: -18px !important;
+            right: -10px !important;
+            transform: scale(0.8) !important;
+            transform-origin: top right !important;
+          }
+        }
+        @media (max-width: 540px) {
+          .hero-main-heading {
+            font-size: clamp(2.35rem, 8.4vw, 3.2rem) !important;
+            line-height: 1.05 !important;
+          }
+          .hero-subtitle {
+            font-size: 0.92rem !important;
+            line-height: 1.58 !important;
+            margin-top: 16px !important;
+          }
+          .hero-cta-group {
+            display: flex !important;
+            gap: 10px !important;
+            width: 100% !important;
+            margin-top: 22px !important;
+          }
+          .hero-cta-group .btn-primary,
+          .hero-cta-group .btn-secondary {
+            flex: 1 1 0 !important;
+            text-align: center !important;
+            justify-content: center !important;
+            padding: 11px 12px !important;
+            font-size: 0.85rem !important;
+            white-space: nowrap !important;
+          }
+          .hero-studio-badge {
+            padding: 5px 12px !important;
+            margin-bottom: 16px !important;
+          }
+          .hero-studio-text {
+            font-size: clamp(0.64rem, 2.8vw, 0.72rem) !important;
           }
         }
       `}</style>

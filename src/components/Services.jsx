@@ -357,7 +357,7 @@ export function Services() {
         >
           {/* Glowing Circle Base: positioned UNDER the phone */}
           {/* 80% covered by phone body, 20% visible as a glowing pedestal at the bottom */}
-          {/* Palette: Rich purple with a radiant crimson red core (zero orange) */}
+          {/* Gradient starts strictly from bottom of circle with red & purple, fading into dark background */}
           <div
             aria-hidden="true"
             className="services-circle-base"
@@ -369,14 +369,15 @@ export function Services() {
               width: "clamp(340px, 29vw, 420px)",
               height: "clamp(340px, 29vw, 420px)",
               borderRadius: "50%",
+              border: "1.5px solid rgba(181, 0, 255, 0.45)",
               background:
-                "radial-gradient(circle at 50% 45%, #f43f5e 0%, #e11d48 22%, #b500ff 54%, #7928ca 78%, rgba(88, 28, 135, 0.25) 92%, transparent 100%)",
+                "radial-gradient(circle at 50% 100%, #e11d48 0%, #be185d 16%, #b500ff 36%, #7928ca 56%, rgba(15, 3, 28, 0.9) 76%, var(--bg-deep) 100%)",
               boxShadow: phoneUp
-                ? "0 0 120px 40px rgba(181, 0, 255, 0.55), 0 0 75px 22px rgba(225, 29, 72, 0.45), inset 0 0 50px rgba(255, 255, 255, 0.3)"
-                : "0 0 75px 22px rgba(181, 0, 255, 0.35), 0 0 45px 12px rgba(225, 29, 72, 0.28)",
+                ? "0 25px 85px 12px rgba(181, 0, 255, 0.52), 0 35px 80px 15px rgba(225, 29, 72, 0.45), inset 0 -25px 45px rgba(225, 29, 72, 0.35), 0 0 25px rgba(181, 0, 255, 0.25)"
+                : "0 15px 50px 8px rgba(181, 0, 255, 0.32), 0 20px 45px 10px rgba(225, 29, 72, 0.28), inset 0 -15px 30px rgba(225, 29, 72, 0.22)",
               zIndex: 1,
               pointerEvents: "none",
-              transition: "box-shadow 0.7s cubic-bezier(0.16, 1, 0.3, 1)",
+              transition: "box-shadow 0.7s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.5s ease",
             }}
           >
             {/* Rotating dashed orbital ring */}
@@ -385,7 +386,7 @@ export function Services() {
                 position: "absolute",
                 inset: "-14px",
                 borderRadius: "50%",
-                border: "1px dashed rgba(244, 63, 94, 0.42)",
+                border: "1px dashed rgba(244, 63, 94, 0.38)",
                 animation: "spin-slow 32s linear infinite",
               }}
             />
@@ -395,8 +396,8 @@ export function Services() {
                 position: "absolute",
                 inset: "16%",
                 borderRadius: "50%",
-                border: "1px solid rgba(255, 255, 255, 0.24)",
-                boxShadow: "inset 0 0 32px rgba(225, 29, 72, 0.55), inset 0 0 65px rgba(181, 0, 255, 0.45)",
+                border: "1px solid rgba(168, 85, 247, 0.22)",
+                boxShadow: "inset 0 -22px 35px rgba(225, 29, 72, 0.45), inset 0 -45px 55px rgba(181, 0, 255, 0.35)",
               }}
             />
           </div>
@@ -707,106 +708,144 @@ export function Services() {
           })}
 
         {/* ============================================================ */}
-        {/* MOBILE MODE: Cards emerging directly in front                */}
+        {/* MOBILE MODE: Cards emerging from phone and sliding left     */}
         {/* ============================================================ */}
-        {isMobile && step >= 2 && (
-          <div
-            className="service-floating-card"
-            style={{
-              position: "absolute",
-              bottom: "4px",
-              width: "min(350px, 92vw)",
-              zIndex: 6,
-              padding: "20px 22px",
-              borderRadius: "1.4rem",
-              background: "rgba(16, 4, 28, 0.94)",
-              border: "1px solid rgba(168, 85, 247, 0.35)",
-              boxShadow: "0 20px 50px -8px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.1)",
-              backdropFilter: "blur(20px)",
-              WebkitBackdropFilter: "blur(20px)",
-            }}
-          >
-            {/* Active Mobile Card Header */}
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                marginBottom: "12px",
-              }}
-            >
-              <span
-                className="label-mono font-mono"
+        {isMobile &&
+          SERVICES.map((service, i) => {
+            const activeIndex = step - 2;
+            const isPast = activeIndex > i;
+            const isActive = activeIndex === i;
+            const isUpcoming = activeIndex < i;
+
+            // Transform & opacity: upcoming emerges from phone, active rests in center, past slides left
+            let transform = "translate3d(0, -50px, 0) scale(0.35) rotate(3deg)";
+            let opacity = 0;
+            let pointerEvents = "none";
+
+            if (isActive) {
+              transform = "translate3d(0, 0, 0) scale(1) rotate(0deg)";
+              opacity = 1;
+              pointerEvents = "auto";
+            } else if (isPast) {
+              // Previous card slides out to the left
+              transform = "translate3d(-125%, 0, 0) scale(0.85) rotate(-6deg)";
+              opacity = 0;
+              pointerEvents = "none";
+            } else if (isUpcoming) {
+              // Waiting to emerge out of phone
+              transform = "translate3d(0, -60px, 0) scale(0.3) rotate(4deg)";
+              opacity = 0;
+              pointerEvents = "none";
+            }
+
+            return (
+              <div
+                key={service.n}
+                className="service-mobile-card"
                 style={{
-                  fontSize: "0.82rem",
-                  fontWeight: 700,
-                  color: "var(--acid-lime, #D6FF75)",
-                  background: "rgba(214, 255, 117, 0.1)",
-                  padding: "3px 10px",
-                  borderRadius: "9999px",
-                  border: "1px solid rgba(214, 255, 117, 0.3)",
+                  position: "absolute",
+                  bottom: "8px",
+                  width: "min(350px, 92vw)",
+                  zIndex: isActive ? 8 : isPast ? 5 : 6,
+                  padding: "20px 22px",
+                  borderRadius: "1.4rem",
+                  background: "rgba(16, 4, 28, 0.94)",
+                  border: "1px solid rgba(168, 85, 247, 0.35)",
+                  boxShadow: "0 22px 55px -8px rgba(0, 0, 0, 0.92), 0 0 0 1px rgba(255, 255, 255, 0.1)",
+                  backdropFilter: "blur(20px)",
+                  WebkitBackdropFilter: "blur(20px)",
+                  transform,
+                  opacity,
+                  pointerEvents,
                 }}
               >
-                {SERVICES[Math.min(step - 2, 4)].n}
-              </span>
-              <NinjaStar style={{ width: "16px", height: "16px", color: "var(--brand)" }} />
-            </div>
+                {/* Active Mobile Card Header */}
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    marginBottom: "12px",
+                  }}
+                >
+                  <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                    <span
+                      className="label-mono font-mono"
+                      style={{
+                        fontSize: "0.82rem",
+                        fontWeight: 700,
+                        color: "var(--acid-lime, #D6FF75)",
+                        background: "rgba(214, 255, 117, 0.1)",
+                        padding: "3px 10px",
+                        borderRadius: "9999px",
+                        border: "1px solid rgba(214, 255, 117, 0.3)",
+                      }}
+                    >
+                      {service.n}
+                    </span>
+                    <span className="label-mono" style={{ fontSize: "0.62rem", color: "rgba(248, 246, 252, 0.45)" }}>
+                      {i + 1} / 05
+                    </span>
+                  </div>
+                  <NinjaStar style={{ width: "16px", height: "16px", color: "var(--brand)" }} />
+                </div>
 
-            <h3
-              className="font-display"
-              style={{
-                fontSize: "1.25rem",
-                letterSpacing: "-0.03em",
-                color: "#ffffff",
-                lineHeight: 1.2,
-              }}
-            >
-              {SERVICES[Math.min(step - 2, 4)].title}
-            </h3>
+                <h3
+                  className="font-display"
+                  style={{
+                    fontSize: "1.25rem",
+                    letterSpacing: "-0.03em",
+                    color: "#ffffff",
+                    lineHeight: 1.2,
+                  }}
+                >
+                  {service.title}
+                </h3>
 
-            <p
-              style={{
-                marginTop: "8px",
-                fontSize: "0.85rem",
-                lineHeight: 1.5,
-                color: "rgba(248, 246, 252, 0.72)",
-              }}
-            >
-              {SERVICES[Math.min(step - 2, 4)].body}
-            </p>
+                <p
+                  style={{
+                    marginTop: "8px",
+                    fontSize: "0.85rem",
+                    lineHeight: 1.5,
+                    color: "rgba(248, 246, 252, 0.72)",
+                  }}
+                >
+                  {service.body}
+                </p>
 
-            <div
-              style={{
-                marginTop: "16px",
-                borderTop: "1px solid rgba(168, 85, 247, 0.18)",
-                paddingTop: "12px",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <button
-                type="button"
-                onClick={() => selectService(SERVICES[Math.min(step - 2, 4)].title)}
-                style={{
-                  background: "transparent",
-                  border: "none",
-                  color: "var(--brand-bright)",
-                  fontFamily: "inherit",
-                  fontSize: "0.85rem",
-                  fontWeight: 600,
-                  cursor: "pointer",
-                  padding: 0,
-                }}
-              >
-                Discuss this service
-              </button>
-              <span className="label-mono" style={{ fontSize: "0.58rem", color: "rgba(248, 246, 252, 0.45)" }}>
-                {SERVICES[Math.min(step - 2, 4)].tag}
-              </span>
-            </div>
-          </div>
-        )}
+                <div
+                  style={{
+                    marginTop: "16px",
+                    borderTop: "1px solid rgba(168, 85, 247, 0.18)",
+                    paddingTop: "12px",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <button
+                    type="button"
+                    onClick={() => selectService(service.title)}
+                    style={{
+                      background: "transparent",
+                      border: "none",
+                      color: "var(--brand-bright)",
+                      fontFamily: "inherit",
+                      fontSize: "0.85rem",
+                      fontWeight: 600,
+                      cursor: "pointer",
+                      padding: 0,
+                    }}
+                  >
+                    Discuss this service
+                  </button>
+                  <span className="label-mono" style={{ fontSize: "0.58rem", color: "rgba(248, 246, 252, 0.45)" }}>
+                    {service.tag}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
       </div>
 
       {/* Footer Step Indicator & Navigation */}
@@ -870,6 +909,12 @@ export function Services() {
                       border-color 0.35s ease;
           will-change: transform, opacity;
         }
+        .service-mobile-card {
+          transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                      opacity 0.5s ease,
+                      box-shadow 0.35s ease;
+          will-change: transform, opacity;
+        }
         .services-phone-frame {
           transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
                       opacity 0.6s ease;
@@ -879,7 +924,8 @@ export function Services() {
           transition: box-shadow 0.7s cubic-bezier(0.16, 1, 0.3, 1);
           will-change: box-shadow;
         }
-        .service-floating-card:hover {
+        .service-floating-card:hover,
+        .service-mobile-card:hover {
           border-color: rgba(168, 85, 247, 0.6) !important;
           box-shadow: 0 32px 75px -8px rgba(159, 0, 246, 0.65), 0 0 25px rgba(168, 85, 247, 0.35) !important;
         }

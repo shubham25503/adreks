@@ -225,10 +225,11 @@ export function RollText({
   emClassName = "serif-em",
   step = 40,
   base = 0,
+  style,
 }) {
   let i = 0;
   return (
-    <Tag data-roll className={className}>
+    <Tag data-roll className={className} style={style}>
       {parts.map((p, pi) => {
         const isEm = typeof p !== "string";
         const text = isEm ? p.em : p;

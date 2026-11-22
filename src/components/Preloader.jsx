@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { AdrexksMark } from "./Primitives";
 
 const LETTERS = ["A", "D", "R", "E", "X", "K", "S"];
 const MESSAGES = ["GOOD IDEAS", "CLEAR STRATEGY", "REAL GROWTH"];
@@ -156,25 +155,6 @@ export function Preloader() {
             padding: "0 24px",
           }}
         >
-          {/* Official ADREXKS Vector Logo Mark */}
-          <div
-            className="preloader-logo-wrap"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              marginBottom: "clamp(18px, 2.6vw, 34px)",
-            }}
-          >
-            <AdrexksMark
-              size="clamp(44px, 5.8vw, 76px)"
-              style={{
-                filter:
-                  "drop-shadow(0 0 20px rgba(191, 32, 32, 0.45)) drop-shadow(0 0 28px rgba(159, 0, 246, 0.25))",
-              }}
-            />
-          </div>
-
           <h2
             className="font-display"
             style={{
@@ -303,16 +283,38 @@ export function Preloader() {
         </div>
       </div>
 
-      {/* Stage 2: purple bloom, then black star zooming to blank screen, then curtain goes up */}
+      {/* Stage 2: purple bloom, then dark grey solid ninja star zooming to blank screen, then curtain goes up */}
       <div className="preloader-bloom" />
       <div className="preloader-star-wrap">
         <svg
-          viewBox="0 0 100 100"
+          viewBox="0 0 200 200"
           aria-hidden="true"
           className="preloader-star"
-          fill="currentColor"
         >
-          <path d="M50 0 C55 35 65 45 100 50 C65 55 55 65 50 100 C45 65 35 55 0 50 C35 45 45 35 50 0Z" />
+          {/* Solid 4-pointed Shuriken */}
+          <polygon
+            points="100,4 128,72 196,100 128,128 100,196 72,128 4,100 72,72"
+            fill="#242323"
+          />
+
+          {/* Faceted 3D Blade Planes converging at solid center */}
+          <g className="preloader-star-details">
+            {/* Top blade facets */}
+            <polygon points="100,4 72,72 100,100" fill="#383737" opacity="0.85" />
+            <polygon points="100,4 100,100 128,72" fill="#181818" opacity="0.9" />
+
+            {/* Right blade facets */}
+            <polygon points="196,100 128,72 100,100" fill="#383737" opacity="0.85" />
+            <polygon points="196,100 100,100 128,128" fill="#181818" opacity="0.9" />
+
+            {/* Bottom blade facets */}
+            <polygon points="100,196 128,128 100,100" fill="#383737" opacity="0.85" />
+            <polygon points="100,196 100,100 72,128" fill="#181818" opacity="0.9" />
+
+            {/* Left blade facets */}
+            <polygon points="4,100 72,128 100,100" fill="#383737" opacity="0.85" />
+            <polygon points="4,100 100,100 72,72" fill="#181818" opacity="0.9" />
+          </g>
         </svg>
       </div>
     </div>

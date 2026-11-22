@@ -395,17 +395,6 @@ html.has-cursor button {
 }
 
 /* ---------- Preloader styling ---------- */
-@keyframes logo-roll {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 24px, 0) scale(0.92);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-}
-
 @keyframes letter-roll {
   from { transform: translate3d(0, 105%, 0); }
   to { transform: none; }
@@ -446,20 +435,12 @@ html.has-cursor button {
   inset: 0;
   z-index: 10000;
   overflow: hidden;
-  background: #06010b;
+  background: #242323;
   color: var(--paper);
   display: flex;
   align-items: center;
   justify-content: center;
   transition: transform 1s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.4s ease;
-}
-
-.preloader-logo-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: logo-roll 1.1s var(--ease-out-expo) both;
-  animation-delay: 40ms;
 }
 
 .preloader-letter {
@@ -505,9 +486,19 @@ html.has-cursor button {
 .preloader-star {
   width: 100%;
   height: 100%;
-  color: var(--ink, #08020f);
+  color: #242323;
   transform: scale(0) rotate(0deg);
   transition: transform 0.85s cubic-bezier(0.7, 0, 0.2, 1) 0.38s;
+}
+
+.preloader-star-details {
+  opacity: 1;
+  transition: opacity 0.35s ease 0.68s;
+}
+
+.preloader[data-stage="bloom"] .preloader-star-details,
+.preloader[data-stage="reveal"] .preloader-star-details {
+  opacity: 0;
 }
 
 .preloader[data-stage="bloom"] .preloader-bloom,

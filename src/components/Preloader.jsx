@@ -1,20 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 const LETTERS = ["A", "D", "R", "E", "X", "K", "S"];
-
-export function StarIcon({ className = "", style }) {
-  return (
-    <svg
-      viewBox="0 0 100 100"
-      aria-hidden="true"
-      className={className}
-      style={{ display: "inline-block", ...style }}
-      fill="currentColor"
-    >
-      <path d="M50 0 C55 35 65 45 100 50 C65 55 55 65 50 100 C45 65 35 55 0 50 C35 45 45 35 50 0Z" />
-    </svg>
-  );
-}
+const MESSAGES = ["GOOD IDEAS", "CLEAR STRATEGY", "REAL GROWTH"];
 
 export function Preloader() {
   const [stage, setStage] = useState("load");
@@ -87,32 +74,53 @@ export function Preloader() {
       role="status"
       aria-label={`Loading Adrexks, ${Math.floor(pct)}%`}
     >
-      <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
-        {/* Soft background ambient glow */}
+      <div className="preloader-content" style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
+        {/* Dedicated light architectural grid for preloader only */}
+        <div className="preloader-grid" />
+
+        {/* Ambient glow sweep */}
         <div
-          className="glow-brand"
+          className="preloader-sweep glow-brand"
           style={{
             position: "absolute",
             left: "50%",
             top: "50%",
             transform: "translate(-50%, -50%)",
-            width: "50vmax",
-            height: "50vmax",
-            opacity: 0.3,
+            width: "60vmax",
+            height: "60vmax",
+            opacity: 0.35,
           }}
         />
 
-        {/* Orbit track & minimal satellite */}
+        {/* Circle in real radial fade moving from LEFT to RIGHT across ADREXKS */}
+        <div
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+            width: "min(520px, 72vmin)",
+            height: "min(520px, 72vmin)",
+            borderRadius: "50%",
+            background:
+              "radial-gradient(circle at center, rgba(168, 85, 247, 0.48) 0%, rgba(124, 58, 237, 0.28) 36%, rgba(88, 28, 135, 0.08) 58%, transparent 72%)",
+            transform: `translate3d(calc(-50% + ${(-24 + (pct / 100) * 48).toFixed(2)}vw), -50%, 0)`,
+            transition: "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+            pointerEvents: "none",
+          }}
+        />
+
+        {/* Concentric orbit circle in soft fade */}
         <div
           style={{
             position: "absolute",
             left: "50%",
             top: "50%",
             transform: "translate(-50%, -50%)",
-            width: "60vmin",
-            height: "60vmin",
+            width: "70vmin",
+            height: "70vmin",
             borderRadius: "50%",
-            border: "1px solid rgba(139, 92, 246, 0.12)",
+            border: "1px solid rgba(248, 247, 251, 0.12)",
+            pointerEvents: "none",
           }}
         >
           <div style={{ position: "absolute", inset: 0, animation: "spin-slow 28s linear infinite" }}>
@@ -122,29 +130,32 @@ export function Preloader() {
                 top: "-4px",
                 left: "50%",
                 transform: "translateX(-50%)",
-                width: "7px",
-                height: "7px",
+                width: "8px",
+                height: "8px",
                 borderRadius: "50%",
-                background: "var(--lavender)",
+                background: "var(--brand, #8b5cf6)",
+                boxShadow: "0 0 12px rgba(139, 92, 246, 0.8)",
               }}
             />
           </div>
         </div>
 
-        {/* Header details */}
+        {/* Inner concentric ring */}
         <div
-          className="label-mono"
           style={{
             position: "absolute",
-            inset: "24px 32px auto 32px",
-            display: "flex",
-            justifyContent: "space-between",
-            color: "rgba(248, 247, 251, 0.4)",
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "44vmin",
+            height: "44vmin",
+            borderRadius: "50%",
+            border: "1px solid rgba(248, 247, 251, 0.06)",
+            pointerEvents: "none",
           }}
-        >
-          <span>Independent Digital & Creative Agency</span>
-          <span>Ahmedabad, India</span>
-        </div>
+        />
+
+
 
         {/* Center Letters */}
         <div
@@ -154,6 +165,7 @@ export function Preloader() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            padding: "0 24px",
           }}
         >
           <h2
@@ -161,31 +173,38 @@ export function Preloader() {
             style={{
               display: "flex",
               alignItems: "center",
-              fontSize: "clamp(3.5rem, 16vw, 13rem)",
-              lineHeight: 0.85,
-              letterSpacing: "-0.05em",
-              color: "#fff",
+              justifyContent: "center",
+              fontSize: "clamp(3rem, 13.5vw, 11.5rem)",
+              lineHeight: 1,
+              letterSpacing: "-0.04em",
+              color: "#ffffff",
+              overflow: "visible",
+              paddingRight: "0.35em",
             }}
           >
             {LETTERS.map((l, i) => (
               <span
                 key={i}
-                className="preloader-letter"
-                style={{ "--d": `${80 + i * 65}ms` }}
+                style={{
+                  display: "inline-block",
+                  overflow: "hidden",
+                  paddingBottom: "0.08em",
+                  marginBottom: "-0.08em",
+                  paddingRight: l === "S" ? "0.2em" : "0.02em",
+                  paddingLeft: "0.02em",
+                }}
               >
-                {l}
+                <span
+                  className="preloader-letter"
+                  style={{
+                    display: "inline-block",
+                    "--d": `${80 + i * 70}ms`,
+                  }}
+                >
+                  {l}
+                </span>
               </span>
             ))}
-            <StarIcon
-              className="preloader-letter"
-              style={{
-                "--d": "520ms",
-                width: "0.32em",
-                height: "0.32em",
-                marginLeft: "0.1em",
-                color: "var(--acid-lime, #D6FF75)",
-              }}
-            />
           </h2>
         </div>
 
@@ -194,26 +213,86 @@ export function Preloader() {
           style={{
             position: "absolute",
             inset: "auto 32px 32px 32px",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "flex-end",
           }}
         >
-          <div className="label-mono" style={{ color: "rgba(248, 247, 251, 0.35)" }}>
-            <span>CREATIVE STRATEGY · BRANDING · PERFORMANCE</span>
-          </div>
           <div
-            className="label-mono font-mono"
             style={{
-              fontSize: "1.1rem",
-              fontWeight: 500,
-              color: "var(--acid-lime, #D6FF75)",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-end",
+              gap: "24px",
             }}
           >
-            {String(Math.floor(pct)).padStart(2, "0")}%
+            {/* Rolling Messages */}
+            <div
+              className="label-mono"
+              style={{
+                position: "relative",
+                height: "22px",
+                width: "240px",
+                overflow: "hidden",
+                color: "var(--lavender, #ddd6fe)",
+                fontWeight: 600,
+                letterSpacing: "0.14em",
+              }}
+            >
+              {MESSAGES.map((m, i) => (
+                <span
+                  key={m}
+                  className="preloader-msg"
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    "--d": `${i * 800}ms`,
+                  }}
+                >
+                  {m}
+                </span>
+              ))}
+            </div>
+
+            {/* Large Tabular Counter */}
+            <div
+              className="font-mono"
+              style={{
+                fontSize: "clamp(2.8rem, 6.5vw, 4.8rem)",
+                lineHeight: 0.95,
+                fontWeight: 500,
+                letterSpacing: "-0.04em",
+                fontVariantNumeric: "tabular-nums",
+                color: "#ffffff",
+              }}
+            >
+              {String(Math.floor(pct)).padStart(2, "0")}
+              <span style={{ color: "var(--brand, #8b5cf6)" }}>%</span>
+            </div>
+          </div>
+
+          {/* Bottom Progress Line */}
+          <div
+            style={{
+              marginTop: "20px",
+              height: "2px",
+              width: "100%",
+              background: "rgba(248, 247, 251, 0.1)",
+              borderRadius: "9999px",
+              overflow: "hidden",
+            }}
+          >
+            <div
+              style={{
+                height: "100%",
+                transformOrigin: "left",
+                transform: `scaleX(${pct / 100})`,
+                background: "linear-gradient(to right, #581c87, #8b5cf6, #ddd6fe)",
+              }}
+            />
           </div>
         </div>
       </div>
+
+      {/* Stage 2: smooth purple bloom wipe */}
+      <div className="preloader-bloom" />
     </div>
   );
 }

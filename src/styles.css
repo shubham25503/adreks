@@ -513,7 +513,7 @@ html.has-cursor button {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 1s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.4s ease;
+  transition: transform 0.62s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.35s ease;
 }
 
 .preloader-letter {
@@ -540,7 +540,7 @@ html.has-cursor button {
   border-radius: 50%;
   background: var(--brand, #9f00f6);
   transform: translate3d(-50%, -50%, 0) scale(0);
-  transition: transform 0.75s cubic-bezier(0.7, 0, 0.2, 1);
+  transition: transform 0.48s cubic-bezier(0.7, 0, 0.2, 1);
   pointer-events: none;
   z-index: 10;
 }
@@ -561,7 +561,7 @@ html.has-cursor button {
   height: 100%;
   color: #242323;
   transform: scale(0) rotate(0deg);
-  transition: transform 0.85s cubic-bezier(0.7, 0, 0.2, 1) 0.38s;
+  transition: transform 0.52s cubic-bezier(0.7, 0, 0.2, 1) 0.16s;
 }
 
 .preloader[data-stage="bloom"] .preloader-bloom,
@@ -577,7 +577,7 @@ html.has-cursor button {
 .preloader[data-stage="bloom"] .preloader-content,
 .preloader[data-stage="reveal"] .preloader-content {
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.2s ease;
 }
 
 .preloader[data-stage="reveal"] {

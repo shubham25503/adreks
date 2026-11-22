@@ -29,15 +29,15 @@ export function Preloader() {
         timers.push(window.setTimeout(() => setStage("done"), 400));
         return;
       }
-      timers.push(window.setTimeout(() => setStage("bloom"), 180));
+      timers.push(window.setTimeout(() => setStage("bloom"), 80));
       timers.push(
         window.setTimeout(() => {
           setStage("reveal");
           html.dataset.ready = "true";
           document.body.classList.remove("preloader-active");
-        }, 1550)
+        }, 780)
       );
-      timers.push(window.setTimeout(() => setStage("done"), 2650));
+      timers.push(window.setTimeout(() => setStage("done"), 1450));
     };
 
     const tick = (now) => {

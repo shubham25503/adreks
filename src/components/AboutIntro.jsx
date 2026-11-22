@@ -1,31 +1,55 @@
 import React from "react";
-import { delay, RollText, SectionLabel } from "./Primitives";
+import { delay, RollText } from "./Primitives";
 
 export function AboutIntro() {
   return (
     <section
       id="about"
       style={{
-        paddingTop: "clamp(90px, 12vw, 150px)",
-        paddingBottom: "clamp(80px, 10vw, 130px)",
+        paddingTop: "clamp(90px, 11vw, 150px)",
+        paddingBottom: "clamp(80px, 10vw, 140px)",
         position: "relative",
-        background: "var(--bg-deep)",
+        background: "radial-gradient(ellipse at 88% 0%, rgba(181, 0, 255, 0.07), transparent 45%), #f3eee6",
+        color: "#161515",
       }}
     >
-      <div className="container-custom">
-        <SectionLabel index="02">The Agency</SectionLabel>
+      <div className="container-custom" style={{ maxWidth: "1440px" }}>
+        {/* Section Kicker */}
+        <div
+          data-reveal
+          className="label-mono"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "12px",
+            color: "rgba(22, 21, 21, 0.6)",
+          }}
+        >
+          <span style={{ color: "#b500ff", fontWeight: 700 }}>(02)</span>
+          <span
+            style={{
+              width: "40px",
+              height: "1px",
+              background: "#161515",
+              opacity: 0.3,
+            }}
+          />
+          <span style={{ letterSpacing: "0.18em", fontSize: "0.72rem" }}>The agency</span>
+        </div>
 
         {/* Word-by-word rolling headline */}
         <RollText
           as="h2"
-          className="font-display"
-          emClassName="serif-em"
+          className="display"
+          emClassName="serif-em text-brand"
           style={{
-            marginTop: "36px",
-            maxWidth: "1100px",
-            fontSize: "clamp(2.2rem, 5vw, 5.2rem)",
-            lineHeight: 1.05,
-            color: "#ffffff",
+            marginTop: "2.5rem",
+            maxWidth: "1150px",
+            fontSize: "clamp(2.2rem, 5.2vw, 5.4rem)",
+            lineHeight: 1.02,
+            letterSpacing: "-0.04em",
+            color: "#161515",
+            fontWeight: 700,
           }}
           parts={[
             "From the first big idea to the campaign that moves it forward, we make the",
@@ -33,46 +57,78 @@ export function AboutIntro() {
           ]}
         />
 
-        {/* Animated line draw */}
+        {/* 3-column breakdown with top divider border */}
         <div
-          className="draw-line"
+          className="about-agency-grid"
           style={{
-            height: "1px",
-            background: "rgba(168, 85, 247, 0.25)",
-            margin: "56px 0 44px",
-          }}
-        />
-
-        {/* 3-column breakdown */}
-        <div
-          style={{
+            marginTop: "4rem",
+            paddingTop: "2.5rem",
+            borderTop: "1px solid rgba(22, 21, 21, 0.12)",
             display: "grid",
-            gridTemplateColumns: "1fr 1.3fr 1.2fr",
-            gap: "clamp(24px, 4vw, 50px)",
+            gridTemplateColumns: "repeat(12, 1fr)",
+            gap: "2.5rem",
           }}
-          className="about-grid"
         >
-          <div data-reveal className="label-mono" style={{ color: "var(--brand-bright)" }}>
+          <p
+            data-reveal
+            className="label-mono"
+            style={{
+              gridColumn: "span 3",
+              color: "rgba(22, 21, 21, 0.5)",
+              fontSize: "0.72rem",
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              margin: 0,
+            }}
+          >
             A connected creative partner
-          </div>
+          </p>
           <p
             data-reveal
             style={{
               ...delay(100),
-              fontSize: "clamp(1.1rem, 1.4vw, 1.35rem)",
-              lineHeight: 1.7,
-              color: "rgba(248, 246, 252, 0.9)",
+              gridColumn: "span 5",
+              fontSize: "1.25rem",
+              lineHeight: 1.62,
+              color: "rgba(22, 21, 21, 0.82)",
+              margin: 0,
             }}
           >
-            Adrexks brings strategy, content, advertising, branding, and design under one roof, keeping your message consistent from the first post to the last campaign.
+            Adrexks is one team for strategy, content, advertising, branding and design - so your message stays consistent from the first post to the last campaign.
+            <span
+              aria-hidden="true"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "20px",
+                height: "20px",
+                borderRadius: "50%",
+                border: "1.5px solid #b500ff",
+                verticalAlign: "middle",
+                marginLeft: "10px",
+                opacity: 0.9,
+              }}
+            >
+              <span
+                style={{
+                  width: "5px",
+                  height: "5px",
+                  borderRadius: "50%",
+                  backgroundColor: "#b500ff",
+                }}
+              />
+            </span>
           </p>
           <p
             data-reveal
             style={{
               ...delay(200),
-              fontSize: "1rem",
-              lineHeight: 1.75,
-              color: "rgba(248, 246, 252, 0.6)",
+              gridColumn: "span 4",
+              fontSize: "0.95rem",
+              lineHeight: 1.65,
+              color: "rgba(22, 21, 21, 0.6)",
+              margin: 0,
             }}
           >
             No juggling five vendors. No ideas lost between departments. Just one founder-led agency that thinks about the whole picture and sweats the details.
@@ -81,10 +137,13 @@ export function AboutIntro() {
       </div>
 
       <style>{`
-        @media (max-width: 860px) {
-          .about-grid {
+        @media (max-width: 900px) {
+          .about-agency-grid {
             grid-template-columns: 1fr !important;
-            gap: 24px !important;
+            gap: 1.8rem !important;
+          }
+          .about-agency-grid > p {
+            grid-column: span 1 !important;
           }
         }
       `}</style>

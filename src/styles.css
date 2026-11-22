@@ -79,11 +79,16 @@ body.preloader-active {
 }
 
 /* ---------- Typography ---------- */
+.display,
 .font-display {
   font-family: 'Bricolage Grotesque', 'DM Sans', sans-serif;
   letter-spacing: -0.045em;
   font-weight: 700;
-  line-height: 0.98;
+  line-height: 1.02;
+}
+
+.text-brand {
+  color: #b500ff !important;
 }
 
 .font-serif {

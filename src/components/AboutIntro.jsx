@@ -94,31 +94,6 @@ export function AboutIntro() {
             }}
           >
             Adrexks is one team for strategy, content, advertising, branding and design - so your message stays consistent from the first post to the last campaign.
-            <span
-              aria-hidden="true"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: "20px",
-                height: "20px",
-                borderRadius: "50%",
-                border: "1.5px solid #b500ff",
-                background: "rgba(181, 0, 255, 0.08)",
-                verticalAlign: "middle",
-                marginLeft: "10px",
-                opacity: 0.9,
-              }}
-            >
-              <span
-                style={{
-                  width: "5px",
-                  height: "5px",
-                  borderRadius: "50%",
-                  backgroundColor: "#b500ff",
-                }}
-              />
-            </span>
           </p>
           <p
             data-reveal

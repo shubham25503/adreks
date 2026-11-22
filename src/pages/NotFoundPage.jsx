@@ -20,7 +20,7 @@ export function NotFoundPage() {
         <div className="container-custom">
           <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
             <Link to="/" className="btn-primary" data-magnetic>
-              Return home ↗
+              Return home
             </Link>
             <Link to="/services" className="btn-secondary" data-magnetic>
               Explore services

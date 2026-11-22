@@ -15,7 +15,7 @@ export function ServiceDetailPage({ slug }) {
           Service Not Found
         </h2>
         <Link to="/services" className="btn-primary" style={{ marginTop: "20px" }}>
-          Back to all services ↗
+          Back to all services
         </Link>
       </div>
     );
@@ -71,7 +71,7 @@ export function ServiceDetailPage({ slug }) {
                   className="btn-primary"
                   style={{ width: "100%", justifyContent: "center" }}
                 >
-                  Discuss this service <span>↗</span>
+                  Discuss this service
                 </Link>
               </div>
 
@@ -98,7 +98,6 @@ export function ServiceDetailPage({ slug }) {
                       onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(248, 246, 252, 0.8)")}
                     >
                       <span>{other.title}</span>
-                      <span style={{ color: "var(--brand-bright)" }}>↗</span>
                     </Link>
                   ))}
                 </div>

@@ -199,7 +199,7 @@ export function Services() {
                     padding: 0,
                   }}
                 >
-                  Discuss this service <span aria-hidden="true" style={{ color: "var(--acid-lime, #D6FF75)" }}>↗</span>
+                  Discuss this service
                 </button>
               </div>
             </div>

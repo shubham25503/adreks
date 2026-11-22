@@ -156,7 +156,7 @@ export function ServicesPage() {
                       gap: "6px",
                     }}
                   >
-                    Explore service in detail <span style={{ color: "var(--acid-lime, #D6FF75)" }}>↗</span>
+                    Explore service in detail
                   </Link>
                 </div>
               </div>

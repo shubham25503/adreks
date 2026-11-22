@@ -433,7 +433,7 @@ export function Contact() {
                       fontSize: "1rem",
                     }}
                   >
-                    {status === "sending" ? "Sending brief..." : "Submit project enquiry ↗"}
+                    {status === "sending" ? "Sending brief..." : "Submit project enquiry"}
                   </button>
                 </form>
               )}

@@ -108,7 +108,6 @@ export function Navbar() {
               style={{ fontSize: "0.85rem", padding: "10px 22px" }}
             >
               Start a project
-              <span aria-hidden="true" style={{ fontSize: "1.1em" }}>↗</span>
             </Link>
 
             {/* Mobile Hamburger Toggle */}
@@ -173,7 +172,6 @@ export function Navbar() {
                 }}
               >
                 {link.label}
-                <span style={{ color: "var(--brand-bright)", fontSize: "0.8em" }}>↗</span>
               </NavLink>
             ))}
             <div style={{ marginTop: "20px" }}>
@@ -182,7 +180,7 @@ export function Navbar() {
                 className="btn-primary"
                 style={{ width: "100%", justifyContent: "center" }}
               >
-                Start a project ↗
+                Start a project
               </Link>
             </div>
           </div>

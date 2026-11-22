@@ -194,7 +194,7 @@ export function StudioPage() {
                   className="btn-primary"
                   data-magnetic
                 >
-                  Start a conversation ↗
+                  Start a conversation
                 </Link>
               </div>
             </div>

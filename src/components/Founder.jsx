@@ -171,7 +171,7 @@ export function Founder() {
               }}
             >
               <a href="#contact" className="btn-primary" data-magnetic>
-                Start a conversation ↗
+                Start a conversation
               </a>
             </div>
           </div>

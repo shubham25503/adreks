@@ -248,45 +248,10 @@ export function Hero() {
               }}
             >
               <Link to="/contact" className="btn-primary" data-magnetic>
-                Start a project <span aria-hidden="true">↗</span>
+                Start a project
               </Link>
               <Link to="/work" className="btn-secondary" data-magnetic>
                 Explore our work
-              </Link>
-            </div>
-
-            {/* Founder link pill */}
-            <div
-              className="hero-fade"
-              style={{
-                ...delay(800),
-                marginTop: "44px",
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "14px",
-                padding: "8px 16px",
-                borderRadius: "9999px",
-                background: "rgba(18, 5, 30, 0.6)",
-                border: "1px solid rgba(139, 92, 246, 0.15)",
-              }}
-            >
-              <img
-                src="/assets/kavan-desai.webp"
-                alt="Kavan Desai"
-                style={{
-                  width: "32px",
-                  height: "32px",
-                  borderRadius: "50%",
-                  objectFit: "cover",
-                }}
-              />
-              <Link to="/studio" style={{ textDecoration: "none", display: "flex", flexDirection: "column" }}>
-                <span style={{ fontSize: "0.85rem", fontWeight: 600, color: "#fff" }}>
-                  Kavan Desai ↗
-                </span>
-                <span className="label-mono" style={{ fontSize: "0.6rem", color: "var(--brand-bright)" }}>
-                  Founder & Creative Strategist
-                </span>
               </Link>
             </div>
           </div>

@@ -172,7 +172,7 @@ export function Clients() {
                 gap: "6px",
               }}
             >
-              Start a project ↗
+              Start a project
             </a>
           </div>
         </div>

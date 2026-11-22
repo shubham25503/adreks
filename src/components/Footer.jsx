@@ -51,7 +51,7 @@ export function Footer() {
           </div>
 
           <a href="#contact" className="btn-primary" data-magnetic style={{ padding: "14px 32px" }}>
-            Start a project <span aria-hidden="true">↗</span>
+            Start a project
           </a>
         </div>
 

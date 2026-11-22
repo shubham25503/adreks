@@ -122,12 +122,12 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Background Watermark in Bottom Left, translating Left to Right on scroll */}
+      {/* Background Watermark in Bottom Left, touching bottom with margin only on left side */}
       <div
         aria-hidden="true"
         style={{
           position: "absolute",
-          bottom: "clamp(12px, 2.5vw, 44px)",
+          bottom: "0px",
           left: "clamp(24px, 4.5vw, 72px)",
           pointerEvents: "none",
           zIndex: 0,
@@ -143,8 +143,9 @@ export function Hero() {
             fontSize: "clamp(5.5rem, 17vw, 16.5rem)",
             color: "rgba(248, 247, 251, 0.022)",
             WebkitTextStroke: "1px rgba(168, 85, 247, 0.12)",
-            lineHeight: 0.85,
+            lineHeight: 0.78,
             letterSpacing: "-0.05em",
+            marginBottom: "-0.06em",
             willChange: "transform",
           }}
         >
@@ -297,9 +298,12 @@ export function Hero() {
               </div>
 
               {/* Floating Badge 1: Top-Left White Positioning Card */}
-              <div className="hero-badge-top-left">
-                <p className="hero-badge-label-dark">CORE POSITIONING</p>
-                <p className="hero-badge-value-dark">Strategy · Creative · Growth</p>
+              <div className="hero-badge-float-tl">
+                <div className="hero-badge-card hero-badge-card-white">
+                  <div className="hero-badge-sheen" />
+                  <p className="hero-badge-label-dark">CORE POSITIONING</p>
+                  <p className="hero-badge-value-dark">Strategy · Creative · Growth</p>
+                </div>
               </div>
 
               {/* 3D Interactive Tilt Card with Hero Visual */}
@@ -329,9 +333,12 @@ export function Hero() {
               </div>
 
               {/* Floating Badge 2: Bottom-Right Purple Location Card */}
-              <div className="hero-badge-bottom-right">
-                <p className="hero-badge-label-purple">BASED IN</p>
-                <p className="hero-badge-value-purple">Ahmedabad · Working everywhere</p>
+              <div className="hero-badge-float-br">
+                <div className="hero-badge-card hero-badge-card-purple">
+                  <div className="hero-badge-sheen" />
+                  <p className="hero-badge-label-purple">BASED IN</p>
+                  <p className="hero-badge-value-purple">Ahmedabad · Working everywhere</p>
+                </div>
               </div>
             </div>
           </div>

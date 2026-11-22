@@ -18,44 +18,86 @@ export function Star({ className = "", style }) {
 }
 
 /**
- * AdrexksLogo matching clean agency branding:
- * Crisp modern 'A' letterform with subtle curved purple swoosh, zero neon glow
+ * AdrexksMark:
+ * The official vector emblem mark for ADREXKS.
+ * Sourced directly from brand vector assets (1.svg / 2.svg).
+ * Stylized modern forward 'A' mark with distinctive red orbital swoosh (#bf2020).
  */
-export function AdrexksLogo({ size = 32, showText = true, subtitle = "A DIGITAL MARKETING AGENCY" }) {
+export function AdrexksMark({
+  size = 32,
+  width,
+  height,
+  color = "#ffffff",
+  swooshColor = "#bf2020",
+  className = "",
+  style = {},
+}) {
+  const isNumeric = typeof size === "number";
+  const w = width || (isNumeric ? Math.round(size * 1.33) : undefined);
+  const h = height || (isNumeric ? size : undefined);
+
+  const mergedStyle = isNumeric
+    ? { display: "inline-block", verticalAlign: "middle", flexShrink: 0, ...style }
+    : {
+        display: "inline-block",
+        verticalAlign: "middle",
+        flexShrink: 0,
+        width: size,
+        height: "auto",
+        aspectRatio: "1145 / 860",
+        ...style,
+      };
+
+  return (
+    <svg
+      width={w}
+      height={h}
+      viewBox="185 325 1145 860"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      style={mergedStyle}
+      aria-hidden="true"
+    >
+      {/* Left pillar & apex */}
+      <path
+        fill={color}
+        d="M 815.273438 342.503906 L 674.097656 343.097656 L 268.960938 1063.164062 C 356.75 981.3125 454.625 921.40625 559.613281 858.53125 L 743.5 534.085938 L 862.132812 745.242188 L 1022.289062 716.179688 Z M 815.273438 342.503906"
+        fillOpacity="1"
+        fillRule="nonzero"
+      />
+      {/* Right leg */}
+      <path
+        fill={color}
+        d="M 932.722656 929.117188 L 1066.183594 1169.929688 L 1276.167969 1169.335938 L 1092.878906 852.601562 Z M 932.722656 929.117188"
+        fillOpacity="1"
+        fillRule="nonzero"
+      />
+      {/* Orbital swoosh */}
+      <path
+        fill={swooshColor}
+        d="M 1323.621094 748.800781 C 1288.03125 737.53125 1252.441406 732.195312 1216.257812 731.601562 C 1151.601562 729.230469 1092.285156 731.007812 1047.203125 736.347656 C 979.582031 744.058594 926.195312 754.734375 881.113281 764.816406 C 807.5625 780.832031 754.175781 800.40625 719.773438 814.640625 C 656.300781 835.992188 602.917969 861.5 556.054688 888.191406 C 505.042969 916.660156 457.589844 945.128906 425.558594 966.484375 C 377.511719 999.105469 333.023438 1035.878906 295.058594 1068.503906 C 258.875 1100.53125 224.472656 1137.308594 199.558594 1174.082031 L 416.660156 1174.675781 C 448.691406 1140.867188 475.382812 1111.800781 501.484375 1089.261719 C 521.652344 1072.0625 545.378906 1051.300781 567.917969 1039.441406 C 595.207031 1013.933594 621.304688 1000.292969 648.589844 989.617188 C 677.0625 973.601562 709.09375 956.398438 741.125 942.164062 C 789.765625 919.625 843.152344 898.867188 895.351562 880.480469 L 904.25 884.039062 L 919.671875 908.949219 C 946.363281 894.714844 979.582031 876.328125 1013.984375 859.125 C 1059.066406 835.992188 1105.335938 818.199219 1149.230469 802.183594 C 1193.125 785.578125 1234.644531 771.339844 1273.203125 757.105469 C 1295.148438 753.546875 1311.757812 750.582031 1323.621094 748.800781 Z M 1323.621094 748.800781"
+        fillOpacity="1"
+        fillRule="nonzero"
+      />
+    </svg>
+  );
+}
+
+/**
+ * AdrexksLogo matching authentic agency branding:
+ * Official vector emblem mark with typography
+ */
+export function AdrexksLogo({
+  size = 32,
+  showText = true,
+  subtitle = "A DIGITAL MARKETING AGENCY",
+  color = "#ffffff",
+  swooshColor = "#bf2020",
+}) {
   return (
     <div style={{ display: "inline-flex", alignItems: "center", gap: "12px", textDecoration: "none" }}>
-      {/* SVG Icon Mark */}
-      <svg
-        width={size}
-        height={size}
-        viewBox="0 0 120 120"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        style={{ flexShrink: 0 }}
-      >
-        <defs>
-          <linearGradient id="swoosh-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#c084fc" />
-            <stop offset="38%" stopColor="#9333ea" />
-            <stop offset="68%" stopColor="#f43f5e" />
-            <stop offset="100%" stopColor="#7c3aed" />
-          </linearGradient>
-        </defs>
-
-        {/* Sharp modern 'A' letterform */}
-        <path
-          d="M60 12 L95 104 L74 104 L60 66 L46 104 L25 104 Z"
-          fill="#ffffff"
-        />
-        {/* Inner cutout triangle */}
-        <polygon points="60,34 70,64 50,64" fill="#08020f" />
-
-        {/* Curved swoosh cutting through the 'A' */}
-        <path
-          d="M12 92 C 34 82, 68 56, 114 62 C 90 70, 52 88, 12 92 Z"
-          fill="url(#swoosh-grad)"
-        />
-      </svg>
+      <AdrexksMark size={size} color={color} swooshColor={swooshColor} />
 
       {/* Typography */}
       {showText && (
@@ -67,7 +109,7 @@ export function AdrexksLogo({ size = 32, showText = true, subtitle = "A DIGITAL 
               fontWeight: 800,
               letterSpacing: "0.06em",
               lineHeight: 1,
-              color: "#ffffff",
+              color: color,
             }}
           >
             ADREXKS
@@ -78,7 +120,7 @@ export function AdrexksLogo({ size = 32, showText = true, subtitle = "A DIGITAL 
               style={{
                 fontSize: "0.55rem",
                 letterSpacing: "0.2em",
-                color: "var(--lavender)",
+                color: "var(--lavender, #c4b5fd)",
                 marginTop: "3px",
                 opacity: 0.85,
               }}

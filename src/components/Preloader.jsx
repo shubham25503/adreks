@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { AdrexksMark } from "./Primitives";
 
 const LETTERS = ["A", "D", "R", "E", "X", "K", "S"];
 const MESSAGES = ["GOOD IDEAS", "CLEAR STRATEGY", "REAL GROWTH"];
@@ -155,6 +156,25 @@ export function Preloader() {
             padding: "0 24px",
           }}
         >
+          {/* Official ADREXKS Vector Logo Mark */}
+          <div
+            className="preloader-logo-wrap"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              marginBottom: "clamp(18px, 2.6vw, 34px)",
+            }}
+          >
+            <AdrexksMark
+              size="clamp(44px, 5.8vw, 76px)"
+              style={{
+                filter:
+                  "drop-shadow(0 0 20px rgba(191, 32, 32, 0.45)) drop-shadow(0 0 28px rgba(159, 0, 246, 0.25))",
+              }}
+            />
+          </div>
+
           <h2
             className="font-display"
             style={{

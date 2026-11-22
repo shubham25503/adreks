@@ -230,8 +230,8 @@ body.preloader-active {
 /* ---------- Hero Visual Floating Badges ---------- */
 .hero-badge-float-tl {
   position: absolute;
-  top: -22px;
-  left: -28px;
+  top: -24px;
+  left: -32px;
   z-index: 15;
   animation: hero-float-tl 5.5s ease-in-out infinite;
   perspective: 600px;
@@ -239,8 +239,8 @@ body.preloader-active {
 
 .hero-badge-float-br {
   position: absolute;
-  bottom: -24px;
-  right: -28px;
+  bottom: -26px;
+  right: -30px;
   z-index: 15;
   animation: hero-float-br 6s ease-in-out infinite 0.7s;
   perspective: 600px;

@@ -29,15 +29,15 @@ export function Preloader() {
         timers.push(window.setTimeout(() => setStage("done"), 400));
         return;
       }
-      timers.push(window.setTimeout(() => setStage("bloom"), 150));
+      timers.push(window.setTimeout(() => setStage("bloom"), 180));
       timers.push(
         window.setTimeout(() => {
           setStage("reveal");
           html.dataset.ready = "true";
           document.body.classList.remove("preloader-active");
-        }, 1300)
+        }, 1550)
       );
-      timers.push(window.setTimeout(() => setStage("done"), 2300));
+      timers.push(window.setTimeout(() => setStage("done"), 2650));
     };
 
     const tick = (now) => {
@@ -92,22 +92,8 @@ export function Preloader() {
           }}
         />
 
-        {/* Circle in real radial fade moving from LEFT to RIGHT across ADREXKS */}
-        <div
-          style={{
-            position: "absolute",
-            left: "50%",
-            top: "50%",
-            width: "min(520px, 72vmin)",
-            height: "min(520px, 72vmin)",
-            borderRadius: "50%",
-            background:
-              "radial-gradient(circle at center, rgba(168, 85, 247, 0.48) 0%, rgba(124, 58, 237, 0.28) 36%, rgba(88, 28, 135, 0.08) 58%, transparent 72%)",
-            transform: `translate3d(calc(-50% + ${(-24 + (pct / 100) * 48).toFixed(2)}vw), -50%, 0)`,
-            transition: "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
-            pointerEvents: "none",
-          }}
-        />
+        {/* Big circle in real radial fade roaming left to right and right to left in slow motion */}
+        <div className="preloader-roaming-circle" />
 
         {/* Concentric orbit circle in soft fade */}
         <div
@@ -133,8 +119,8 @@ export function Preloader() {
                 width: "8px",
                 height: "8px",
                 borderRadius: "50%",
-                background: "var(--brand, #8b5cf6)",
-                boxShadow: "0 0 12px rgba(139, 92, 246, 0.8)",
+                background: "var(--brand, #9f00f6)",
+                boxShadow: "0 0 14px rgba(159, 0, 246, 0.9)",
               }}
             />
           </div>
@@ -157,12 +143,13 @@ export function Preloader() {
 
 
 
-        {/* Center Letters */}
+        {/* Center Letters & Cycling Message */}
         <div
           style={{
             position: "absolute",
             inset: 0,
             display: "flex",
+            flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
             padding: "0 24px",
@@ -206,6 +193,40 @@ export function Preloader() {
               </span>
             ))}
           </h2>
+
+          {/* Rolling Messages centered below ADREXKS */}
+          <div
+            className="label-mono"
+            style={{
+              position: "relative",
+              height: "26px",
+              width: "320px",
+              marginTop: "clamp(12px, 2.5vw, 24px)",
+              overflow: "hidden",
+              textAlign: "center",
+              color: "var(--lavender, #ddd6fe)",
+              fontWeight: 600,
+              fontSize: "clamp(0.72rem, 1.2vw, 0.9rem)",
+              letterSpacing: "0.24em",
+            }}
+          >
+            {MESSAGES.map((m, i) => (
+              <span
+                key={m}
+                className="preloader-msg"
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  "--d": `${i * 800}ms`,
+                }}
+              >
+                {m}
+              </span>
+            ))}
+          </div>
         </div>
 
         {/* Bottom percentage & progress bar */}
@@ -218,39 +239,10 @@ export function Preloader() {
           <div
             style={{
               display: "flex",
-              justifyContent: "space-between",
+              justifyContent: "flex-end",
               alignItems: "flex-end",
-              gap: "24px",
             }}
           >
-            {/* Rolling Messages */}
-            <div
-              className="label-mono"
-              style={{
-                position: "relative",
-                height: "22px",
-                width: "240px",
-                overflow: "hidden",
-                color: "var(--lavender, #ddd6fe)",
-                fontWeight: 600,
-                letterSpacing: "0.14em",
-              }}
-            >
-              {MESSAGES.map((m, i) => (
-                <span
-                  key={m}
-                  className="preloader-msg"
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    "--d": `${i * 800}ms`,
-                  }}
-                >
-                  {m}
-                </span>
-              ))}
-            </div>
-
             {/* Large Tabular Counter */}
             <div
               className="font-mono"
@@ -264,7 +256,7 @@ export function Preloader() {
               }}
             >
               {String(Math.floor(pct)).padStart(2, "0")}
-              <span style={{ color: "var(--brand, #8b5cf6)" }}>%</span>
+              <span style={{ color: "var(--brand, #9f00f6)" }}>%</span>
             </div>
           </div>
 
@@ -284,15 +276,25 @@ export function Preloader() {
                 height: "100%",
                 transformOrigin: "left",
                 transform: `scaleX(${pct / 100})`,
-                background: "linear-gradient(to right, #581c87, #8b5cf6, #ddd6fe)",
+                background: "linear-gradient(to right, #7000b0, #9f00f6, #d8a4ff)",
               }}
             />
           </div>
         </div>
       </div>
 
-      {/* Stage 2: smooth purple bloom wipe */}
+      {/* Stage 2: purple bloom, then black star zooming to blank screen, then curtain goes up */}
       <div className="preloader-bloom" />
+      <div className="preloader-star-wrap">
+        <svg
+          viewBox="0 0 100 100"
+          aria-hidden="true"
+          className="preloader-star"
+          fill="currentColor"
+        >
+          <path d="M50 0 C55 35 65 45 100 50 C65 55 55 65 50 100 C45 65 35 55 0 50 C35 45 45 35 50 0Z" />
+        </svg>
+      </div>
     </div>
   );
 }

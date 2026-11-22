@@ -19,10 +19,10 @@
   --bg-card: rgba(18, 5, 30, 0.7);
   --bg-card-hover: rgba(28, 8, 46, 0.85);
 
-  --brand: #8b5cf6;          /* Deep refined violet */
-  --brand-bright: #a78bfa;   /* Soft lilac */
-  --brand-deep: #581c87;     /* Dark purple */
-  --brand-subtle: rgba(139, 92, 246, 0.08);
+  --brand: #9f00f6;          /* Vibrant electric royal purple matching video & hero */
+  --brand-bright: #b845ff;   /* Luminous electric purple */
+  --brand-deep: #7000b0;     /* Deep royal purple */
+  --brand-subtle: rgba(159, 0, 246, 0.08);
 
   --lavender: #ddd6fe;
   --lavender-pale: #ede9fe;
@@ -412,6 +412,24 @@ html.has-cursor button {
   100% { transform: translate3d(-60vw, 10vh, 0); }
 }
 
+@keyframes circle-roam-lr {
+  0% { transform: translate3d(calc(-50% - 22vw), -50%, 0); }
+  50% { transform: translate3d(calc(-50% + 22vw), -50%, 0); }
+  100% { transform: translate3d(calc(-50% - 22vw), -50%, 0); }
+}
+
+.preloader-roaming-circle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(580px, 68vmin);
+  height: min(860px, 102vmin);
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(159, 0, 246, 0.46) 0%, rgba(124, 0, 220, 0.26) 38%, rgba(88, 0, 160, 0.08) 60%, transparent 75%);
+  animation: circle-roam-lr 7.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
 .preloader {
   position: fixed;
   inset: 0;
@@ -447,10 +465,11 @@ html.has-cursor button {
   width: 170vmax;
   height: 170vmax;
   border-radius: 50%;
-  background: var(--brand, #8b5cf6);
+  background: var(--brand, #9f00f6);
   transform: translate3d(-50%, -50%, 0) scale(0);
   transition: transform 0.75s cubic-bezier(0.7, 0, 0.2, 1);
   pointer-events: none;
+  z-index: 10;
 }
 
 .preloader-star-wrap {
@@ -461,14 +480,15 @@ html.has-cursor button {
   height: 380vmax;
   transform: translate3d(-50%, -50%, 0);
   pointer-events: none;
+  z-index: 20;
 }
 
 .preloader-star {
   width: 100%;
   height: 100%;
   color: var(--ink, #08020f);
-  transform: scale(0) rotate(-45deg);
-  transition: transform 0.85s cubic-bezier(0.7, 0, 0.2, 1) 0.4s;
+  transform: scale(0) rotate(0deg);
+  transition: transform 0.85s cubic-bezier(0.7, 0, 0.2, 1) 0.38s;
 }
 
 .preloader[data-stage="bloom"] .preloader-bloom,

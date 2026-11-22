@@ -271,7 +271,7 @@ export function Hero() {
               {/* Rotating Circular Ideas Into Impact Badge (Top Right) */}
               <div className="hero-stamp-badge">
                 <div style={{ animation: "spin-slow 24s linear infinite" }}>
-                  <svg viewBox="0 0 100 100" width="86" height="86" style={{ overflow: "visible" }}>
+                  <svg viewBox="0 0 100 100" width="94" height="94" style={{ overflow: "visible" }}>
                     <defs>
                       <path
                         id="hero-stamp-circle"
@@ -279,30 +279,39 @@ export function Hero() {
                       />
                     </defs>
                     <text
-                      fill="rgba(248, 247, 251, 0.72)"
-                      fontSize="8.2"
+                      fill="rgba(248, 247, 251, 0.78)"
+                      fontSize="7.2"
                       fontFamily="'DM Sans', sans-serif"
-                      letterSpacing="0.22em"
+                      letterSpacing="0.12em"
                       style={{ textTransform: "uppercase", fontWeight: 600 }}
                     >
-                      <textPath xlinkHref="#hero-stamp-circle" href="#hero-stamp-circle" startOffset="0%">
-                        · IDEAS INTO IMPACT · ADREXKS
+                      <textPath
+                        xlinkHref="#hero-stamp-circle"
+                        href="#hero-stamp-circle"
+                        startOffset="0%"
+                        textLength="226"
+                        lengthAdjust="spacing"
+                      >
+                        · IDEAS · INTO · IMPACT · ADREXKS ·&nbsp;
                       </textPath>
                     </text>
-                    <path
-                      d="M50 38 C51.5 46 54 48.5 62 50 C54 51.5 51.5 54 50 62 C48.5 54 46 51.5 38 50 C46 48.5 48.5 46 50 38Z"
-                      fill="var(--brand, #9f00f6)"
-                    />
+                    {/* Solid 4-Point Ninja Star in Center */}
+                    <g transform="translate(50, 50) scale(0.13) translate(-100, -100)">
+                      <polygon
+                        points="100,4 128,72 196,100 128,128 100,196 72,128 4,100 72,72"
+                        fill="var(--brand, #9f00f6)"
+                      />
+                    </g>
                   </svg>
                 </div>
               </div>
 
-              {/* Floating Badge 1: Top-Left White Positioning Card */}
+              {/* Floating Badge 1: Top-Left White Goal Card (Negative Tilt) */}
               <div className="hero-badge-float-tl">
                 <div className="hero-badge-card hero-badge-card-white">
                   <div className="hero-badge-sheen" />
-                  <p className="hero-badge-label-dark">CORE POSITIONING</p>
-                  <p className="hero-badge-value-dark">Strategy · Creative · Growth</p>
+                  <p className="hero-badge-label-dark">GOAL</p>
+                  <p className="hero-badge-value-dark">Think Beyond the Scroll</p>
                 </div>
               </div>
 
@@ -332,12 +341,12 @@ export function Hero() {
                 />
               </div>
 
-              {/* Floating Badge 2: Bottom-Right Purple Location Card */}
+              {/* Floating Badge 2: Bottom-Right Purple Positioning Card (Positive Tilt) */}
               <div className="hero-badge-float-br">
                 <div className="hero-badge-card hero-badge-card-purple">
                   <div className="hero-badge-sheen" />
-                  <p className="hero-badge-label-purple">BASED IN</p>
-                  <p className="hero-badge-value-purple">Ahmedabad · Working everywhere</p>
+                  <p className="hero-badge-label-purple">CORE POSITIONING</p>
+                  <p className="hero-badge-value-purple">Strategy · Creative · Growth</p>
                 </div>
               </div>
             </div>

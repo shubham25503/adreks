@@ -265,27 +265,31 @@ body.preloader-active {
   will-change: transform, box-shadow;
 }
 
-/* Light / White Card */
+/* Light / White Card with Negative Tilt (matching reference image) */
 .hero-badge-card-white {
   background: #fbf9f5;
   box-shadow: 0 16px 38px -8px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.6);
+  transform: rotate(-5deg);
+  transform-origin: center center;
 }
 
 .hero-badge-card-white:hover {
-  transform: translateY(-8px) scale(1.06) rotate(-1.5deg);
+  transform: translateY(-8px) scale(1.05) rotate(-6.5deg);
   box-shadow: 0 28px 55px -6px rgba(0, 0, 0, 0.85),
               0 0 35px rgba(255, 255, 255, 0.45),
               0 0 0 1.5px #ffffff;
 }
 
-/* Purple Card */
+/* Purple Card with Positive Tilt (matching reference image) */
 .hero-badge-card-purple {
   background: linear-gradient(135deg, #a855f7 0%, #9f00f6 60%, #8700d4 100%);
   box-shadow: 0 18px 45px -6px rgba(159, 0, 246, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.25);
+  transform: rotate(4.5deg);
+  transform-origin: center center;
 }
 
 .hero-badge-card-purple:hover {
-  transform: translateY(-8px) scale(1.06) rotate(1.5deg);
+  transform: translateY(-8px) scale(1.05) rotate(6deg);
   box-shadow: 0 28px 65px -4px rgba(159, 0, 246, 0.9),
               0 0 45px rgba(192, 132, 252, 0.7),
               0 0 0 1.5px rgba(255, 255, 255, 0.6);

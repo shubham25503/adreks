@@ -42,7 +42,7 @@ export function ServicesPage() {
               </h2>
             </div>
             <p className="label-mono" style={{ color: "var(--brand-bright)" }}>
-              07 DISCIPLINES / ONE CREATIVE PARTNER
+              {String(SERVICES_DATA.length).padStart(2, "0")} DISCIPLINES / ONE CREATIVE PARTNER
             </p>
           </div>
 

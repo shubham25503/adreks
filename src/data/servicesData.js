@@ -146,4 +146,26 @@ export const SERVICES_DATA = [
       ["04", "Prepare production files", "Export print-ready artwork to the printer’s specifications."],
     ],
   },
+  {
+    slug: "website-development",
+    title: "Website design & development",
+    short: "Fast, responsive and conversion-focused websites built to showcase your brand and turn visitors into clients.",
+    intro: "Your website is the digital headquarters of your brand. We design and build modern, high-performance websites that combine memorable visual identity with intuitive user journeys, fast load times and clean technical execution.",
+    kicker: "UI/UX DESIGN · MODERN WEB · PERFORMANCE · CMS",
+    deliverables: [
+      "Custom UI/UX website and landing page design",
+      "Full responsive mobile-first development",
+      "Interactive animations and micro-interactions",
+      "SEO-ready page architecture and meta setup",
+      "CMS integration and easy client content editing",
+      "Speed optimization and performance tuning",
+      "Domain, hosting setup and launch assistance",
+    ],
+    steps: [
+      ["01", "Architecture & wireframing", "Map out the site structure, content hierarchy and conversion paths."],
+      ["02", "Custom UI/UX design", "Create responsive design mockups aligned with your brand identity."],
+      ["03", "Frontend development", "Build clean, lightning-fast code with interactive motion and smooth responsiveness."],
+      ["04", "Testing & launch", "Audit speed, cross-device performance and SEO before publishing."],
+    ],
+  },
 ];

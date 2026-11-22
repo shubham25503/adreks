@@ -46,6 +46,17 @@ export const SERVICES = [
       "Print and campaign collateral",
     ],
   },
+  {
+    n: "05",
+    title: "Website Design & Development",
+    body: "Fast, responsive digital experiences built to establish authority and convert visitors into clients.",
+    items: [
+      "Custom UI/UX design",
+      "High-performance modern websites",
+      "Landing pages & conversion funnels",
+      "Mobile-first responsive development",
+    ],
+  },
 ];
 
 export function Services() {
@@ -79,7 +90,7 @@ export function Services() {
           parts={["A connected set", { em: "of growth services." }]}
         />
 
-        {/* 2x2 Services Grid with Spotlight Glow */}
+        {/* Services Grid with Spotlight Glow */}
         <div
           style={{
             display: "grid",

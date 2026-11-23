@@ -185,21 +185,12 @@ export function HeroWireframeHelix() {
           const isFront = item.p0.z < 0;
           const depthAlpha = Math.max(0.15, Math.min(0.85, (item.z + 500) / 1000));
 
-          // At the bottom of Hero (u > 0.75), subtly start blending in fill towards solid
-          if (item.u > 0.75) {
-            const blendToSolid = (item.u - 0.75) / 0.25; // 0 to 1
-            ctx.fillStyle = `rgba(124, 58, 237, ${blendToSolid * 0.45 * depthAlpha})`;
-            ctx.fill();
-          } else {
-            // Upper Hero: Almost transparent glass interior
-            ctx.fillStyle = `rgba(139, 92, 246, ${0.02 * depthAlpha})`;
-            ctx.fill();
-          }
+          // Pure hollow glass interior throughout
+          ctx.fillStyle = `rgba(139, 92, 246, ${0.02 * depthAlpha})`;
+          ctx.fill();
 
           // Outlines: Refined architectural stroke
-          const strokeAlpha = item.u > 0.75
-            ? 0.5 + ((item.u - 0.75) / 0.25) * 0.4
-            : isFront ? 0.35 : 0.16;
+          const strokeAlpha = isFront ? 0.45 : 0.22;
 
           ctx.strokeStyle = isFront
             ? `rgba(221, 214, 254, ${strokeAlpha * depthAlpha})`

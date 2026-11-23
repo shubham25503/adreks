@@ -32,7 +32,13 @@ export function ServiceDetailPage({ slug }) {
         description={service.intro}
       />
 
-      <section style={{ padding: "clamp(80px, 10vw, 130px) 0" }}>
+      <section
+        style={{
+          padding: "clamp(80px, 10vw, 130px) 0",
+          background: "radial-gradient(ellipse at 88% 0%, rgba(181, 0, 255, 0.05), transparent 45%), #f3eee6",
+          color: "#161515",
+        }}
+      >
         <div className="container-custom">
           <div
             style={{
@@ -50,18 +56,18 @@ export function ServiceDetailPage({ slug }) {
                 top: "120px",
                 padding: "36px 30px",
                 borderRadius: "1.8rem",
-                background: "rgba(18, 3, 32, 0.75)",
-                border: "1px solid rgba(168, 85, 247, 0.2)",
-                boxShadow: "0 20px 50px rgba(0,0,0,0.6)",
+                background: "#ffffff",
+                border: "1px solid rgba(22, 21, 21, 0.1)",
+                boxShadow: "0 20px 50px rgba(22, 21, 21, 0.08)",
               }}
             >
-              <p className="label-mono font-mono" style={{ color: "var(--acid-lime, #D6FF75)" }}>
+              <p className="label-mono font-mono" style={{ color: "var(--brand-purple, #b500ff)", fontWeight: 600 }}>
                 ADREXKS / SERVICE 0{serviceIndex}
               </p>
-              <h2 className="font-display" style={{ fontSize: "1.8rem", color: "#fff", marginTop: "12px", lineHeight: 1.2 }}>
+              <h2 className="font-display" style={{ fontSize: "1.8rem", color: "#161515", marginTop: "12px", lineHeight: 1.2 }}>
                 {service.title}
               </h2>
-              <p style={{ marginTop: "14px", fontSize: "0.95rem", lineHeight: 1.65, color: "rgba(248, 246, 252, 0.7)" }}>
+              <p style={{ marginTop: "14px", fontSize: "0.95rem", lineHeight: 1.65, color: "rgba(22, 21, 21, 0.72)" }}>
                 {service.short}
               </p>
 
@@ -76,8 +82,8 @@ export function ServiceDetailPage({ slug }) {
               </div>
 
               {/* Related Services */}
-              <div style={{ marginTop: "36px", paddingTop: "24px", borderTop: "1px solid rgba(168, 85, 247, 0.15)" }}>
-                <p className="label-mono" style={{ color: "rgba(248, 246, 252, 0.5)", marginBottom: "14px" }}>
+              <div style={{ marginTop: "36px", paddingTop: "24px", borderTop: "1px solid rgba(22, 21, 21, 0.1)" }}>
+                <p className="label-mono" style={{ color: "rgba(22, 21, 21, 0.5)", marginBottom: "14px" }}>
                   EXPLORE OTHER SERVICES
                 </p>
                 <div style={{ display: "grid", gap: "10px" }}>
@@ -86,7 +92,7 @@ export function ServiceDetailPage({ slug }) {
                       key={other.slug}
                       to={`/services/${other.slug}`}
                       style={{
-                        color: "rgba(248, 246, 252, 0.8)",
+                        color: "rgba(22, 21, 21, 0.8)",
                         textDecoration: "none",
                         fontSize: "0.9rem",
                         display: "flex",
@@ -94,8 +100,8 @@ export function ServiceDetailPage({ slug }) {
                         padding: "6px 0",
                         transition: "color 0.2s",
                       }}
-                      onMouseEnter={(e) => (e.currentTarget.style.color = "var(--brand-bright)")}
-                      onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(248, 246, 252, 0.8)")}
+                      onMouseEnter={(e) => (e.currentTarget.style.color = "var(--brand-purple, #b500ff)")}
+                      onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(22, 21, 21, 0.8)")}
                     >
                       <span>{other.title}</span>
                     </Link>
@@ -111,17 +117,18 @@ export function ServiceDetailPage({ slug }) {
                 style={{
                   padding: "clamp(32px, 4vw, 48px)",
                   borderRadius: "2rem",
-                  background: "rgba(18, 3, 32, 0.5)",
-                  border: "1px solid rgba(168, 85, 247, 0.16)",
+                  background: "#ffffff",
+                  border: "1px solid rgba(22, 21, 21, 0.08)",
+                  boxShadow: "0 14px 40px -10px rgba(22, 21, 21, 0.06)",
                 }}
               >
-                <SectionLabel index="01">What's Included</SectionLabel>
+                <SectionLabel index="01" theme="light">What's Included</SectionLabel>
                 <h3
                   className="font-display"
-                  style={{ fontSize: "clamp(2rem, 3.5vw, 3.2rem)", color: "#fff", marginTop: "16px" }}
+                  style={{ fontSize: "clamp(2rem, 3.5vw, 3.2rem)", color: "#161515", marginTop: "16px" }}
                 >
                   Thought through.<br />
-                  <span className="serif-em" style={{ color: "#d8b4fe" }}>Ready to use.</span>
+                  <span className="serif-em" style={{ color: "var(--brand-purple, #b500ff)" }}>Ready to use.</span>
                 </h3>
 
                 <div
@@ -135,28 +142,30 @@ export function ServiceDetailPage({ slug }) {
                   {service.deliverables.map((item, idx) => (
                     <div
                       key={item}
-                      className="spotlight"
                       style={{
                         padding: "22px 20px",
                         display: "flex",
                         alignItems: "flex-start",
                         gap: "16px",
+                        background: "#f9f8f6",
+                        borderRadius: "1rem",
+                        border: "1px solid rgba(22, 21, 21, 0.06)",
                       }}
                     >
                       <span
                         className="font-mono label-mono"
                         style={{
-                          color: "var(--brand-bright)",
+                          color: "var(--brand-purple, #b500ff)",
                           fontSize: "1rem",
                           fontWeight: 600,
-                          background: "rgba(168, 85, 247, 0.15)",
+                          background: "rgba(181, 0, 255, 0.08)",
                           padding: "4px 8px",
                           borderRadius: "6px",
                         }}
                       >
                         0{idx + 1}
                       </span>
-                      <p style={{ fontSize: "0.95rem", lineHeight: 1.6, color: "rgba(248, 246, 252, 0.85)" }}>
+                      <p style={{ fontSize: "0.95rem", lineHeight: 1.6, color: "rgba(22, 21, 21, 0.85)" }}>
                         {item}
                       </p>
                     </div>
@@ -169,14 +178,15 @@ export function ServiceDetailPage({ slug }) {
                 style={{
                   padding: "clamp(32px, 4vw, 48px)",
                   borderRadius: "2rem",
-                  background: "rgba(18, 3, 32, 0.5)",
-                  border: "1px solid rgba(168, 85, 247, 0.16)",
+                  background: "#ffffff",
+                  border: "1px solid rgba(22, 21, 21, 0.08)",
+                  boxShadow: "0 14px 40px -10px rgba(22, 21, 21, 0.06)",
                 }}
               >
-                <SectionLabel index="02">How We Work</SectionLabel>
+                <SectionLabel index="02" theme="light">How We Work</SectionLabel>
                 <h3
                   className="font-display"
-                  style={{ fontSize: "clamp(2rem, 3.5vw, 3.2rem)", color: "#fff", marginTop: "16px" }}
+                  style={{ fontSize: "clamp(2rem, 3.5vw, 3.2rem)", color: "#161515", marginTop: "16px" }}
                 >
                   Step by step execution.
                 </h3>
@@ -191,17 +201,17 @@ export function ServiceDetailPage({ slug }) {
                         gridTemplateColumns: "60px 1fr",
                         gap: "20px",
                         padding: "24px 0",
-                        borderBottom: i < service.steps.length - 1 ? "1px solid rgba(168, 85, 247, 0.14)" : "none",
+                        borderBottom: i < service.steps.length - 1 ? "1px solid rgba(22, 21, 21, 0.1)" : "none",
                       }}
                     >
-                      <span className="font-mono label-mono" style={{ fontSize: "1.2rem", color: "var(--brand-bright)" }}>
+                      <span className="font-mono label-mono" style={{ fontSize: "1.2rem", color: "var(--brand-purple, #b500ff)", fontWeight: 600 }}>
                         {n}
                       </span>
                       <div>
-                        <h4 className="font-display" style={{ fontSize: "1.35rem", color: "#fff" }}>
+                        <h4 className="font-display" style={{ fontSize: "1.35rem", color: "#161515" }}>
                           {title}
                         </h4>
-                        <p style={{ marginTop: "8px", fontSize: "0.98rem", lineHeight: 1.65, color: "rgba(248, 246, 252, 0.7)" }}>
+                        <p style={{ marginTop: "8px", fontSize: "0.98rem", lineHeight: 1.65, color: "rgba(22, 21, 21, 0.72)" }}>
                           {copy}
                         </p>
                       </div>
@@ -215,13 +225,14 @@ export function ServiceDetailPage({ slug }) {
                 style={{
                   padding: "36px 32px",
                   borderRadius: "1.8rem",
-                  background: "linear-gradient(135deg, rgba(35, 6, 60, 0.6) 0%, rgba(14, 2, 26, 0.8) 100%)",
-                  border: "1px solid rgba(192, 132, 252, 0.3)",
+                  background: "linear-gradient(135deg, rgba(181, 0, 255, 0.06) 0%, rgba(255, 255, 255, 0.95) 100%)",
+                  border: "1px solid rgba(181, 0, 255, 0.2)",
+                  boxShadow: "0 14px 40px -10px rgba(181, 0, 255, 0.08)",
                 }}
               >
-                <SectionLabel index="03">Built Around Your Business</SectionLabel>
-                <p style={{ marginTop: "14px", fontSize: "1.05rem", lineHeight: 1.75, color: "rgba(248, 246, 252, 0.85)" }}>
-                  We’ll shape the scope around your audience, current materials and goals. We’ll agree the deliverables and review points before the work begins.
+                <SectionLabel index="03" theme="light">Built Around Your Business</SectionLabel>
+                <p style={{ marginTop: "14px", fontSize: "1.05rem", lineHeight: 1.75, color: "rgba(22, 21, 21, 0.85)" }}>
+                  We'll shape the scope around your audience, current materials and goals. We'll agree the deliverables and review points before the work begins.
                 </p>
               </section>
             </main>

@@ -19,8 +19,14 @@ export function ServicesPage() {
         description="From the way your brand looks to the way it gets found, followed and chosen, Adrexks brings the right creative and marketing work together."
       />
 
-      {/* Services Grid */}
-      <section style={{ padding: "clamp(80px, 10vw, 130px) 0" }}>
+      {/* Services Grid (Light Section) */}
+      <section
+        style={{
+          padding: "clamp(80px, 10vw, 130px) 0",
+          background: "radial-gradient(ellipse at 88% 0%, rgba(181, 0, 255, 0.05), transparent 45%), #f3eee6",
+          color: "#161515",
+        }}
+      >
         <div className="container-custom">
           <div
             style={{
@@ -33,15 +39,15 @@ export function ServicesPage() {
             }}
           >
             <div>
-              <SectionLabel index="01">All Disciplines</SectionLabel>
+              <SectionLabel index="01" theme="light">All Disciplines</SectionLabel>
               <h2
                 className="font-display"
-                style={{ fontSize: "clamp(2rem, 3.8vw, 3.8rem)", color: "#fff", marginTop: "12px" }}
+                style={{ fontSize: "clamp(2rem, 3.8vw, 3.8rem)", color: "#161515", marginTop: "12px" }}
               >
                 Comprehensive Creative & Marketing Scope
               </h2>
             </div>
-            <p className="label-mono" style={{ color: "var(--brand-bright)" }}>
+            <p className="label-mono" style={{ color: "#b500ff" }}>
               {String(SERVICES_DATA.length).padStart(2, "0")} DISCIPLINES / ONE CREATIVE PARTNER
             </p>
           </div>
@@ -57,7 +63,6 @@ export function ServicesPage() {
               <div
                 key={service.slug}
                 data-reveal
-                className="spotlight"
                 style={{
                   ...delay(i * 70),
                   padding: "clamp(28px, 3.5vw, 40px)",
@@ -65,6 +70,11 @@ export function ServicesPage() {
                   flexDirection: "column",
                   justifyContent: "space-between",
                   minHeight: "380px",
+                  background: "#ffffff",
+                  border: "1px solid rgba(22, 21, 21, 0.09)",
+                  borderRadius: "1.8rem",
+                  boxShadow: "0 14px 40px -10px rgba(22, 21, 21, 0.08)",
+                  transition: "transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease",
                 }}
               >
                 <div>
@@ -76,16 +86,17 @@ export function ServicesPage() {
                       marginBottom: "20px",
                     }}
                   >
-                    <span className="label-mono" style={{ color: "var(--brand-bright)" }}>
+                    <span className="label-mono" style={{ color: "#b500ff", fontWeight: 700 }}>
                       {service.kicker}
                     </span>
                     <span
                       className="font-mono label-mono"
                       style={{
-                        color: "rgba(248, 246, 252, 0.4)",
-                        background: "rgba(168, 85, 247, 0.1)",
+                        color: "#b500ff",
+                        background: "rgba(181, 0, 255, 0.08)",
                         padding: "4px 10px",
                         borderRadius: "9999px",
+                        fontWeight: 700,
                       }}
                     >
                       0{i + 1}
@@ -96,7 +107,7 @@ export function ServicesPage() {
                     className="font-display"
                     style={{
                       fontSize: "1.75rem",
-                      color: "#ffffff",
+                      color: "#161515",
                       lineHeight: 1.2,
                       letterSpacing: "-0.03em",
                     }}
@@ -109,7 +120,7 @@ export function ServicesPage() {
                       marginTop: "14px",
                       fontSize: "0.98rem",
                       lineHeight: 1.65,
-                      color: "rgba(248, 246, 252, 0.72)",
+                      color: "rgba(22, 21, 21, 0.68)",
                     }}
                   >
                     {service.short}
@@ -132,9 +143,9 @@ export function ServicesPage() {
                           fontSize: "0.8rem",
                           padding: "5px 12px",
                           borderRadius: "9999px",
-                          background: "rgba(255, 255, 255, 0.04)",
-                          border: "1px solid rgba(168, 85, 247, 0.16)",
-                          color: "rgba(248, 246, 252, 0.8)",
+                          background: "rgba(22, 21, 21, 0.04)",
+                          border: "1px solid rgba(22, 21, 21, 0.08)",
+                          color: "rgba(22, 21, 21, 0.75)",
                         }}
                       >
                         {item}
@@ -143,11 +154,11 @@ export function ServicesPage() {
                   </ul>
                 </div>
 
-                <div style={{ marginTop: "32px", paddingTop: "20px", borderTop: "1px solid rgba(168, 85, 247, 0.15)" }}>
+                <div style={{ marginTop: "32px", paddingTop: "20px", borderTop: "1px solid rgba(22, 21, 21, 0.1)" }}>
                   <Link
                     to={`/services/${service.slug}`}
                     style={{
-                      color: "var(--brand-bright)",
+                      color: "#b500ff",
                       textDecoration: "none",
                       fontSize: "0.92rem",
                       fontWeight: 600,
@@ -156,7 +167,7 @@ export function ServicesPage() {
                       gap: "6px",
                     }}
                   >
-                    Explore service in detail
+                    Explore service in detail →
                   </Link>
                 </div>
               </div>

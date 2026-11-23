@@ -36,11 +36,13 @@ export function StudioPage() {
         description="Adrexks is an advertising and design practice shaped around thoughtful creative, clear communication and the people behind the business."
       />
 
-      {/* Main Studio Feature: Meet Kavan Desai */}
+      {/* Main Studio Feature: Meet Kavan Desai (Light Section) */}
       <section
         style={{
           padding: "clamp(80px, 10vw, 130px) 0",
           position: "relative",
+          background: "radial-gradient(ellipse at 85% 0%, rgba(181, 0, 255, 0.05), transparent 45%), #f3eee6",
+          color: "#161515",
         }}
       >
         <div className="container-custom">
@@ -60,9 +62,9 @@ export function StudioPage() {
                   position: "relative",
                   borderRadius: "2.2rem",
                   overflow: "hidden",
-                  border: "1px solid rgba(139, 92, 246, 0.22)",
-                  boxShadow: "0 24px 60px -15px rgba(0, 0, 0, 0.85)",
-                  background: "linear-gradient(180deg, #1f0433 0%, #0e021a 100%)",
+                  border: "1px solid rgba(22, 21, 21, 0.12)",
+                  boxShadow: "0 24px 60px -15px rgba(22, 21, 21, 0.15)",
+                  background: "#ffffff",
                 }}
               >
                 <img
@@ -86,16 +88,16 @@ export function StudioPage() {
                   right: "-14px",
                   padding: "14px 22px",
                   borderRadius: "1.1rem",
-                  background: "rgba(12, 3, 22, 0.94)",
+                  background: "rgba(255, 255, 255, 0.95)",
                   backdropFilter: "blur(14px)",
-                  border: "1px solid rgba(139, 92, 246, 0.25)",
-                  boxShadow: "0 12px 30px rgba(0, 0, 0, 0.6)",
+                  border: "1px solid rgba(22, 21, 21, 0.1)",
+                  boxShadow: "0 12px 30px rgba(22, 21, 21, 0.1)",
                 }}
               >
-                <p className="label-mono" style={{ color: "var(--brand-bright)", fontSize: "0.65rem" }}>
+                <p className="label-mono" style={{ color: "#b500ff", fontSize: "0.65rem" }}>
                   Digital & Creative Lead
                 </p>
-                <p className="font-display" style={{ fontSize: "1.1rem", color: "#fff", marginTop: "2px" }}>
+                <p className="font-display" style={{ fontSize: "1.1rem", color: "#161515", marginTop: "2px" }}>
                   Kavan Desai
                 </p>
               </div>
@@ -107,27 +109,27 @@ export function StudioPage() {
                   left: "-16px",
                   width: "44px",
                   height: "44px",
-                  color: "var(--brand-bright)",
+                  color: "#b500ff",
                   animation: "spin-slow 24s linear infinite",
-                  opacity: 0.8,
+                  opacity: 0.85,
                 }}
               />
             </div>
 
             {/* Narrative */}
             <div>
-              <SectionLabel index="01">A Person-First Practice</SectionLabel>
+              <SectionLabel index="01" theme="light">A Person-First Practice</SectionLabel>
               <h2
                 className="font-display"
                 style={{
                   marginTop: "20px",
                   fontSize: "clamp(2.5rem, 5.2vw, 5.2rem)",
-                  color: "#ffffff",
+                  color: "#161515",
                   lineHeight: 1.05,
                 }}
               >
                 Meet Kavan<br />
-                <span className="serif-em" style={{ color: "#ddd6fe" }}>Desai.</span>
+                <span className="serif-em text-brand" style={{ color: "#b500ff" }}>Desai.</span>
               </h2>
 
               <div
@@ -138,7 +140,7 @@ export function StudioPage() {
                   gap: "18px",
                   fontSize: "1.1rem",
                   lineHeight: 1.75,
-                  color: "rgba(248, 247, 251, 0.8)",
+                  color: "rgba(22, 21, 21, 0.8)",
                 }}
               >
                 <p data-reveal>
@@ -158,30 +160,30 @@ export function StudioPage() {
                   gap: "clamp(20px, 4vw, 44px)",
                   marginTop: "36px",
                   paddingTop: "24px",
-                  borderTop: "1px solid rgba(139, 92, 246, 0.15)",
+                  borderTop: "1px solid rgba(22, 21, 21, 0.12)",
                 }}
               >
                 <div>
-                  <strong className="font-display" style={{ fontSize: "2.2rem", color: "var(--acid-lime, #D6FF75)" }}>
+                  <strong className="font-display" style={{ fontSize: "2.2rem", color: "#b500ff" }}>
                     100+
                   </strong>
-                  <p className="label-mono" style={{ color: "rgba(248, 247, 251, 0.45)", marginTop: "4px" }}>
+                  <p className="label-mono" style={{ color: "rgba(22, 21, 21, 0.5)", marginTop: "4px" }}>
                     Designs created
                   </p>
                 </div>
                 <div>
-                  <strong className="font-display" style={{ fontSize: "2.2rem", color: "var(--acid-lime, #D6FF75)" }}>
+                  <strong className="font-display" style={{ fontSize: "2.2rem", color: "#b500ff" }}>
                     10+
                   </strong>
-                  <p className="label-mono" style={{ color: "rgba(248, 247, 251, 0.45)", marginTop: "4px" }}>
+                  <p className="label-mono" style={{ color: "rgba(22, 21, 21, 0.5)", marginTop: "4px" }}>
                     Happy clients
                   </p>
                 </div>
                 <div>
-                  <strong className="font-display" style={{ fontSize: "2.2rem", color: "var(--acid-lime, #D6FF75)" }}>
+                  <strong className="font-display" style={{ fontSize: "2.2rem", color: "#b500ff" }}>
                     1.5+
                   </strong>
-                  <p className="label-mono" style={{ color: "rgba(248, 247, 251, 0.45)", marginTop: "4px" }}>
+                  <p className="label-mono" style={{ color: "rgba(22, 21, 21, 0.5)", marginTop: "4px" }}>
                     Years experience
                   </p>
                 </div>

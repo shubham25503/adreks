@@ -283,71 +283,77 @@ export function HelicalMethod() {
       // 4. Depth Sorting (Painter's algorithm)
       queue.sort((a, b) => b.z - a.z);
 
-      // 5. Draw elements
+      // 5. Draw elements (Hollow Architectural Outlines & Wireframe Blueprint Aesthetic)
       queue.forEach((item) => {
         if (item.type === "quad") {
+          const isFront = item.p0.z < 0;
+          const depthAlpha = Math.max(0.2, Math.min(0.95, (item.z + 500) / 1000));
+
+          // 1. Hollow interior with airy, translucent wash
           ctx.beginPath();
           ctx.moveTo(item.p0.x, item.p0.y);
           ctx.lineTo(item.p1.x, item.p1.y);
           ctx.lineTo(item.p2.x, item.p2.y);
           ctx.lineTo(item.p3.x, item.p3.y);
           ctx.closePath();
-
-          const isFront = item.p0.z < 0;
-          const depthAlpha = Math.max(0.2, Math.min(0.95, (item.z + 500) / 1000));
-
-          if (isFront) {
-            // Front side: Pure glossy metallic purple exterior (identical & consistent throughout)
-            const grad = ctx.createLinearGradient(item.p0.x, item.p0.y, item.p2.x, item.p2.y);
-            grad.addColorStop(0, "#4a0e8f");
-            grad.addColorStop(0.25, "#7c3aed");
-            grad.addColorStop(0.55, "#a855f7");
-            grad.addColorStop(0.78, "#c084fc");
-            grad.addColorStop(1, "#3b0764");
-            ctx.fillStyle = grad;
-          } else {
-            // Back/inside side: Silky silver-lavender satin interior
-            const grad = ctx.createLinearGradient(item.p0.x, item.p0.y, item.p2.x, item.p2.y);
-            grad.addColorStop(0, `rgba(237, 233, 254, ${0.9 * depthAlpha})`);
-            grad.addColorStop(0.5, `rgba(216, 180, 254, ${0.78 * depthAlpha})`);
-            grad.addColorStop(1, `rgba(139, 92, 246, ${0.65 * depthAlpha})`);
-            ctx.fillStyle = grad;
-          }
-
+          ctx.fillStyle = isFront
+            ? `rgba(181, 0, 255, ${0.035 * depthAlpha})`
+            : `rgba(147, 51, 234, ${0.015 * depthAlpha})`;
           ctx.fill();
 
-          // Highlight outer spine edge with crisp specular shine
+          // 2. Cross-rib rung (horizontal architectural hatching)
+          ctx.beginPath();
+          ctx.moveTo(item.p0.x, item.p0.y);
+          ctx.lineTo(item.p3.x, item.p3.y);
           ctx.strokeStyle = isFront
-            ? `rgba(255, 255, 255, ${0.45 * depthAlpha})`
-            : "rgba(168, 85, 247, 0.15)";
-          ctx.lineWidth = isFront ? 1.6 : 0.8;
+            ? `rgba(147, 51, 234, ${0.48 * depthAlpha})`
+            : `rgba(181, 0, 255, ${0.24 * depthAlpha})`;
+          ctx.lineWidth = isFront ? 0.9 : 0.6;
+          ctx.stroke();
+
+          // 3. Side Spine Rails (Left and Right continuous structural outlines)
+          ctx.beginPath();
+          ctx.moveTo(item.p0.x, item.p0.y);
+          ctx.lineTo(item.p1.x, item.p1.y);
+          ctx.moveTo(item.p3.x, item.p3.y);
+          ctx.lineTo(item.p2.x, item.p2.y);
+          ctx.strokeStyle = isFront
+            ? `rgba(124, 58, 237, ${0.85 * depthAlpha})`
+            : `rgba(168, 85, 247, ${0.45 * depthAlpha})`;
+          ctx.lineWidth = isFront ? 1.7 : 1.0;
           ctx.stroke();
         } else if (item.type === "sphere") {
-          // Draw metallic chrome purple spheres (identical throughout, matching 3D render)
+          // Hollow wireframe orbital rings (matching Hero blueprint aesthetic)
           const rad = Math.max(6, item.r);
-          const grad = ctx.createRadialGradient(
-            item.p.x - rad * 0.35,
-            item.p.y - rad * 0.35,
-            rad * 0.08,
-            item.p.x,
-            item.p.y,
-            rad
-          );
 
-          grad.addColorStop(0, "#ffffff");
-          grad.addColorStop(0.22, "#ede9fe");
-          grad.addColorStop(0.55, "#a855f7");
-          grad.addColorStop(0.85, "#6b21a8");
-          grad.addColorStop(1, "#1e0836");
-
+          // Outer circle
           ctx.beginPath();
           ctx.arc(item.p.x, item.p.y, rad, 0, Math.PI * 2);
-          ctx.fillStyle = grad;
+          ctx.strokeStyle = "rgba(124, 58, 237, 0.55)";
+          ctx.lineWidth = 1.3;
+          ctx.fillStyle = "rgba(181, 0, 255, 0.03)";
           ctx.fill();
+          ctx.stroke();
 
-          ctx.strokeStyle = "rgba(233, 213, 255, 0.5)";
+          // Tilted orbital ellipse 1 (45 deg)
+          ctx.beginPath();
+          ctx.ellipse(item.p.x, item.p.y, rad, rad * 0.38, Math.PI / 4, 0, Math.PI * 2);
+          ctx.strokeStyle = "rgba(181, 0, 255, 0.45)";
           ctx.lineWidth = 1;
           ctx.stroke();
+
+          // Tilted orbital ellipse 2 (-45 deg)
+          ctx.beginPath();
+          ctx.ellipse(item.p.x, item.p.y, rad, rad * 0.38, -Math.PI / 4, 0, Math.PI * 2);
+          ctx.strokeStyle = "rgba(168, 85, 247, 0.35)";
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+
+          // Center pinpoint core
+          ctx.beginPath();
+          ctx.arc(item.p.x, item.p.y, 2.5 * item.p.scale, 0, Math.PI * 2);
+          ctx.fillStyle = "#b500ff";
+          ctx.fill();
         } else if (item.type === "node") {
           // 3D Station Node sitting directly on the helix
           const { p, node } = item;
@@ -356,25 +362,25 @@ export function HelicalMethod() {
           // Glowing pulse ring
           ctx.beginPath();
           ctx.arc(p.x, p.y, nodeRad + 12 + Math.sin(time * 3) * 3, 0, Math.PI * 2);
-          ctx.strokeStyle = "rgba(167, 139, 250, 0.55)";
-          ctx.lineWidth = 2;
+          ctx.strokeStyle = "rgba(181, 0, 255, 0.4)";
+          ctx.lineWidth = 1.6;
           ctx.stroke();
 
           // Main node circle
           ctx.beginPath();
           ctx.arc(p.x, p.y, nodeRad, 0, Math.PI * 2);
-          ctx.fillStyle = "rgba(22, 5, 38, 0.95)";
+          ctx.fillStyle = "rgba(255, 255, 255, 0.95)";
           ctx.fill();
 
-          ctx.strokeStyle = "var(--brand-bright, #a78bfa)";
-          ctx.lineWidth = 2.5;
+          ctx.strokeStyle = "#b500ff";
+          ctx.lineWidth = 2.2;
           ctx.stroke();
 
           // Text label inside node
           ctx.font = `700 ${Math.round(12 * p.scale)}px "DM Mono", monospace`;
           ctx.textAlign = "center";
           ctx.textBaseline = "middle";
-          ctx.fillStyle = "#ffffff";
+          ctx.fillStyle = "#161515";
           ctx.fillText(node.acronym, p.x, p.y + 0.5);
         }
       });
@@ -401,7 +407,8 @@ export function HelicalMethod() {
         paddingTop: "clamp(90px, 12vw, 150px)",
         paddingBottom: "clamp(100px, 14vw, 170px)",
         position: "relative",
-        background: "var(--bg-deep)",
+        background: "radial-gradient(ellipse at 88% 0%, rgba(181, 0, 255, 0.05), transparent 45%), #f3eee6",
+        color: "#161515",
         overflow: "hidden",
       }}
     >
@@ -423,7 +430,7 @@ export function HelicalMethod() {
       <div className="container-custom" style={{ position: "relative", zIndex: 2 }}>
         {/* Master Header */}
         <div style={{ marginBottom: "clamp(60px, 10vw, 120px)" }}>
-          <SectionLabel index="01">The Growth Helix</SectionLabel>
+          <SectionLabel index="01" theme="light">The Growth Helix</SectionLabel>
 
           <div
             style={{
@@ -439,10 +446,10 @@ export function HelicalMethod() {
               <RollText
                 as="h2"
                 className="font-display"
-                emClassName="serif-em"
+                emClassName="serif-em text-brand"
                 style={{
                   fontSize: "clamp(2.5rem, 5.2vw, 5.2rem)",
-                  color: "#ffffff",
+                  color: "#161515",
                   lineHeight: 1.05,
                   letterSpacing: "-0.04em",
                 }}
@@ -454,7 +461,7 @@ export function HelicalMethod() {
                 style={{
                   fontSize: "1.05rem",
                   lineHeight: 1.7,
-                  color: "rgba(248, 247, 251, 0.75)",
+                  color: "rgba(22, 21, 21, 0.72)",
                   margin: 0,
                 }}
               >
@@ -533,9 +540,11 @@ export function HelicalMethod() {
           .node-content-card {
             border-radius: 1.6rem !important;
             padding: clamp(22px, 5vw, 32px) !important;
-            background: rgba(14, 3, 26, 0.84) !important;
+            background: rgba(255, 255, 255, 0.94) !important;
             backdrop-filter: blur(16px) !important;
             -webkit-backdrop-filter: blur(16px) !important;
+            border: 1px solid rgba(22, 21, 21, 0.1) !important;
+            box-shadow: 0 16px 40px -10px rgba(22, 21, 21, 0.1) !important;
           }
         }
 
@@ -572,27 +581,29 @@ export function HelicalMethod() {
 function NodeContentCard({ node }) {
   return (
     <div
+      className="node-content-card"
       style={{
-        background: "rgba(14, 3, 26, 0.78)",
-        backdropFilter: "blur(20px)",
-        WebkitBackdropFilter: "blur(20px)",
-        border: "1px solid rgba(139, 92, 246, 0.24)",
+        background: "rgba(255, 255, 255, 0.88)",
+        backdropFilter: "blur(24px)",
+        WebkitBackdropFilter: "blur(24px)",
+        border: "1px solid rgba(22, 21, 21, 0.09)",
         borderRadius: "2.2rem",
         padding: "clamp(28px, 4vw, 44px)",
-        boxShadow: "0 30px 80px -20px rgba(0, 0, 0, 0.9)",
+        boxShadow: "0 24px 60px -15px rgba(22, 21, 21, 0.08)",
         position: "relative",
       }}
     >
       {/* Node Eyebrow Pill */}
       <div
+        className="node-eyebrow-pill"
         style={{
           display: "inline-flex",
           alignItems: "center",
           gap: "10px",
           padding: "6px 14px",
           borderRadius: "9999px",
-          background: node.accentLight,
-          border: "1px solid rgba(168, 85, 247, 0.25)",
+          background: "rgba(181, 0, 255, 0.07)",
+          border: "1px solid rgba(181, 0, 255, 0.18)",
           marginBottom: "18px",
         }}
       >
@@ -601,15 +612,14 @@ function NodeContentCard({ node }) {
             width: "7px",
             height: "7px",
             borderRadius: "50%",
-            background: "var(--brand-bright)",
-            boxShadow: "0 0 10px rgba(168, 85, 247, 0.8)",
+            background: "#b500ff",
           }}
         />
         <span
           className="label-mono font-mono"
           style={{
-            color: "var(--paper)",
-            fontWeight: 600,
+            color: "#b500ff",
+            fontWeight: 700,
             fontSize: "0.72rem",
           }}
         >
@@ -619,10 +629,10 @@ function NodeContentCard({ node }) {
 
       {/* Giant Title */}
       <h3
-        className="font-display"
+        className="font-display node-title"
         style={{
           fontSize: "clamp(2rem, 3.4vw, 3rem)",
-          color: "#ffffff",
+          color: "#161515",
           lineHeight: 1.1,
           letterSpacing: "-0.035em",
           margin: "0 0 12px",
@@ -631,7 +641,7 @@ function NodeContentCard({ node }) {
         {node.acronym}:{" "}
         <span
           style={{
-            color: "var(--lavender)",
+            color: "#b500ff",
             fontWeight: 400,
             fontFamily: "'Instrument Serif', Georgia, serif",
             fontStyle: "italic",
@@ -645,8 +655,8 @@ function NodeContentCard({ node }) {
       <p
         style={{
           fontSize: "1.05rem",
-          color: "rgba(248, 247, 251, 0.9)",
-          fontWeight: 500,
+          color: "#161515",
+          fontWeight: 600,
           marginBottom: "14px",
         }}
       >
@@ -657,7 +667,7 @@ function NodeContentCard({ node }) {
       <p
         style={{
           fontSize: "0.98rem",
-          color: "var(--lavender)",
+          color: "rgba(22, 21, 21, 0.9)",
           fontWeight: 600,
           marginBottom: "10px",
         }}
@@ -665,10 +675,11 @@ function NodeContentCard({ node }) {
         {node.headline}
       </p>
       <p
+        className="node-desc"
         style={{
           fontSize: "0.95rem",
           lineHeight: 1.7,
-          color: "rgba(248, 247, 251, 0.72)",
+          color: "rgba(22, 21, 21, 0.7)",
           marginBottom: "24px",
         }}
       >
@@ -678,8 +689,8 @@ function NodeContentCard({ node }) {
       {/* Deliverables Checklist */}
       <div
         style={{
-          background: "rgba(10, 2, 18, 0.6)",
-          border: "1px solid rgba(139, 92, 246, 0.16)",
+          background: "#f9f8f6",
+          border: "1px solid rgba(22, 21, 21, 0.08)",
           borderRadius: "1.2rem",
           padding: "18px 22px",
           display: "grid",
@@ -696,13 +707,13 @@ function NodeContentCard({ node }) {
               alignItems: "flex-start",
               gap: "8px",
               fontSize: "0.84rem",
-              color: "rgba(248, 246, 252, 0.85)",
+              color: "rgba(22, 21, 21, 0.85)",
               lineHeight: 1.4,
             }}
           >
             <span
               style={{
-                color: "var(--brand-bright)",
+                color: "#b500ff",
                 fontSize: "0.95rem",
                 fontWeight: 700,
                 lineHeight: 1.1,

@@ -61,12 +61,11 @@ export function Work() {
         paddingTop: "clamp(90px, 11vw, 150px)",
         paddingBottom: "clamp(90px, 11vw, 150px)",
         position: "relative",
-        background: "var(--bg-deep)",
+        background: "radial-gradient(ellipse at 88% 0%, rgba(181, 0, 255, 0.05), transparent 45%), #f3eee6",
+        color: "#161515",
         overflow: "hidden",
       }}
     >
-      <Watermark speed={-0.12} text="SELECTED WORK" className="top-24 -z-10" />
-
       <div className="container-custom">
         <div
           style={{
@@ -79,15 +78,15 @@ export function Work() {
           className="work-head-grid"
         >
           <div>
-            <SectionLabel index="06">Selected Work</SectionLabel>
+            <SectionLabel index="06" theme="light">Selected Work</SectionLabel>
             <RollText
               as="h2"
               className="font-display"
-              emClassName="serif-em"
+              emClassName="serif-em text-brand"
               style={{
                 marginTop: "24px",
                 fontSize: "clamp(2.5rem, 5.5vw, 5.6rem)",
-                color: "#ffffff",
+                color: "#161515",
               }}
               parts={["Work made", { em: "to be noticed." }]}
             />
@@ -115,11 +114,11 @@ export function Work() {
                   fontFamily: "inherit",
                   cursor: "pointer",
                   transition: "all 0.3s ease",
-                  border: filter === f ? "1px solid var(--acid-lime)" : "1px solid rgba(168, 85, 247, 0.18)",
-                  background: filter === f ? "var(--acid-lime)" : "rgba(255, 255, 255, 0.04)",
-                  color: filter === f ? "#08020f" : "rgba(248, 246, 252, 0.7)",
+                  border: filter === f ? "1px solid #161515" : "1px solid rgba(22, 21, 21, 0.12)",
+                  background: filter === f ? "#161515" : "#ffffff",
+                  color: filter === f ? "#ffffff" : "rgba(22, 21, 21, 0.72)",
                   fontWeight: filter === f ? 600 : 400,
-                  boxShadow: filter === f ? "0 4px 18px -2px rgba(214, 255, 117, 0.3)" : "none",
+                  boxShadow: filter === f ? "0 4px 18px -2px rgba(22, 21, 21, 0.25)" : "0 2px 8px rgba(22, 21, 21, 0.04)",
                 }}
               >
                 {f}
@@ -260,10 +259,10 @@ export function Work() {
                   alignItems: "baseline",
                 }}
               >
-                <span className="font-display" style={{ fontSize: "1.25rem", color: "#fff" }}>
+                <span className="font-display" style={{ fontSize: "1.25rem", color: "#161515" }}>
                   {item.client}
                 </span>
-                <span className="label-mono" style={{ color: "rgba(248, 246, 252, 0.45)" }}>
+                <span className="label-mono" style={{ color: "rgba(22, 21, 21, 0.45)" }}>
                   0{PROJECTS.indexOf(item) + 1}
                 </span>
               </figcaption>

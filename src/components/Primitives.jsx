@@ -279,7 +279,8 @@ export function Watermark({
 }
 
 /** Section index label */
-export function SectionLabel({ index, children, className = "" }) {
+export function SectionLabel({ index, children, className = "", style = {}, theme = "dark" }) {
+  const isLight = theme === "light";
   return (
     <div
       data-reveal
@@ -288,15 +289,16 @@ export function SectionLabel({ index, children, className = "" }) {
         display: "flex",
         alignItems: "center",
         gap: "12px",
-        color: "rgba(248, 247, 251, 0.55)",
+        color: isLight ? "rgba(22, 21, 21, 0.6)" : "rgba(248, 247, 251, 0.55)",
+        ...style,
       }}
     >
-      <span style={{ color: "var(--acid-lime, #D6FF75)", fontWeight: 600 }}>({index})</span>
+      <span style={{ color: isLight ? "var(--brand-purple, #b500ff)" : "var(--acid-lime, #D6FF75)", fontWeight: 600 }}>({index})</span>
       <span
         style={{
           width: "32px",
           height: "1px",
-          background: "linear-gradient(to right, rgba(244, 63, 94, 0.55), rgba(168, 85, 247, 0.25))",
+          background: isLight ? "rgba(22, 21, 21, 0.2)" : "linear-gradient(to right, rgba(244, 63, 94, 0.55), rgba(168, 85, 247, 0.25))",
         }}
       />
       <span>{children}</span>

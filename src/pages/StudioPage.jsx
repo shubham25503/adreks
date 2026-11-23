@@ -1,7 +1,7 @@
 import React from "react";
 import { PageTop } from "../components/PageTop";
 import { CtaBand } from "../components/CtaBand";
-import { delay, SectionLabel, Star } from "../components/Primitives";
+import { delay, SectionLabel } from "../components/Primitives";
 import { Link } from "../components/Router";
 
 const PRINCIPLES = [
@@ -38,6 +38,7 @@ export function StudioPage() {
 
       {/* Main Studio Feature: Meet Kavan Desai (Light Section) */}
       <section
+        data-theme="light"
         style={{
           padding: "clamp(80px, 10vw, 130px) 0",
           position: "relative",
@@ -45,160 +46,90 @@ export function StudioPage() {
           color: "#161515",
         }}
       >
-        <div className="container-custom">
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "0.85fr 1.15fr",
-              gap: "clamp(40px, 6vw, 90px)",
-              alignItems: "center",
-            }}
-            className="studio-grid"
-          >
-            {/* Kavan's Photo */}
-            <div data-reveal="left" style={{ position: "relative", maxWidth: "460px", margin: "0 auto" }}>
-              <div
-                style={{
-                  position: "relative",
-                  borderRadius: "2.2rem",
-                  overflow: "hidden",
-                  border: "1px solid rgba(22, 21, 21, 0.12)",
-                  boxShadow: "0 24px 60px -15px rgba(22, 21, 21, 0.15)",
-                  background: "#ffffff",
-                }}
-              >
-                <img
-                  src="/assets/kavan-desai.webp"
-                  alt="Kavan Desai, Founder of Adrexks"
-                  style={{
-                    display: "block",
-                    width: "100%",
-                    aspectRatio: "4/5",
-                    objectFit: "cover",
-                    objectPosition: "50% 15%",
-                  }}
-                />
-              </div>
+        <div className="container-custom" style={{ maxWidth: "1080px" }}>
+          <div>
+            <SectionLabel index="01" theme="light">A Person-First Practice</SectionLabel>
+            <h2
+              className="font-display"
+              style={{
+                marginTop: "20px",
+                fontSize: "clamp(2.5rem, 5.2vw, 5.2rem)",
+                color: "#161515",
+                lineHeight: 1.05,
+              }}
+            >
+              Meet Kavan<br />
+              <span className="serif-em text-brand" style={{ color: "#b500ff" }}>Desai.</span>
+            </h2>
 
-              {/* Floating Badge */}
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: "-14px",
-                  right: "-14px",
-                  padding: "14px 22px",
-                  borderRadius: "1.1rem",
-                  background: "rgba(255, 255, 255, 0.95)",
-                  backdropFilter: "blur(14px)",
-                  border: "1px solid rgba(22, 21, 21, 0.1)",
-                  boxShadow: "0 12px 30px rgba(22, 21, 21, 0.1)",
-                }}
-              >
-                <p className="label-mono" style={{ color: "#b500ff", fontSize: "0.65rem" }}>
-                  Digital & Creative Lead
-                </p>
-                <p className="font-display" style={{ fontSize: "1.1rem", color: "#161515", marginTop: "2px" }}>
-                  Kavan Desai
-                </p>
-              </div>
-
-              <Star
-                style={{
-                  position: "absolute",
-                  top: "-16px",
-                  left: "-16px",
-                  width: "44px",
-                  height: "44px",
-                  color: "#b500ff",
-                  animation: "spin-slow 24s linear infinite",
-                  opacity: 0.85,
-                }}
-              />
+            <div
+              style={{
+                marginTop: "28px",
+                display: "flex",
+                flexDirection: "column",
+                gap: "18px",
+                fontSize: "1.12rem",
+                lineHeight: 1.8,
+                color: "rgba(22, 21, 21, 0.8)",
+                maxWidth: "860px",
+              }}
+            >
+              <p data-reveal>
+                Kavan is a digital marketer and creative strategist working across social media, advertising, and brand design. Adrexks brings these disciplines together through close collaboration, thoughtful execution, and a direct line from concept to rollout.
+              </p>
+              <p data-reveal style={delay(100)}>
+                From a social post to a brand identity or a paid campaign, each project starts by understanding the people the work needs to reach.
+              </p>
             </div>
 
-            {/* Narrative */}
-            <div>
-              <SectionLabel index="01" theme="light">A Person-First Practice</SectionLabel>
-              <h2
-                className="font-display"
-                style={{
-                  marginTop: "20px",
-                  fontSize: "clamp(2.5rem, 5.2vw, 5.2rem)",
-                  color: "#161515",
-                  lineHeight: 1.05,
-                }}
-              >
-                Meet Kavan<br />
-                <span className="serif-em text-brand" style={{ color: "#b500ff" }}>Desai.</span>
-              </h2>
-
-              <div
-                style={{
-                  marginTop: "28px",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "18px",
-                  fontSize: "1.1rem",
-                  lineHeight: 1.75,
-                  color: "rgba(22, 21, 21, 0.8)",
-                }}
-              >
-                <p data-reveal>
-                  Kavan is a digital marketer and creative strategist working across social media, advertising, and brand design. Adrexks brings these disciplines together through close collaboration, thoughtful execution, and a direct line from concept to rollout.
-                </p>
-                <p data-reveal style={delay(100)}>
-                  From a social post to a brand identity or a paid campaign, each project starts by understanding the people the work needs to reach.
+            {/* Stats */}
+            <div
+              data-reveal
+              style={{
+                ...delay(200),
+                display: "flex",
+                gap: "clamp(24px, 5vw, 64px)",
+                marginTop: "44px",
+                paddingTop: "32px",
+                borderTop: "1px solid rgba(22, 21, 21, 0.12)",
+                flexWrap: "wrap",
+              }}
+            >
+              <div>
+                <strong className="font-display" style={{ fontSize: "2.4rem", color: "#b500ff" }}>
+                  100+
+                </strong>
+                <p className="label-mono" style={{ color: "rgba(22, 21, 21, 0.5)", marginTop: "4px" }}>
+                  Designs created
                 </p>
               </div>
+              <div>
+                <strong className="font-display" style={{ fontSize: "2.4rem", color: "#b500ff" }}>
+                  10+
+                </strong>
+                <p className="label-mono" style={{ color: "rgba(22, 21, 21, 0.5)", marginTop: "4px" }}>
+                  Happy clients
+                </p>
+              </div>
+              <div>
+                <strong className="font-display" style={{ fontSize: "2.4rem", color: "#b500ff" }}>
+                  1.5+
+                </strong>
+                <p className="label-mono" style={{ color: "rgba(22, 21, 21, 0.5)", marginTop: "4px" }}>
+                  Years experience
+                </p>
+              </div>
+            </div>
 
-              {/* Stats */}
-              <div
-                data-reveal
-                style={{
-                  ...delay(200),
-                  display: "flex",
-                  gap: "clamp(20px, 4vw, 44px)",
-                  marginTop: "36px",
-                  paddingTop: "24px",
-                  borderTop: "1px solid rgba(22, 21, 21, 0.12)",
-                }}
+            {/* Action Button */}
+            <div data-reveal style={{ ...delay(280), marginTop: "40px" }}>
+              <Link
+                to="/contact"
+                className="btn-primary"
+                data-magnetic
               >
-                <div>
-                  <strong className="font-display" style={{ fontSize: "2.2rem", color: "#b500ff" }}>
-                    100+
-                  </strong>
-                  <p className="label-mono" style={{ color: "rgba(22, 21, 21, 0.5)", marginTop: "4px" }}>
-                    Designs created
-                  </p>
-                </div>
-                <div>
-                  <strong className="font-display" style={{ fontSize: "2.2rem", color: "#b500ff" }}>
-                    10+
-                  </strong>
-                  <p className="label-mono" style={{ color: "rgba(22, 21, 21, 0.5)", marginTop: "4px" }}>
-                    Happy clients
-                  </p>
-                </div>
-                <div>
-                  <strong className="font-display" style={{ fontSize: "2.2rem", color: "#b500ff" }}>
-                    1.5+
-                  </strong>
-                  <p className="label-mono" style={{ color: "rgba(22, 21, 21, 0.5)", marginTop: "4px" }}>
-                    Years experience
-                  </p>
-                </div>
-              </div>
-
-              {/* Action Button */}
-              <div data-reveal style={{ ...delay(280), marginTop: "36px" }}>
-                <Link
-                  to="/contact"
-                  className="btn-primary"
-                  data-magnetic
-                >
-                  Start a conversation
-                </Link>
-              </div>
+                Start a conversation
+              </Link>
             </div>
           </div>
         </div>
@@ -261,16 +192,7 @@ export function StudioPage() {
         </div>
       </section>
 
-      <CtaBand compact />
-
-      <style>{`
-        @media (max-width: 900px) {
-          .studio-grid {
-            grid-template-columns: 1fr !important;
-            gap: 40px !important;
-          }
-        }
-      `}</style>
+      <CtaBand compact theme="light" />
     </div>
   );
 }

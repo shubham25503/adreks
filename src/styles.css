@@ -557,17 +557,27 @@ html.has-cursor button {
 }
 
 .cursor-dot {
-  width: 5px;
-  height: 5px;
-  margin: -2.5px 0 0 -2.5px;
-  background: var(--acid-lime);
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  background: var(--acid-lime, #d6ff75);
+  border: 1px solid rgba(8, 2, 15, 0.4);
+  box-shadow: 0 0 10px rgba(214, 255, 117, 0.6);
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cursor-dot[data-theme="light"] {
+  background: #161515;
+  border: 1px solid rgba(181, 0, 255, 0.5);
+  box-shadow: 0 0 8px rgba(22, 21, 21, 0.35);
 }
 
 .cursor-ring {
   width: 34px;
   height: 34px;
   margin: -17px 0 0 -17px;
-  border: 1px solid rgba(221, 214, 254, 0.35);
+  border: 1.5px solid rgba(221, 214, 254, 0.45);
+  background: transparent;
   display: grid;
   place-items: center;
   transition: width 0.3s var(--ease-out-expo),
@@ -577,12 +587,21 @@ html.has-cursor button {
     border-color 0.25s ease;
 }
 
+.cursor-ring[data-theme="light"] {
+  border-color: rgba(22, 21, 21, 0.5);
+}
+
 .cursor-ring[data-state="hover"] {
   width: 54px;
   height: 54px;
   margin: -27px 0 0 -27px;
-  background: rgba(139, 92, 246, 0.1);
+  background: rgba(139, 92, 246, 0.12);
   border-color: var(--brand-bright);
+}
+
+.cursor-ring[data-theme="light"][data-state="hover"] {
+  background: rgba(181, 0, 255, 0.1);
+  border-color: #b500ff;
 }
 
 .cursor-ring[data-state="label"] {
@@ -591,6 +610,11 @@ html.has-cursor button {
   margin: -40px 0 0 -40px;
   background: var(--brand);
   border-color: var(--brand);
+}
+
+.cursor-ring[data-theme="light"][data-state="label"] {
+  background: #161515;
+  border-color: #161515;
 }
 
 .cursor-ring .cursor-label {

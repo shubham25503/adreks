@@ -403,6 +403,7 @@ export function HelicalMethod() {
     <section
       ref={sectionRef}
       id="method"
+      data-theme="light"
       style={{
         paddingTop: "clamp(90px, 12vw, 150px)",
         paddingBottom: "clamp(100px, 14vw, 170px)",

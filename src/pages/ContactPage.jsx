@@ -21,6 +21,7 @@ export function ContactPage() {
 
       {/* A Useful First Note Section (Light Section) */}
       <section
+        data-theme="light"
         style={{
           padding: "70px 0 100px",
           background: "radial-gradient(ellipse at 88% 0%, rgba(181, 0, 255, 0.05), transparent 45%), #f3eee6",

@@ -5,6 +5,7 @@ export function AboutIntro() {
   return (
     <section
       id="about"
+      data-theme="light"
       style={{
         paddingTop: "clamp(90px, 11vw, 150px)",
         paddingBottom: "clamp(80px, 10vw, 140px)",

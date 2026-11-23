@@ -21,6 +21,7 @@ export function ServicesPage() {
 
       {/* Services Grid (Light Section) */}
       <section
+        data-theme="light"
         style={{
           padding: "clamp(80px, 10vw, 130px) 0",
           background: "radial-gradient(ellipse at 88% 0%, rgba(181, 0, 255, 0.05), transparent 45%), #f3eee6",
@@ -69,7 +70,7 @@ export function ServicesPage() {
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
-                  minHeight: "380px",
+                  minHeight: "280px",
                   background: "#ffffff",
                   border: "1px solid rgba(22, 21, 21, 0.09)",
                   borderRadius: "1.8rem",
@@ -81,14 +82,11 @@ export function ServicesPage() {
                   <div
                     style={{
                       display: "flex",
-                      justifyContent: "space-between",
+                      justifyContent: "flex-end",
                       alignItems: "center",
-                      marginBottom: "20px",
+                      marginBottom: "16px",
                     }}
                   >
-                    <span className="label-mono" style={{ color: "#b500ff", fontWeight: 700 }}>
-                      {service.kicker}
-                    </span>
                     <span
                       className="font-mono label-mono"
                       style={{
@@ -125,33 +123,6 @@ export function ServicesPage() {
                   >
                     {service.short}
                   </p>
-
-                  {/* Deliverables snippet */}
-                  <ul
-                    style={{
-                      marginTop: "20px",
-                      listStyle: "none",
-                      display: "flex",
-                      flexWrap: "wrap",
-                      gap: "6px",
-                    }}
-                  >
-                    {service.deliverables.slice(0, 3).map((item) => (
-                      <li
-                        key={item}
-                        style={{
-                          fontSize: "0.8rem",
-                          padding: "5px 12px",
-                          borderRadius: "9999px",
-                          background: "rgba(22, 21, 21, 0.04)",
-                          border: "1px solid rgba(22, 21, 21, 0.08)",
-                          color: "rgba(22, 21, 21, 0.75)",
-                        }}
-                      >
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
                 </div>
 
                 <div style={{ marginTop: "32px", paddingTop: "20px", borderTop: "1px solid rgba(22, 21, 21, 0.1)" }}>

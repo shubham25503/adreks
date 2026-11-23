@@ -12,6 +12,7 @@ export function Process() {
   return (
     <section
       id="process"
+      data-theme="light"
       style={{
         paddingTop: "clamp(80px, 10vw, 130px)",
         paddingBottom: "clamp(80px, 10vw, 130px)",

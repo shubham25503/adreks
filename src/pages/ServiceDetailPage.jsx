@@ -33,6 +33,7 @@ export function ServiceDetailPage({ slug }) {
       />
 
       <section
+        data-theme="light"
         style={{
           padding: "clamp(80px, 10vw, 130px) 0",
           background: "radial-gradient(ellipse at 88% 0%, rgba(181, 0, 255, 0.05), transparent 45%), #f3eee6",

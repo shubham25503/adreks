@@ -57,6 +57,7 @@ export function Work() {
   return (
     <section
       id="work"
+      data-theme="light"
       style={{
         paddingTop: "clamp(90px, 11vw, 150px)",
         paddingBottom: "clamp(90px, 11vw, 150px)",

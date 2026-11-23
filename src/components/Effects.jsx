@@ -126,6 +126,16 @@ export function SiteEffects() {
       let mx = -100, my = -100, rx = -100, ry = -100;
       let curRaf = 0;
 
+      const isLightTarget = (target) => {
+        if (!target || target === document.body || target === document.documentElement) return false;
+        const themed = target.closest("[data-theme]");
+        if (themed) {
+          return themed.getAttribute("data-theme") === "light";
+        }
+        const lightEl = target.closest(".theme-light, [style*='#f3eee6'], [style*='rgb(243, 238, 230)']");
+        return Boolean(lightEl);
+      };
+
       const onMouseMove = (e) => {
         mx = e.clientX;
         my = e.clientY;
@@ -136,6 +146,20 @@ export function SiteEffects() {
         const target = e.target;
         const clickable = target?.closest("a, button, [role='button'], input, textarea, select");
         const cursorLabel = target?.closest("[data-cursor-label]");
+        const isLight = isLightTarget(target);
+
+        // Update light / dark contrast theme on cursor
+        if (isLight) {
+          if (dotRef.current?.getAttribute("data-theme") !== "light") {
+            dotRef.current?.setAttribute("data-theme", "light");
+            ringRef.current?.setAttribute("data-theme", "light");
+          }
+        } else {
+          if (dotRef.current?.hasAttribute("data-theme")) {
+            dotRef.current?.removeAttribute("data-theme");
+            ringRef.current?.removeAttribute("data-theme");
+          }
+        }
 
         if (ringRef.current) {
           if (cursorLabel) {

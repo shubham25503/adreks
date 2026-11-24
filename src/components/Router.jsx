@@ -19,7 +19,7 @@ export function useLocation() {
   return { pathname };
 }
 
-export function navigate(to) {
+function navigate(to) {
   if (typeof window === "undefined") return;
   if (to.startsWith("http") || to.startsWith("mailto:")) {
     window.location.href = to;

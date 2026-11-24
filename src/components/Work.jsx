@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { delay, RollText, SectionLabel, Watermark } from "./Primitives";
 
-export const WORK_FILTERS = ["All Work", "Campaigns", "Social Content", "Print & Branding"];
+const WORK_FILTERS = ["All Work", "Campaigns", "Social Content", "Print & Branding"];
 
 export const PROJECTS = [
   {

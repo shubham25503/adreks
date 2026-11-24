@@ -38,7 +38,7 @@ export function NinjaStar({ className = "", style }) {
  * Sourced directly from brand vector assets (1.svg / 2.svg).
  * Stylized modern forward 'A' mark with distinctive red orbital swoosh (#bf2020).
  */
-export function AdrexksMark({
+function AdrexksMark({
   size = 32,
   width,
   height,
@@ -150,72 +150,6 @@ export function AdrexksLogo({
 }
 
 
-
-/**
- * PurpleWaveMesh:
- * Refined architectural contour wave lines, subtle & low-contrast (no neon glare)
- */
-export function PurpleWaveMesh({ className = "" }) {
-  return (
-    <div
-      aria-hidden="true"
-      className={className}
-      style={{
-        position: "absolute",
-        top: 0,
-        right: 0,
-        width: "min(850px, 80vw)",
-        height: "min(650px, 75vh)",
-        pointerEvents: "none",
-        overflow: "hidden",
-        zIndex: 0,
-      }}
-    >
-      <svg
-        viewBox="0 0 800 600"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        style={{
-          width: "100%",
-          height: "100%",
-          opacity: 0.35,
-        }}
-      >
-        <defs>
-          <linearGradient id="wave-stroke-grad" x1="0%" y1="0%" x2="100%" y2="80%">
-            <stop offset="0%" stopColor="#a78bfa" stopOpacity="0.45" />
-            <stop offset="50%" stopColor="#7c3aed" stopOpacity="0.2" />
-            <stop offset="100%" stopColor="#4c1d95" stopOpacity="0" />
-          </linearGradient>
-        </defs>
-
-        {[
-          "M 200,0 C 350,120 480,80 800,240",
-          "M 230,0 C 370,140 500,100 800,270",
-          "M 260,0 C 390,160 520,120 800,300",
-          "M 290,0 C 410,180 540,140 800,330",
-          "M 320,0 C 430,200 560,160 800,360",
-          "M 350,0 C 450,220 580,180 800,390",
-          "M 380,0 C 470,240 600,200 800,420",
-          "M 410,0 C 490,260 620,220 800,450",
-          "M 440,0 C 510,280 640,240 800,480",
-          "M 470,0 C 530,300 660,260 800,510",
-          "M 500,0 C 550,320 680,280 800,540",
-          "M 530,0 C 570,340 700,300 800,570",
-          "M 560,0 C 590,360 720,320 800,600",
-        ].map((d, idx) => (
-          <path
-            key={idx}
-            d={d}
-            stroke="url(#wave-stroke-grad)"
-            strokeWidth={1}
-            strokeLinecap="round"
-          />
-        ))}
-      </svg>
-    </div>
-  );
-}
 
 /** Word-by-word roll reveal text */
 export function RollText({

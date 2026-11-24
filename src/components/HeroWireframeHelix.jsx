@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { buildHelixRibbonQuads, projectHelixOrbitPoint } from "../utils/helixGeometry";
 
 /**
  * HeroWireframeHelix:
@@ -74,11 +75,8 @@ export function HeroWireframeHelix() {
       ctx.clearRect(0, 0, width, height);
 
       const cx = width * 0.5;
-      const d = 600;
-
-      // Same mathematical curve parameters as the solid helix below
       const NUM_SEGS = 180;
-      const TOTAL_TURNS = 2.0; // Winding down through Hero
+      const TOTAL_TURNS = 2.0;
       const R_BASE = Math.min(width * 0.36, 420);
       const RIBBON_W = Math.min(width * 0.14, 130);
 
@@ -87,85 +85,35 @@ export function HeroWireframeHelix() {
       const baseRotation = scrollRotation + mouseRef.current.x + time * 0.1;
       const rotX = mouseRef.current.y * 0.3;
 
-      const queue = [];
-
-      // 1. Generate Wireframe Ribbon Segments
-      for (let i = 0; i < NUM_SEGS; i++) {
-        const u0 = i / NUM_SEGS;
-        const u1 = (i + 1) / NUM_SEGS;
-
-        const theta0 = u0 * TOTAL_TURNS * Math.PI * 2 + baseRotation;
-        const theta1 = u1 * TOTAL_TURNS * Math.PI * 2 + baseRotation;
-
-        // Vertical progression through the Hero height
-        const y0 = u0 * height;
-        const y1 = u1 * height;
-
-        // Constant uniform radius for a geometrically perfect helix
-        const r0 = R_BASE;
-        const r1 = R_BASE;
-
-        const xCenter0 = r0 * Math.cos(theta0);
-        const zCenter0 = r0 * Math.sin(theta0);
-        const xCenter1 = r1 * Math.cos(theta1);
-        const zCenter1 = r1 * Math.sin(theta1);
-
-        const cosT0 = Math.cos(theta0);
-        const sinT0 = Math.sin(theta0);
-        const cosT1 = Math.cos(theta1);
-        const sinT1 = Math.sin(theta1);
-
-        const halfW = RIBBON_W * 0.5;
-
-        const proj = (x, y, z) => {
-          const yRot = y * Math.cos(rotX) - z * Math.sin(rotX);
-          const zRot = y * Math.sin(rotX) + z * Math.cos(rotX);
-          const scale = d / (d + zRot + 400);
-          return {
-            x: cx + x * scale,
-            y: y,
-            z: zRot,
-            scale,
-          };
-        };
-
-        const pL0 = proj(xCenter0 - sinT0 * halfW, y0, zCenter0 + cosT0 * halfW);
-        const pL1 = proj(xCenter1 - sinT1 * halfW, y1, zCenter1 + cosT1 * halfW);
-        const pR0 = proj(xCenter0 + sinT0 * halfW, y0, zCenter0 - cosT0 * halfW);
-        const pR1 = proj(xCenter1 + sinT1 * halfW, y1, zCenter1 - cosT1 * halfW);
-
-        const avgZ = (pL0.z + pL1.z + pR0.z + pR1.z) / 4;
-
-        queue.push({
-          type: "quad",
-          p0: pL0,
-          p1: pL1,
-          p2: pR1,
-          p3: pR0,
-          z: avgZ,
-          u: u0,
-          isRib: i % 4 === 0, // Architectural cross-rib line
-        });
-      }
+      const queue = buildHelixRibbonQuads({
+        numSegs: NUM_SEGS,
+        totalTurns: TOTAL_TURNS,
+        height,
+        radius: R_BASE,
+        ribbonWidth: RIBBON_W,
+        baseRotation,
+        rotX,
+        cx,
+      });
 
       // 2. Add Wireframe Floating Spheres
       wireframeSpheres.forEach((sph) => {
-        const u = sph.u;
-        const theta = u * TOTAL_TURNS * Math.PI * 2 + baseRotation;
-        const r = R_BASE + sph.offsetR;
-        const x = r * Math.cos(theta);
-        const z = r * Math.sin(theta);
-        const y = u * height + Math.sin(time * 2 + sph.phase) * 14;
-
-        const yRot = y * Math.cos(rotX) - z * Math.sin(rotX);
-        const zRot = y * Math.sin(rotX) + z * Math.cos(rotX);
-        const scale = d / (d + zRot + 400);
+        const pt = projectHelixOrbitPoint({
+          u: sph.u,
+          totalTurns: TOTAL_TURNS,
+          radius: R_BASE + sph.offsetR,
+          height,
+          baseRotation,
+          rotX,
+          cx,
+          yOffset: Math.sin(time * 2 + sph.phase) * 14,
+        });
 
         queue.push({
           type: "wire-sphere",
-          p: { x: cx + x * scale, y: y, scale },
-          r: sph.r * scale,
-          z: zRot,
+          p: pt,
+          r: sph.r * pt.scale,
+          z: pt.z,
         });
       });
 

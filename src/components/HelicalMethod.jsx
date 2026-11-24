@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
-import { delay, RollText, SectionLabel } from "./Primitives";
+import React, { useRef } from "react";
+import { RollText, SectionLabel } from "./Primitives";
+import { HelixCanvas } from "./helix/HelixCanvas";
 
 const NODES = [
   {
@@ -11,15 +12,7 @@ const NODES = [
     meaning: "Brand Architecture & Visual Authority",
     summary:
       "Crafting distinctive identities, campaign systems, and high-conversion design that build immediate brand authority.",
-    deliverables: [
-      "Visual Identity & Guidelines",
-      "Campaign Art Direction",
-      "High-Impact Digital Formats",
-      "Print & OOH Collateral",
-    ],
-    accent: "#a78bfa",
-    accentLight: "rgba(167, 139, 250, 0.15)",
-    textPosition: "right", // Helix curves LEFT, text on RIGHT
+    textPosition: "right",
     u: 0.15,
   },
   {
@@ -31,15 +24,7 @@ const NODES = [
     meaning: "Audience Acquisition & Community",
     summary:
       "Deploying multi-channel distribution across paid social, search, and content loops to capture qualified attention.",
-    deliverables: [
-      "Paid Social & Search (Meta, Google)",
-      "Audience Targeting & Retargeting",
-      "Content Cadence & Growth Loops",
-      "Community & Trust Building",
-    ],
-    accent: "#c084fc",
-    accentLight: "rgba(192, 132, 252, 0.15)",
-    textPosition: "left", // Helix curves RIGHT, text on LEFT
+    textPosition: "left",
     u: 0.40,
   },
   {
@@ -51,15 +36,7 @@ const NODES = [
     meaning: "Deployment & Conversion Engineering",
     summary:
       "Engineering frictionless landing pages, conversion funnels, and precision UX touchpoints built to perform under scale.",
-    deliverables: [
-      "High-Performance Landing Pages",
-      "Frictionless UX Engineering",
-      "Conversion Rate Testing (CRO)",
-      "End-to-End Asset Deployment",
-    ],
-    accent: "#c084fc",
-    accentLight: "rgba(192, 132, 252, 0.15)",
-    textPosition: "right", // Helix curves LEFT, text on RIGHT
+    textPosition: "right",
     u: 0.65,
   },
   {
@@ -71,329 +48,13 @@ const NODES = [
     meaning: "Sustainable Performance & Scale",
     summary:
       "Continuously analyzing performance data, iterating creative angles, and optimizing channels for compounding growth.",
-    deliverables: [
-      "Creative Testing & Angle Iteration",
-      "Budget & ROAS Optimization",
-      "Retention & Loyalty Loops",
-      "Market Expansion Strategy",
-    ],
-    accent: "#ddd6fe",
-    accentLight: "rgba(221, 214, 254, 0.15)",
-    textPosition: "left", // Helix curves RIGHT, text on LEFT
+    textPosition: "left",
     u: 0.89,
   },
 ];
 
 export function HelicalMethod() {
   const sectionRef = useRef(null);
-  const canvasRef = useRef(null);
-  const animRef = useRef(null);
-  const scrollYRef = useRef(0);
-  const mouseRef = useRef({ x: 0, y: 0, targetX: 0, targetY: 0 });
-
-  // Single Background 3D Helix Canvas spanning the entire section
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const section = sectionRef.current;
-    if (!canvas || !section) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let dpr = window.devicePixelRatio || 1;
-    let width = (canvas.width = section.offsetWidth * dpr);
-    let height = (canvas.height = section.offsetHeight * dpr);
-    canvas.style.width = `${section.offsetWidth}px`;
-    canvas.style.height = `${section.offsetHeight}px`;
-
-    const resize = () => {
-      if (!section) return;
-      dpr = window.devicePixelRatio || 1;
-      width = canvas.width = section.offsetWidth * dpr;
-      height = canvas.height = section.offsetHeight * dpr;
-      canvas.style.width = `${section.offsetWidth}px`;
-      canvas.style.height = `${section.offsetHeight}px`;
-    };
-    window.addEventListener("resize", resize);
-
-    // Track page scroll to continuously rotate the single background helix
-    const onScroll = () => {
-      scrollYRef.current = window.scrollY;
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-
-    // Mouse parallax
-    const onMouseMove = (e) => {
-      const nx = (e.clientX / window.innerWidth) * 2 - 1;
-      const ny = (e.clientY / window.innerHeight) * 2 - 1;
-      mouseRef.current.targetX = nx * 0.35;
-      mouseRef.current.targetY = ny * 0.25;
-    };
-    window.addEventListener("mousemove", onMouseMove);
-
-    // Floating chrome purple spheres placed along the single helix
-    const spheres = [
-      { u: 0.14, r: 52, offsetR: 35, phase: 0 }, // Near Node 1 (AD)
-      { u: 0.18, r: 24, offsetR: -45, phase: 1.5 },
-      { u: 0.38, r: 54, offsetR: -40, phase: 2.2 }, // Near Node 2 (RE)
-      { u: 0.42, r: 26, offsetR: 50, phase: 3.5 },
-      { u: 0.63, r: 50, offsetR: 35, phase: 4.1 }, // Near Node 3 (X)
-      { u: 0.67, r: 28, offsetR: -45, phase: 5.2 },
-      { u: 0.87, r: 48, offsetR: -35, phase: 1.0 }, // Near Node 4 (KS)
-      { u: 0.91, r: 22, offsetR: 45, phase: 2.8 },
-    ];
-
-    let time = 0;
-
-    const render = () => {
-      time += 0.016;
-
-      // Damped mouse movement
-      mouseRef.current.x += (mouseRef.current.targetX - mouseRef.current.x) * 0.06;
-      mouseRef.current.y += (mouseRef.current.targetY - mouseRef.current.y) * 0.06;
-
-      const cssW = section.offsetWidth;
-      const cssH = section.offsetHeight;
-
-      ctx.save();
-      ctx.scale(dpr, dpr);
-      ctx.clearRect(0, 0, cssW, cssH);
-
-      const cx = cssW * 0.5;
-      const d = 600; // 3D Perspective distance
-
-      // Single continuous helix configuration
-      const NUM_SEGS = 240;
-      const TOTAL_TURNS = 2.5; // Smoothly paced loops for compact staggered layout
-      const R_BASE = Math.min(cssW * 0.34, 380); // Curves cleanly left and right
-      const RIBBON_W = Math.min(cssW * 0.16, 150); // Bold architectural wireframe ribbon
-
-      // Scroll-driven rotation: as user scrolls down, helix rotates continuously!
-      const scrollRotation = scrollYRef.current * 0.0022;
-      const baseRotation = scrollRotation + mouseRef.current.x + time * 0.1;
-      const rotX = mouseRef.current.y * 0.3;
-
-      const queue = [];
-
-      // 1. Generate the SINGLE continuous thick helical ribbon quads
-      for (let i = 0; i < NUM_SEGS; i++) {
-        const u0 = i / NUM_SEGS;
-        const u1 = (i + 1) / NUM_SEGS;
-
-        const theta0 = u0 * TOTAL_TURNS * Math.PI * 2 + baseRotation;
-        const theta1 = u1 * TOTAL_TURNS * Math.PI * 2 + baseRotation;
-
-        // Vertical position runs down the entire section
-        const y0 = u0 * cssH;
-        const y1 = u1 * cssH;
-
-        // Constant uniform radius for a geometrically perfect helix
-        const r0 = R_BASE;
-        const r1 = R_BASE;
-
-        const xCenter0 = r0 * Math.cos(theta0);
-        const zCenter0 = r0 * Math.sin(theta0);
-        const xCenter1 = r1 * Math.cos(theta1);
-        const zCenter1 = r1 * Math.sin(theta1);
-
-        const cosT0 = Math.cos(theta0);
-        const sinT0 = Math.sin(theta0);
-        const cosT1 = Math.cos(theta1);
-        const sinT1 = Math.sin(theta1);
-
-        const halfW = RIBBON_W * 0.5;
-
-        // Project 3D points
-        const proj = (x, y, z) => {
-          const yRot = y * Math.cos(rotX) - z * Math.sin(rotX);
-          const zRot = y * Math.sin(rotX) + z * Math.cos(rotX);
-          const scale = d / (d + zRot + 400);
-          return {
-            x: cx + x * scale,
-            y: y, // Vertical position pinned to section scroll
-            z: zRot,
-            scale,
-          };
-        };
-
-        const pL0 = proj(xCenter0 - sinT0 * halfW, y0, zCenter0 + cosT0 * halfW);
-        const pL1 = proj(xCenter1 - sinT1 * halfW, y1, zCenter1 + cosT1 * halfW);
-        const pR0 = proj(xCenter0 + sinT0 * halfW, y0, zCenter0 - cosT0 * halfW);
-        const pR1 = proj(xCenter1 + sinT1 * halfW, y1, zCenter1 - cosT1 * halfW);
-
-        const avgZ = (pL0.z + pL1.z + pR0.z + pR1.z) / 4;
-
-        queue.push({
-          type: "quad",
-          p0: pL0,
-          p1: pL1,
-          p2: pR1,
-          p3: pR0,
-          z: avgZ,
-          u: u0,
-        });
-      }
-
-      // 2. Add Floating Chrome Spheres along the single helix
-      spheres.forEach((sph) => {
-        const u = sph.u;
-        const theta = u * TOTAL_TURNS * Math.PI * 2 + baseRotation;
-        const r = R_BASE + sph.offsetR;
-        const x = r * Math.cos(theta);
-        const z = r * Math.sin(theta);
-        const y = u * cssH + Math.sin(time * 2 + sph.phase) * 16;
-
-        const yRot = y * Math.cos(rotX) - z * Math.sin(rotX);
-        const zRot = y * Math.sin(rotX) + z * Math.cos(rotX);
-        const scale = d / (d + zRot + 400);
-
-        queue.push({
-          type: "sphere",
-          p: { x: cx + x * scale, y: y, scale },
-          r: sph.r * scale,
-          z: zRot,
-        });
-      });
-
-      // 3. Add 4 Milestone Nodes sitting DIRECTLY ON THE HELIX
-      NODES.forEach((node, nIdx) => {
-        const u = node.u;
-        const theta = u * TOTAL_TURNS * Math.PI * 2 + baseRotation;
-        const r = R_BASE;
-        const x = r * Math.cos(theta);
-        const z = r * Math.sin(theta);
-        const y = u * cssH;
-
-        const yRot = y * Math.cos(rotX) - z * Math.sin(rotX);
-        const zRot = y * Math.sin(rotX) + z * Math.cos(rotX);
-        const scale = d / (d + zRot + 400);
-
-        queue.push({
-          type: "node",
-          p: { x: cx + x * scale, y: y, scale },
-          node,
-          z: zRot,
-        });
-      });
-
-      // 4. Depth Sorting (Painter's algorithm)
-      queue.sort((a, b) => b.z - a.z);
-
-      // 5. Draw elements (Hollow Architectural Outlines & Wireframe Blueprint Aesthetic)
-      queue.forEach((item) => {
-        if (item.type === "quad") {
-          const isFront = item.p0.z < 0;
-          const depthAlpha = Math.max(0.2, Math.min(0.95, (item.z + 500) / 1000));
-
-          // 1. Hollow interior with airy, translucent wash
-          ctx.beginPath();
-          ctx.moveTo(item.p0.x, item.p0.y);
-          ctx.lineTo(item.p1.x, item.p1.y);
-          ctx.lineTo(item.p2.x, item.p2.y);
-          ctx.lineTo(item.p3.x, item.p3.y);
-          ctx.closePath();
-          ctx.fillStyle = isFront
-            ? `rgba(181, 0, 255, ${0.035 * depthAlpha})`
-            : `rgba(147, 51, 234, ${0.015 * depthAlpha})`;
-          ctx.fill();
-
-          // 2. Cross-rib rung (horizontal architectural hatching)
-          ctx.beginPath();
-          ctx.moveTo(item.p0.x, item.p0.y);
-          ctx.lineTo(item.p3.x, item.p3.y);
-          ctx.strokeStyle = isFront
-            ? `rgba(147, 51, 234, ${0.55 * depthAlpha})`
-            : `rgba(181, 0, 255, ${0.28 * depthAlpha})`;
-          ctx.lineWidth = isFront ? 1.0 : 0.65;
-          ctx.stroke();
-
-          // 3. Side Spine Rails (Left and Right continuous structural outlines)
-          ctx.beginPath();
-          ctx.moveTo(item.p0.x, item.p0.y);
-          ctx.lineTo(item.p1.x, item.p1.y);
-          ctx.moveTo(item.p3.x, item.p3.y);
-          ctx.lineTo(item.p2.x, item.p2.y);
-          ctx.strokeStyle = isFront
-            ? `rgba(124, 58, 237, ${0.92 * depthAlpha})`
-            : `rgba(168, 85, 247, ${0.52 * depthAlpha})`;
-          ctx.lineWidth = isFront ? 1.9 : 1.1;
-          ctx.stroke();
-        } else if (item.type === "sphere") {
-          // Hollow wireframe orbital rings (matching Hero blueprint aesthetic)
-          const rad = Math.max(6, item.r);
-
-          // Outer circle
-          ctx.beginPath();
-          ctx.arc(item.p.x, item.p.y, rad, 0, Math.PI * 2);
-          ctx.strokeStyle = "rgba(124, 58, 237, 0.55)";
-          ctx.lineWidth = 1.3;
-          ctx.fillStyle = "rgba(181, 0, 255, 0.03)";
-          ctx.fill();
-          ctx.stroke();
-
-          // Tilted orbital ellipse 1 (45 deg)
-          ctx.beginPath();
-          ctx.ellipse(item.p.x, item.p.y, rad, rad * 0.38, Math.PI / 4, 0, Math.PI * 2);
-          ctx.strokeStyle = "rgba(181, 0, 255, 0.45)";
-          ctx.lineWidth = 1;
-          ctx.stroke();
-
-          // Tilted orbital ellipse 2 (-45 deg)
-          ctx.beginPath();
-          ctx.ellipse(item.p.x, item.p.y, rad, rad * 0.38, -Math.PI / 4, 0, Math.PI * 2);
-          ctx.strokeStyle = "rgba(168, 85, 247, 0.35)";
-          ctx.lineWidth = 0.8;
-          ctx.stroke();
-
-          // Center pinpoint core
-          ctx.beginPath();
-          ctx.arc(item.p.x, item.p.y, 2.5 * item.p.scale, 0, Math.PI * 2);
-          ctx.fillStyle = "#b500ff";
-          ctx.fill();
-        } else if (item.type === "node") {
-          // 3D Station Node sitting directly on the helix
-          const { p, node } = item;
-          const nodeRad = 28 * p.scale;
-
-          // Glowing pulse ring
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, nodeRad + 12 + Math.sin(time * 3) * 3, 0, Math.PI * 2);
-          ctx.strokeStyle = "rgba(181, 0, 255, 0.4)";
-          ctx.lineWidth = 1.6;
-          ctx.stroke();
-
-          // Main node circle
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, nodeRad, 0, Math.PI * 2);
-          ctx.fillStyle = "rgba(255, 255, 255, 0.95)";
-          ctx.fill();
-
-          ctx.strokeStyle = "#b500ff";
-          ctx.lineWidth = 2.2;
-          ctx.stroke();
-
-          // Text label inside node
-          ctx.font = `700 ${Math.round(12 * p.scale)}px "DM Mono", monospace`;
-          ctx.textAlign = "center";
-          ctx.textBaseline = "middle";
-          ctx.fillStyle = "#161515";
-          ctx.fillText(node.acronym, p.x, p.y + 0.5);
-        }
-      });
-
-      ctx.restore();
-      animRef.current = requestAnimationFrame(render);
-    };
-
-    animRef.current = requestAnimationFrame(render);
-
-    return () => {
-      window.removeEventListener("resize", resize);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("mousemove", onMouseMove);
-      if (animRef.current) cancelAnimationFrame(animRef.current);
-    };
-  }, []);
 
   return (
     <section
@@ -409,23 +70,9 @@ export function HelicalMethod() {
         overflow: "hidden",
       }}
     >
-      {/* THE SINGLE 3D HELIX IN THE BACKGROUND */}
-      <canvas
-        ref={canvasRef}
-        style={{
-          position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          pointerEvents: "none",
-          zIndex: 1,
-        }}
-        aria-hidden="true"
-      />
+      <HelixCanvas sectionRef={sectionRef} nodes={NODES} />
 
-      {/* FOREGROUND CONTENT: Staggered / Overlapping Zig-Zag */}
       <div className="container-custom" style={{ position: "relative", zIndex: 2 }}>
-        {/* Master Header */}
         <div style={{ marginBottom: "clamp(28px, 4vw, 48px)" }}>
           <SectionLabel index="01" theme="light">The Growth Helix</SectionLabel>
 
@@ -468,7 +115,6 @@ export function HelicalMethod() {
           </div>
         </div>
 
-        {/* 4 Alternating Chapters: Staggered / Overlapping Zig-Zag */}
         <div style={{ display: "grid", gap: "12px" }} className="helix-chapters-container">
           {NODES.map((node, idx) => {
             const isTextOnRight = node.textPosition === "right";
@@ -486,25 +132,18 @@ export function HelicalMethod() {
                   isTextOnRight ? "node-row-right" : "node-row-left"
                 }`}
               >
-                {/* When Text is on RIGHT: Left side is open for the background helix */}
                 {isTextOnRight ? (
                   <>
-                    {/* Helix visible in the BG on the LEFT */}
                     <div className="empty-helix-space" />
-
-                    {/* Content on the RIGHT */}
                     <div className="node-card-wrapper">
                       <NodeContentCard node={node} />
                     </div>
                   </>
                 ) : (
                   <>
-                    {/* Content on the LEFT */}
                     <div className="node-card-wrapper">
                       <NodeContentCard node={node} />
                     </div>
-
-                    {/* Helix visible in the BG on the RIGHT */}
                     <div className="empty-helix-space" />
                   </>
                 )}
@@ -568,9 +207,6 @@ export function HelicalMethod() {
   );
 }
 
-/**
- * Foreground Content Card with sleek, information-oriented layout
- */
 function NodeContentCard({ node }) {
   return (
     <div
@@ -586,7 +222,6 @@ function NodeContentCard({ node }) {
         position: "relative",
       }}
     >
-      {/* Top Header: Phase Badge & Focus Tag */}
       <div
         style={{
           display: "flex",
@@ -635,7 +270,6 @@ function NodeContentCard({ node }) {
         </span>
       </div>
 
-      {/* Title */}
       <h3
         className="font-display node-title"
         style={{
@@ -652,7 +286,6 @@ function NodeContentCard({ node }) {
         {node.title}
       </h3>
 
-      {/* Crisp Info Summary */}
       <p
         className="node-desc"
         style={{

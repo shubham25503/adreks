@@ -16,29 +16,13 @@ import { WorkPage } from './pages/WorkPage';
 import { ContactPage } from './pages/ContactPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { SERVICES_DATA } from './data/servicesData';
+import { applyRouteSeo } from './utils/seo';
 
 function App() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    // Dynamic page title management
-    if (pathname === '/') {
-      document.title = 'ADREXKS | Digital Marketing & Creative Agency';
-    } else if (pathname === '/studio') {
-      document.title = 'Studio & Leadership | Adrexks';
-    } else if (pathname === '/services') {
-      document.title = 'Capabilities & Services | Adrexks';
-    } else if (pathname.startsWith('/services/')) {
-      const slug = pathname.split('/')[2];
-      const match = SERVICES_DATA.find((s) => s.slug === slug);
-      document.title = match ? `${match.title} | Adrexks` : 'Service Details | Adrexks';
-    } else if (pathname === '/work') {
-      document.title = 'Selected Work | Adrexks';
-    } else if (pathname === '/contact') {
-      document.title = 'Contact & Project Briefs | Adrexks';
-    } else {
-      document.title = 'Page Not Found | Adrexks';
-    }
+    applyRouteSeo(pathname, SERVICES_DATA);
   }, [pathname]);
 
   let pageContent;

@@ -163,10 +163,10 @@ export function HelicalMethod() {
       const d = 600; // 3D Perspective distance
 
       // Single continuous helix configuration
-      const NUM_SEGS = 320;
-      const TOTAL_TURNS = 4.0; // 4 full loops down the section
-      const R_BASE = Math.min(cssW * 0.36, 420); // Wide amplitude so it curves left and right!
-      const RIBBON_W = Math.min(cssW * 0.14, 130); // Thick sculptural ribbon matching 3D render!
+      const NUM_SEGS = 240;
+      const TOTAL_TURNS = 2.5; // Smoothly paced loops for compact staggered layout
+      const R_BASE = Math.min(cssW * 0.34, 380); // Curves cleanly left and right
+      const RIBBON_W = Math.min(cssW * 0.16, 150); // Bold architectural wireframe ribbon
 
       // Scroll-driven rotation: as user scrolls down, helix rotates continuously!
       const scrollRotation = scrollYRef.current * 0.0022;
@@ -302,9 +302,9 @@ export function HelicalMethod() {
           ctx.moveTo(item.p0.x, item.p0.y);
           ctx.lineTo(item.p3.x, item.p3.y);
           ctx.strokeStyle = isFront
-            ? `rgba(147, 51, 234, ${0.48 * depthAlpha})`
-            : `rgba(181, 0, 255, ${0.24 * depthAlpha})`;
-          ctx.lineWidth = isFront ? 0.9 : 0.6;
+            ? `rgba(147, 51, 234, ${0.55 * depthAlpha})`
+            : `rgba(181, 0, 255, ${0.28 * depthAlpha})`;
+          ctx.lineWidth = isFront ? 1.0 : 0.65;
           ctx.stroke();
 
           // 3. Side Spine Rails (Left and Right continuous structural outlines)
@@ -314,9 +314,9 @@ export function HelicalMethod() {
           ctx.moveTo(item.p3.x, item.p3.y);
           ctx.lineTo(item.p2.x, item.p2.y);
           ctx.strokeStyle = isFront
-            ? `rgba(124, 58, 237, ${0.85 * depthAlpha})`
-            : `rgba(168, 85, 247, ${0.45 * depthAlpha})`;
-          ctx.lineWidth = isFront ? 1.7 : 1.0;
+            ? `rgba(124, 58, 237, ${0.92 * depthAlpha})`
+            : `rgba(168, 85, 247, ${0.52 * depthAlpha})`;
+          ctx.lineWidth = isFront ? 1.9 : 1.1;
           ctx.stroke();
         } else if (item.type === "sphere") {
           // Hollow wireframe orbital rings (matching Hero blueprint aesthetic)
@@ -401,8 +401,8 @@ export function HelicalMethod() {
       id="method"
       data-theme="light"
       style={{
-        paddingTop: "clamp(60px, 8vw, 100px)",
-        paddingBottom: "clamp(70px, 9vw, 120px)",
+        paddingTop: "clamp(56px, 7vw, 88px)",
+        paddingBottom: "clamp(64px, 8vw, 96px)",
         position: "relative",
         background: "radial-gradient(ellipse at 88% 0%, rgba(181, 0, 255, 0.05), transparent 45%), #f3eee6",
         color: "#161515",
@@ -423,10 +423,10 @@ export function HelicalMethod() {
         aria-hidden="true"
       />
 
-      {/* FOREGROUND CONTENT: Words alternating Right, Left, Right, Left */}
+      {/* FOREGROUND CONTENT: Staggered / Overlapping Zig-Zag */}
       <div className="container-custom" style={{ position: "relative", zIndex: 2 }}>
         {/* Master Header */}
-        <div style={{ marginBottom: "clamp(36px, 6vw, 64px)" }}>
+        <div style={{ marginBottom: "clamp(28px, 4vw, 48px)" }}>
           <SectionLabel index="01" theme="light">The Growth Helix</SectionLabel>
 
           <div
@@ -468,9 +468,9 @@ export function HelicalMethod() {
           </div>
         </div>
 
-        {/* 4 Alternating Chapters: Right, Left, Right, Left */}
-        <div style={{ display: "grid", gap: "clamp(60px, 8vh, 100px)" }} className="helix-chapters-container">
-          {NODES.map((node) => {
+        {/* 4 Alternating Chapters: Staggered / Overlapping Zig-Zag */}
+        <div style={{ display: "grid", gap: "12px" }} className="helix-chapters-container">
+          {NODES.map((node, idx) => {
             const isTextOnRight = node.textPosition === "right";
 
             return (
@@ -479,16 +479,18 @@ export function HelicalMethod() {
                 style={{
                   display: "grid",
                   gridTemplateColumns: "1fr 1fr",
-                  gap: "clamp(32px, 5vw, 70px)",
+                  gap: "clamp(20px, 3vw, 44px)",
                   alignItems: "center",
                 }}
-                className={isTextOnRight ? "node-row-right" : "node-row-left"}
+                className={`helix-chapter-row ${idx > 0 ? "helix-row-overlap" : ""} ${
+                  isTextOnRight ? "node-row-right" : "node-row-left"
+                }`}
               >
-                {/* When Text is on RIGHT: Left side is empty for the background helix */}
+                {/* When Text is on RIGHT: Left side is open for the background helix */}
                 {isTextOnRight ? (
                   <>
                     {/* Helix visible in the BG on the LEFT */}
-                    <div style={{ minHeight: "200px" }} className="empty-helix-space" />
+                    <div className="empty-helix-space" />
 
                     {/* Content on the RIGHT */}
                     <div className="node-card-wrapper">
@@ -503,7 +505,7 @@ export function HelicalMethod() {
                     </div>
 
                     {/* Helix visible in the BG on the RIGHT */}
-                    <div style={{ minHeight: "200px" }} className="empty-helix-space" />
+                    <div className="empty-helix-space" />
                   </>
                 )}
               </div>
@@ -513,13 +515,20 @@ export function HelicalMethod() {
       </div>
 
       <style>{`
+        .helix-row-overlap {
+          margin-top: -24px;
+        }
+
         @media (max-width: 900px) {
           .helix-intro-grid {
             grid-template-columns: 1fr !important;
             gap: 16px !important;
           }
           .helix-chapters-container {
-            gap: clamp(32px, 5vh, 50px) !important;
+            gap: 20px !important;
+          }
+          .helix-row-overlap {
+            margin-top: 0 !important;
           }
           .node-row-right,
           .node-row-left {

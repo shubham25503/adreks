@@ -445,13 +445,13 @@ body.preloader-active {
   display: inline-block;
   overflow: hidden;
   vertical-align: top;
-  padding-bottom: 0.08em;
-  margin-bottom: -0.08em;
+  padding: 0.06em 0.12em 0.24em 0.04em;
+  margin: -0.06em -0.12em -0.24em -0.04em;
 }
 
 .roll-word>span {
   display: inline-block;
-  transform: translate3d(0, 115%, 0);
+  transform: translate3d(0, 130%, 0);
   transition: transform 1s var(--ease-out-expo);
   transition-delay: var(--d, 0ms);
 }
@@ -477,13 +477,13 @@ body.preloader-active {
 .hero-line {
   display: block;
   overflow: hidden;
-  padding-bottom: 0.08em;
-  margin-bottom: -0.08em;
+  padding: 0.06em 0.12em 0.24em 0.04em;
+  margin: -0.06em -0.12em -0.24em -0.04em;
 }
 
 .hero-line>span {
   display: inline-block;
-  transform: translate3d(0, 115%, 0) rotate(1.5deg);
+  transform: translate3d(0, 130%, 0) rotate(1.5deg);
   transform-origin: left bottom;
   transition: transform 1.1s var(--ease-out-expo);
   transition-delay: var(--d, 0ms);

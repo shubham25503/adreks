@@ -9,14 +9,13 @@ const NODES = [
     tag: "THE FOUNDATION",
     title: "Advertising & Design",
     meaning: "Brand Architecture & Visual Authority",
-    headline: "Make your brand impossible to ignore.",
-    description:
-      "Every lasting customer relationship begins with visual authority. We craft distinctive identities, campaign systems, and high-conversion design that immediately separate ambitious brands from industry noise.",
+    summary:
+      "Crafting distinctive identities, campaign systems, and high-conversion design that build immediate brand authority.",
     deliverables: [
-      "Visual Identity Systems & Brand Guidelines",
-      "Campaign Art Direction & Creative Strategy",
-      "High-Impact Digital & Social Ad Formats",
-      "Print, Packaging & Out-of-Home Collateral",
+      "Visual Identity & Guidelines",
+      "Campaign Art Direction",
+      "High-Impact Digital Formats",
+      "Print & OOH Collateral",
     ],
     accent: "#a78bfa",
     accentLight: "rgba(167, 139, 250, 0.15)",
@@ -30,14 +29,13 @@ const NODES = [
     tag: "THE DISTRIBUTION",
     title: "Reach & Engagement",
     meaning: "Audience Acquisition & Community",
-    headline: "Creative without reach is completely invisible.",
-    description:
-      "Compelling design only generates business when placed in front of qualified eyes. We deploy precision multi-channel distribution across paid social, search, and content loops to build active momentum from day one.",
+    summary:
+      "Deploying multi-channel distribution across paid social, search, and content loops to capture qualified attention.",
     deliverables: [
-      "Paid Acquisition (Meta, Google, YouTube)",
-      "Targeted Audience Architecture & Retargeting",
-      "Organic Social Momentum & Content Cadence",
-      "Community Building & High-Trust Engagement",
+      "Paid Social & Search (Meta, Google)",
+      "Audience Targeting & Retargeting",
+      "Content Cadence & Growth Loops",
+      "Community & Trust Building",
     ],
     accent: "#c084fc",
     accentLight: "rgba(192, 132, 252, 0.15)",
@@ -50,15 +48,14 @@ const NODES = [
     acronym: "X",
     tag: "THE IMPLEMENTATION",
     title: "Execution",
-    meaning: "Flawless Deployment & Funnel Engineering",
-    headline: "Precision execution transforms ideas into compounding revenue.",
-    description:
-      "X represents execution in the ADREXKS formula. Great strategy means nothing without relentless delivery. We engineer frictionless landing pages, conversion funnels, and precision digital touchpoints built to perform under scale.",
+    meaning: "Deployment & Conversion Engineering",
+    summary:
+      "Engineering frictionless landing pages, conversion funnels, and precision UX touchpoints built to perform under scale.",
     deliverables: [
-      "High-Performance Landing Pages & Funnels",
-      "Frictionless User Journeys & UX Engineering",
-      "Conversion Rate Optimisation (CRO) & Testing",
-      "End-to-End Campaign & Asset Deployment",
+      "High-Performance Landing Pages",
+      "Frictionless UX Engineering",
+      "Conversion Rate Testing (CRO)",
+      "End-to-End Asset Deployment",
     ],
     accent: "#c084fc",
     accentLight: "rgba(192, 132, 252, 0.15)",
@@ -71,15 +68,14 @@ const NODES = [
     acronym: "KS",
     tag: "THE COMPOUND",
     title: "Keep Scaling",
-    meaning: "Sustainable Performance & Category Scale",
-    headline: "Growth is an ongoing scientific discipline.",
-    description:
-      "Launch day is only the start of the journey. We continuously analyse performance data, iterate creative angles, expand proven marketing channels, and build retention systems to help brands dominate their space.",
+    meaning: "Sustainable Performance & Scale",
+    summary:
+      "Continuously analyzing performance data, iterating creative angles, and optimizing channels for compounding growth.",
     deliverables: [
-      "Weekly Creative Testing & Angle Iteration",
-      "Budget Scaling & ROAS Optimisation",
-      "Customer Retention, LTV & Loyalty Loops",
-      "Quarterly Market Expansion Strategy",
+      "Creative Testing & Angle Iteration",
+      "Budget & ROAS Optimization",
+      "Retention & Loyalty Loops",
+      "Market Expansion Strategy",
     ],
     accent: "#ddd6fe",
     accentLight: "rgba(221, 214, 254, 0.15)",
@@ -405,8 +401,8 @@ export function HelicalMethod() {
       id="method"
       data-theme="light"
       style={{
-        paddingTop: "clamp(90px, 12vw, 150px)",
-        paddingBottom: "clamp(100px, 14vw, 170px)",
+        paddingTop: "clamp(60px, 8vw, 100px)",
+        paddingBottom: "clamp(70px, 9vw, 120px)",
         position: "relative",
         background: "radial-gradient(ellipse at 88% 0%, rgba(181, 0, 255, 0.05), transparent 45%), #f3eee6",
         color: "#161515",
@@ -430,7 +426,7 @@ export function HelicalMethod() {
       {/* FOREGROUND CONTENT: Words alternating Right, Left, Right, Left */}
       <div className="container-custom" style={{ position: "relative", zIndex: 2 }}>
         {/* Master Header */}
-        <div style={{ marginBottom: "clamp(60px, 10vw, 120px)" }}>
+        <div style={{ marginBottom: "clamp(36px, 6vw, 64px)" }}>
           <SectionLabel index="01" theme="light">The Growth Helix</SectionLabel>
 
           <div
@@ -439,7 +435,7 @@ export function HelicalMethod() {
               gridTemplateColumns: "1.2fr 0.8fr",
               gap: "32px",
               alignItems: "flex-end",
-              marginTop: "20px",
+              marginTop: "16px",
             }}
             className="helix-intro-grid"
           >
@@ -449,7 +445,7 @@ export function HelicalMethod() {
                 className="font-display"
                 emClassName="serif-em text-brand"
                 style={{
-                  fontSize: "clamp(2.5rem, 5.2vw, 5.2rem)",
+                  fontSize: "clamp(2.4rem, 4.8vw, 4.8rem)",
                   color: "#161515",
                   lineHeight: 1.05,
                   letterSpacing: "-0.04em",
@@ -460,20 +456,20 @@ export function HelicalMethod() {
             <div>
               <p
                 style={{
-                  fontSize: "1.05rem",
-                  lineHeight: 1.7,
+                  fontSize: "1.02rem",
+                  lineHeight: 1.65,
                   color: "rgba(22, 21, 21, 0.72)",
                   margin: 0,
                 }}
               >
-                ADREXKS is a single continuous growth helix. As you scroll, the thick background ribbon rotates and twists through all four phases, seamlessly linking creative vision to sustainable scale.
+                ADREXKS is a single continuous growth helix. As you scroll, the background ribbon rotates and twists through all four phases, seamlessly linking creative vision to sustainable scale.
               </p>
             </div>
           </div>
         </div>
 
         {/* 4 Alternating Chapters: Right, Left, Right, Left */}
-        <div style={{ display: "grid", gap: "clamp(120px, 18vh, 220px)" }} className="helix-chapters-container">
+        <div style={{ display: "grid", gap: "clamp(60px, 8vh, 100px)" }} className="helix-chapters-container">
           {NODES.map((node) => {
             const isTextOnRight = node.textPosition === "right";
 
@@ -483,7 +479,7 @@ export function HelicalMethod() {
                 style={{
                   display: "grid",
                   gridTemplateColumns: "1fr 1fr",
-                  gap: "clamp(40px, 6vw, 90px)",
+                  gap: "clamp(32px, 5vw, 70px)",
                   alignItems: "center",
                 }}
                 className={isTextOnRight ? "node-row-right" : "node-row-left"}
@@ -492,7 +488,7 @@ export function HelicalMethod() {
                 {isTextOnRight ? (
                   <>
                     {/* Helix visible in the BG on the LEFT */}
-                    <div style={{ minHeight: "280px" }} className="empty-helix-space" />
+                    <div style={{ minHeight: "200px" }} className="empty-helix-space" />
 
                     {/* Content on the RIGHT */}
                     <div className="node-card-wrapper">
@@ -507,7 +503,7 @@ export function HelicalMethod() {
                     </div>
 
                     {/* Helix visible in the BG on the RIGHT */}
-                    <div style={{ minHeight: "280px" }} className="empty-helix-space" />
+                    <div style={{ minHeight: "200px" }} className="empty-helix-space" />
                   </>
                 )}
               </div>
@@ -523,7 +519,7 @@ export function HelicalMethod() {
             gap: 16px !important;
           }
           .helix-chapters-container {
-            gap: clamp(48px, 10vh, 84px) !important;
+            gap: clamp(32px, 5vh, 50px) !important;
           }
           .node-row-right,
           .node-row-left {
@@ -539,36 +535,23 @@ export function HelicalMethod() {
             display: none !important;
           }
           .node-content-card {
-            border-radius: 1.6rem !important;
-            padding: clamp(22px, 5vw, 32px) !important;
-            background: rgba(255, 255, 255, 0.94) !important;
+            border-radius: 1.4rem !important;
+            padding: 20px 18px !important;
+            background: rgba(255, 255, 255, 0.95) !important;
             backdrop-filter: blur(16px) !important;
             -webkit-backdrop-filter: blur(16px) !important;
             border: 1px solid rgba(22, 21, 21, 0.1) !important;
-            box-shadow: 0 16px 40px -10px rgba(22, 21, 21, 0.1) !important;
+            box-shadow: 0 12px 30px -8px rgba(22, 21, 21, 0.08) !important;
           }
         }
 
         @media (max-width: 640px) {
-          .deliverables-grid {
-            grid-template-columns: 1fr !important;
-            padding: 14px 16px !important;
-            gap: 10px !important;
-          }
           .node-content-card {
-            border-radius: 1.3rem !important;
-            padding: 20px 16px !important;
-          }
-          .node-eyebrow-pill {
-            padding: 5px 12px !important;
-            margin-bottom: 12px !important;
+            padding: 18px 16px !important;
           }
           .node-title {
-            font-size: clamp(1.6rem, 6.5vw, 2.1rem) !important;
+            font-size: clamp(1.4rem, 5.5vw, 1.8rem) !important;
             margin-bottom: 8px !important;
-          }
-          .node-desc {
-            margin-bottom: 18px !important;
           }
         }
       `}</style>
@@ -577,155 +560,101 @@ export function HelicalMethod() {
 }
 
 /**
- * Foreground Content Card with frosted glass styling so the background 3D helix is visible behind it
+ * Foreground Content Card with sleek, information-oriented layout
  */
 function NodeContentCard({ node }) {
   return (
     <div
       className="node-content-card"
       style={{
-        background: "rgba(255, 255, 255, 0.88)",
-        backdropFilter: "blur(24px)",
-        WebkitBackdropFilter: "blur(24px)",
+        background: "rgba(255, 255, 255, 0.92)",
+        backdropFilter: "blur(20px)",
+        WebkitBackdropFilter: "blur(20px)",
         border: "1px solid rgba(22, 21, 21, 0.09)",
-        borderRadius: "2.2rem",
-        padding: "clamp(28px, 4vw, 44px)",
-        boxShadow: "0 24px 60px -15px rgba(22, 21, 21, 0.08)",
+        borderRadius: "1.6rem",
+        padding: "clamp(22px, 3vw, 30px)",
+        boxShadow: "0 18px 45px -12px rgba(22, 21, 21, 0.08)",
         position: "relative",
       }}
     >
-      {/* Node Eyebrow Pill */}
+      {/* Top Header: Phase Badge & Focus Tag */}
       <div
-        className="node-eyebrow-pill"
         style={{
-          display: "inline-flex",
+          display: "flex",
+          justifyContent: "space-between",
           alignItems: "center",
-          gap: "10px",
-          padding: "6px 14px",
-          borderRadius: "9999px",
-          background: "rgba(181, 0, 255, 0.07)",
-          border: "1px solid rgba(181, 0, 255, 0.18)",
-          marginBottom: "18px",
+          gap: "12px",
+          marginBottom: "14px",
+          flexWrap: "wrap",
         }}
       >
-        <span
-          style={{
-            width: "7px",
-            height: "7px",
-            borderRadius: "50%",
-            background: "#b500ff",
-          }}
-        />
         <span
           className="label-mono font-mono"
           style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "8px",
             color: "#b500ff",
             fontWeight: 700,
             fontSize: "0.72rem",
+            background: "rgba(181, 0, 255, 0.07)",
+            padding: "4px 10px",
+            borderRadius: "9999px",
+            border: "1px solid rgba(181, 0, 255, 0.16)",
           }}
         >
-          PHASE {node.index} / 04 · {node.tag}
+          <span
+            style={{
+              width: "6px",
+              height: "6px",
+              borderRadius: "50%",
+              background: "#b500ff",
+            }}
+          />
+          PHASE {node.index} · {node.tag}
+        </span>
+
+        <span
+          className="label-mono font-mono"
+          style={{
+            color: "rgba(22, 21, 21, 0.55)",
+            fontSize: "0.72rem",
+            letterSpacing: "0.06em",
+          }}
+        >
+          {node.meaning}
         </span>
       </div>
 
-      {/* Giant Title */}
+      {/* Title */}
       <h3
         className="font-display node-title"
         style={{
-          fontSize: "clamp(2rem, 3.4vw, 3rem)",
+          fontSize: "clamp(1.5rem, 2.2vw, 2.1rem)",
           color: "#161515",
-          lineHeight: 1.1,
-          letterSpacing: "-0.035em",
-          margin: "0 0 12px",
+          lineHeight: 1.2,
+          letterSpacing: "-0.03em",
+          margin: "0 0 10px",
         }}
       >
-        {node.acronym}:{" "}
-        <span
-          style={{
-            color: "#b500ff",
-            fontWeight: 400,
-            fontFamily: "'Instrument Serif', Georgia, serif",
-            fontStyle: "italic",
-          }}
-        >
-          {node.title}
+        <span style={{ color: "#b500ff", fontFamily: "var(--font-mono, monospace)", marginRight: "8px" }}>
+          {node.acronym}:
         </span>
+        {node.title}
       </h3>
 
-      {/* Meaning Subtitle */}
-      <p
-        style={{
-          fontSize: "1.05rem",
-          color: "#161515",
-          fontWeight: 600,
-          marginBottom: "14px",
-        }}
-      >
-        {node.meaning}
-      </p>
-
-      {/* Headline & Description */}
-      <p
-        style={{
-          fontSize: "0.98rem",
-          color: "rgba(22, 21, 21, 0.9)",
-          fontWeight: 600,
-          marginBottom: "10px",
-        }}
-      >
-        {node.headline}
-      </p>
+      {/* Crisp Info Summary */}
       <p
         className="node-desc"
         style={{
           fontSize: "0.95rem",
-          lineHeight: 1.7,
-          color: "rgba(22, 21, 21, 0.7)",
-          marginBottom: "24px",
+          lineHeight: 1.6,
+          color: "rgba(22, 21, 21, 0.74)",
+          margin: 0,
         }}
       >
-        {node.description}
+        {node.summary}
       </p>
-
-      {/* Deliverables Checklist */}
-      <div
-        style={{
-          background: "#f9f8f6",
-          border: "1px solid rgba(22, 21, 21, 0.08)",
-          borderRadius: "1.2rem",
-          padding: "18px 22px",
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "10px 16px",
-        }}
-        className="deliverables-grid"
-      >
-        {node.deliverables.map((item) => (
-          <div
-            key={item}
-            style={{
-              display: "flex",
-              alignItems: "flex-start",
-              gap: "8px",
-              fontSize: "0.84rem",
-              color: "rgba(22, 21, 21, 0.85)",
-              lineHeight: 1.4,
-            }}
-          >
-            <span
-              style={{
-                color: "#b500ff",
-                fontSize: "0.95rem",
-                fontWeight: 700,
-                lineHeight: 1.1,
-              }}
-            >
-              ✓
-            </span>
-            <span>{item}</span>
-          </div>
-        ))}
-      </div>
     </div>
   );
 }

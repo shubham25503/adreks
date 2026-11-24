@@ -17,51 +17,18 @@ export function Footer() {
         borderTop: "1px solid rgba(168, 85, 247, 0.16)",
         position: "relative",
         overflow: "hidden",
-        paddingTop: "clamp(60px, 8vw, 100px)",
+        paddingTop: "clamp(48px, 6vw, 76px)",
         paddingBottom: "40px",
       }}
     >
       <div className="container-custom">
-        {/* Top Big Banner CTA */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "flex-end",
-            flexWrap: "wrap",
-            gap: "28px",
-            paddingBottom: "clamp(40px, 6vw, 70px)",
-            borderBottom: "1px solid rgba(168, 85, 247, 0.15)",
-          }}
-        >
-          <div>
-            <p className="label-mono" style={{ color: "var(--brand-bright)", marginBottom: "8px" }}>
-              Ready for what's next?
-            </p>
-            <h2
-              className="font-display"
-              style={{
-                fontSize: "clamp(2.5rem, 5.2vw, 5.2rem)",
-                lineHeight: 1,
-                color: "#ffffff",
-              }}
-            >
-              Ideas into <span className="serif-em" style={{ color: "#d8b4fe" }}>impact.</span>
-            </h2>
-          </div>
-
-          <a href="#contact" className="btn-primary" data-magnetic style={{ padding: "14px 32px" }}>
-            Start a project
-          </a>
-        </div>
-
         {/* 4-column Links Grid */}
         <div
           style={{
             display: "grid",
             gridTemplateColumns: "1.4fr 0.8fr 1fr 0.8fr",
             gap: "clamp(30px, 4vw, 60px)",
-            padding: "60px 0",
+            padding: "0 0 52px",
           }}
           className="footer-links-grid"
         >

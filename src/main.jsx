@@ -9,7 +9,7 @@ import { Footer } from './components/Footer';
 import { useLocation } from './components/Router';
 
 import { HomePage } from './pages/HomePage';
-import { StudioPage } from './pages/StudioPage';
+import { WhyUsPage } from './pages/WhyUsPage';
 import { ServicesPage } from './pages/ServicesPage';
 import { ServiceDetailPage } from './pages/ServiceDetailPage';
 import { WorkPage } from './pages/WorkPage';
@@ -28,8 +28,8 @@ function App() {
   let pageContent;
   if (pathname === '/') {
     pageContent = <HomePage />;
-  } else if (pathname === '/studio') {
-    pageContent = <StudioPage />;
+  } else if (pathname === '/why-us' || pathname === '/studio') {
+    pageContent = <WhyUsPage />;
   } else if (pathname === '/services') {
     pageContent = <ServicesPage />;
   } else if (pathname.startsWith('/services/')) {

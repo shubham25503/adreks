@@ -1,5 +1,6 @@
 import React from "react";
 import { delay, RollText } from "./Primitives";
+import { Link } from "./Router";
 
 export function AboutIntro() {
   return (
@@ -96,19 +97,42 @@ export function AboutIntro() {
           >
             Adrexks is one team for strategy, content, advertising, branding and design - so your message stays consistent from the first post to the last campaign.
           </p>
-          <p
+          <div
             data-reveal
             style={{
               ...delay(200),
               gridColumn: "span 4",
-              fontSize: "0.95rem",
-              lineHeight: 1.65,
-              color: "rgba(22, 21, 21, 0.62)",
-              margin: 0,
+              display: "flex",
+              flexDirection: "column",
+              gap: "16px",
+              alignItems: "flex-start",
             }}
           >
-            No juggling five vendors. No ideas lost between departments. Just one founder-led agency that thinks about the whole picture and sweats the details.
-          </p>
+            <p
+              style={{
+                fontSize: "0.95rem",
+                lineHeight: 1.65,
+                color: "rgba(22, 21, 21, 0.62)",
+                margin: 0,
+              }}
+            >
+              No juggling five vendors. No ideas lost between departments. Led by Kavan Desai, our mission is turning thoughtful creative into measurable business growth.
+            </p>
+            <Link
+              to="/why-us"
+              style={{
+                color: "#b500ff",
+                textDecoration: "none",
+                fontSize: "0.92rem",
+                fontWeight: 600,
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "6px",
+              }}
+            >
+              Why choose Adrexks →
+            </Link>
+          </div>
         </div>
       </div>
 
@@ -118,7 +142,8 @@ export function AboutIntro() {
             grid-template-columns: 1fr !important;
             gap: 1.8rem !important;
           }
-          .about-agency-grid > p {
+          .about-agency-grid > p,
+          .about-agency-grid > div {
             grid-column: span 1 !important;
           }
         }

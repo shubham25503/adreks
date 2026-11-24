@@ -68,19 +68,19 @@ export function getRouteSeo(pathname, servicesData) {
     };
   }
 
-  if (pathname === "/studio") {
+  if (pathname === "/why-us" || pathname === "/studio") {
     return {
-      title: "Studio & Leadership | ADREXKS Digital Marketing & Creative Agency",
+      title: "Why Choose ADREXKS | Best Digital Marketing & Creative Agency",
       description:
-        "Meet Kavan Desai and the ADREXKS creative studio in Ahmedabad. An independent advertising, branding, and performance marketing practice built around real customer insight.",
+        "Discover why ambitious brands choose ADREXKS in Ahmedabad, India. One connected creative and performance team, founder-led clarity, and measurable ROI.",
       keywords: [
         ...BASE_KEYWORDS,
-        "about Adrexks",
-        "Adrexks founder Kavan Desai",
-        "independent creative studio Ahmedabad",
-        "brand strategist India",
+        "why choose Adrexks",
+        "why Adrexks digital marketing agency",
+        "best creative agency Ahmedabad",
+        "results driven marketing agency India",
       ].join(", "),
-      canonical: `${SITE_URL}/studio`,
+      canonical: `${SITE_URL}/why-us`,
     };
   }
 

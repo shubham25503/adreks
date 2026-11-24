@@ -4,7 +4,7 @@ import { Link, NavLink, useLocation } from "./Router";
 
 export const NAV_LINKS = [
   { href: "/", label: "Home" },
-  { href: "/studio", label: "Studio" },
+  { href: "/why-us", label: "Why Us" },
   { href: "/services", label: "Services" },
   { href: "/work", label: "Work" },
   { href: "/contact", label: "Contact" },

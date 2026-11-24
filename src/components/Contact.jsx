@@ -126,7 +126,7 @@ export function Contact() {
 
             <div data-reveal style={{ ...delay(100), marginTop: "44px", display: "grid", gap: "20px" }}>
               <a
-                href="mailto:hello@adrexks.in"
+                href="mailto:kavan.desai@adrexks.com"
                 style={{
                   display: "flex",
                   alignItems: "center",
@@ -153,7 +153,7 @@ export function Contact() {
                 >
                   ✉
                 </span>
-                <span>hello@adrexks.in</span>
+                <span>kavan.desai@adrexks.com</span>
               </a>
 
               <p

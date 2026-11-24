@@ -131,7 +131,7 @@ export function Footer() {
             </p>
             <div style={{ marginTop: "16px", display: "grid", gap: "10px" }}>
               <a
-                href="mailto:hello@adrexks.in"
+                href="mailto:kavan.desai@adrexks.com"
                 style={{
                   color: "#fff",
                   textDecoration: "none",
@@ -142,7 +142,7 @@ export function Footer() {
                 onMouseEnter={(e) => (e.currentTarget.style.color = "var(--acid-lime, #D6FF75)")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "#fff")}
               >
-                hello@adrexks.in
+                kavan.desai@adrexks.com
               </a>
             </div>
           </div>
